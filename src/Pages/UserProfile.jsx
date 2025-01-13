@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useAuth from "../customHooks/useAuth";
 
 const UserProfile = () => {
-    const {userInfo} = useAuth();
+  const { userInfo } = useAuth();
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
     displayName: userInfo.displayName || "",
@@ -35,17 +35,14 @@ const UserProfile = () => {
             <h1 className="text-2xl font-semibold">{formData.displayName}</h1>
             <p className="text-gray-500">{formData.email}</p>
             <button
-              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 green-button"
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary green-button"
               onClick={() => setEditMode(true)}
             >
               Edit Profile
             </button>
           </>
         ) : (
-          <form
-            className="w-full mt-4 space-y-4"
-            onSubmit={handleSubmit}
-          >
+          <form className="w-full mt-4 space-y-4" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-500 font-medium">Name</label>
               <input
@@ -58,7 +55,9 @@ const UserProfile = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-500 font-medium">Photo URL</label>
+              <label className="block text-gray-500 font-medium">
+                Photo URL
+              </label>
               <input
                 type="url"
                 name="photoURL"
@@ -88,10 +87,7 @@ const UserProfile = () => {
               >
                 Cancel
               </button>
-              <button
-                type="submit"
-                className="green-button"
-              >
+              <button type="submit" className="green-button">
                 Save
               </button>
             </div>

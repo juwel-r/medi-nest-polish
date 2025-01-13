@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { ToastContainer } from "react-toastify";
+
 
 const MainLayout = () => {
   const { isDark } = useContext(AuthContext);
@@ -20,7 +22,7 @@ const MainLayout = () => {
       <Outlet></Outlet>
       </div>
       <Footer></Footer>
-      
+      <ToastContainer />
     </div>
   );
 };

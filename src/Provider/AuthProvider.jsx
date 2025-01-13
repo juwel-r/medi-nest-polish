@@ -1,68 +1,55 @@
-import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
-  updateProfile,
-  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { createContext, useEffect, useState } from "react";
 import auth from "../firebase.config";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
 
 export const AuthContext = createContext("");
-const provider = new GoogleAuthProvider();
-
-//===========>>Component<<==============//
 const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState("");
-  const [loading, setLoading] = useState(true); //this is for load user data
-  const [loader, setIsLoader] = useState(false); // this is for show loading spinner
+  const [authLoading, setAuthLoading] = useState(true);
 
-  //sign up with email pass
-  const createUser = (email, password) => {
-    setLoading(true);
+  //Register User
+  const register = (email, password) => {
+    setAuthLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  //Update Profile
-  const updateUser = (info) => {
-    return updateProfile(auth.currentUser, info);
-  };
-
-  //login with email pass
-  const loginUser = (email, password) => {
-    setLoading(true);
+  //Login User
+  const login = (email, password) => {
+    setAuthLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  //Log in withGoogle
+  // Login with Google
+  const provider = new GoogleAuthProvider();
   const loginWithGoogle = () => {
-    setLoading(true);
+    setAuthLoading(true);
     return signInWithPopup(auth, provider);
   };
 
-  //Check user logged in or not
+  // Update user Profile
+  const updateUserProfile = (data) => {
+    return updateProfile(auth.currentUser, data);
+  };
+
+  // Log Out User
+  const logOut = () => {
+    setAuthLoading(true);
+    return signOut(auth);
+  };
+
+  // User Auth Check
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      const user = { email: currentUser?.email };
-      setLoading(false);
       setUserInfo(currentUser);
-      axios
-        .post(
-          "https://edu-mate-server.vercel.app/jwt",
-          { email: currentUser?.email },
-          {
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          console.log(res.data);
-          setLoading(false);
-        });
-
+      setAuthLoading(false);
       console.log(currentUser);
     });
 
@@ -70,84 +57,21 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-
-  //Sign Out user
-  const signOutUser = () => {
-    setLoading(true);
-    return signOut(auth);
-  };
-
-  //Toggle Theme
-  const [isDark, setDark] = useState(false);
-
-  // data set as object to send on context api,
+  console.log("user", userInfo);
   const authData = {
-    createUser,
-    updateUser,
-    loginUser,
     userInfo,
-    setUserInfo,
-    signOutUser,
-    loading,
-    setLoading,
+    authLoading,
+    register,
+    login,
     loginWithGoogle,
-    loader,
-    setIsLoader,
-    isDark,
-    setDark,
+    updateUserProfile,
+    logOut,
   };
-  // console.log(userInfo);
   return (
-    <div className="">
+    <div>
       <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>
     </div>
   );
 };
 
 export default AuthProvider;
-
-// useEffect(() => {
-//   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-//     setUserInfo(currentUser);
-//     const user = { email: currentUser?.email };
-//     if (currentUser?.email) {
-//       axios
-//         .post(
-//           "https://edu-mate-server.vercel.app/jwt",
-//           { user },
-//           {
-//             withCredentials: true,
-//           }
-//         )
-//         .then((res) => {
-//           setLoading(false);
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//           setLoading(false);
-//         });
-//     } else {
-//       axios
-//         .post(
-//           "https://edu-mate-server.vercel.app/clear-token",
-//           {},
-//           {
-//             withCredentials: true,
-//           }
-//         )
-//         .then((res) => {
-//           setLoading(false);
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//           setLoading(false);
-//         });
-//     }
-
-//     console.log(currentUser);
-//   });
-
-//   return () => {
-//     unsubscribe();
-//   };
-// }, []);

@@ -42,7 +42,7 @@ const Navbar = () => {
       // text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#8672FF",
+      confirmButtonColor: "#1a7bc0",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, Log Out!",
     }).then((result) => {
@@ -200,7 +200,7 @@ const Navbar = () => {
               <Link to="profile">
                 <button
                   onClick={() => setProfileMenu(false)}
-                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300"
+                  className="px-4 py-2 bg-gradient-to-r from-primary to-cyan-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-cyan-600 hover:to-secondary transform transition-all duration-300"
                 >
                   See Profile
                 </button>

@@ -98,15 +98,18 @@ const Login = () => {
       ) : (
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 text-primary">Welcome Back!</h1>
-            <p className="text-lg  mt-2">
-              Enter your credentials to log in.
-            </p>
+            <h1 className="text-3xl font-bold text-gray-800 text-primary">
+              Welcome Back!
+            </h1>
+            <p className="text-lg  mt-2">Enter your credentials to log in.</p>
           </div>
-        
+
           <div className="flex flex-col-reverse lg:flex-row items-center gap-8">
             <div className="w-full lg:w-1/2">
-              <Lottie animationData={loginAnimation} className="max-w-md mx-auto" />
+              <Lottie
+                animationData={loginAnimation}
+                className="max-w-md mx-auto"
+              />
             </div>
 
             <div className="w-full sm:w-8/12 lg:w-1/3 shadow-lg rounded-lg p-8">
@@ -118,7 +121,7 @@ const Login = () => {
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -132,7 +135,7 @@ const Login = () => {
                   <input
                     type={showPass ? "text" : "password"}
                     placeholder="Enter your password"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -148,7 +151,7 @@ const Login = () => {
                 <div>
                   <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300"
+                    className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300"
                   >
                     Login
                   </button>
@@ -171,8 +174,8 @@ const Login = () => {
               </div>
 
               <p className="mt-4 text-center text-sm text-gray-600">
-                Don&apos;t have an account?{' '}
-                <Link to="/register" className="text-blue-500 hover:underline">
+                Don&apos;t have an account?{" "}
+                <Link to="/register" className="text-primary hover:underline">
                   Register here.
                 </Link>
               </p>
