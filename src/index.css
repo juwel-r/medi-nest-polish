@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active {
+  text-decoration: underline;
+  text-decoration-color: #9538e2;
+  text-underline-offset: 4px;
+  color: #9538e2;
+}
+
+.top-menu a {
+  position: relative;
+  text-decoration: none;
+}
+
+.top-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #9538e2;
+  transition: width 0.3s ease-in-out;
+}
+
+.top-menu a:hover::after {
+  width: 100%;
+}
