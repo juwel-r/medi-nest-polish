@@ -1,8 +1,8 @@
 
 const HomeLayout = () => {
     return (
-        <div>
-            This is home layout
+        <div className=''>
+
         </div>
     );
 };

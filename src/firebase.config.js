@@ -1,24 +1,29 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCnjOCjytYj8C0db3YvqBDmbRubl7iuJ18",
-  authDomain: "juwel-rana-portfolio.firebaseapp.com",
-  projectId: "juwel-rana-portfolio",
-  storageBucket: "juwel-rana-portfolio.firebasestorage.app",
-  messagingSenderId: "389201243144",
-  appId: "1:389201243144:web:055b2c466f2941172fb5bd",
-  measurementId: "G-ESHK33FFWC"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app)
-export default auth
+const auth = getAuth(app);
+export default auth;
+
+
+
+// VITE_apiKey=AIzaSyAp-TqZ-8tf2s8Amlj0dIfHuLZmVTmvAUU
+// VITE_authDomain=edu-mate-24f55.firebaseapp.com
+// VITE_projectId=edu-mate-24f55
+// VITE_storageBucket=edu-mate-24f55.firebasestorage.app
+// VITE_messagingSenderId=713598788959
+// VITE_appId=1:713598788959:web:f813ea96f7e39c7f1202e
