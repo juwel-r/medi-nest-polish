@@ -1,0 +1,68 @@
+[
+  {
+    "itemName": "Paracetamol",
+    "genericName": "Acetaminophen",
+    "description": "Paracetamol is used to treat mild to moderate pain and reduce fever. It is commonly used for headaches, muscle aches, and cold-related symptoms.",
+    "image": "https://i.ibb.co.com/Rzq9bhR/Paracetamol.jpg",
+    "category": "Tab",
+    "company": "HealthCare Pharma",
+    "massUnit": "500 Mg",
+    "price": 5.0,
+    "discount": 2
+  },
+  {
+    "itemName": "Cetrizine",
+    "genericName": "Cetirizine Hydrochloride",
+    "description": "Cetrizine is an antihistamine used to relieve allergy symptoms like runny nose, itching, and watery eyes. It is effective for hay fever and hives.",
+    "image": "https://i.ibb.co.com/DV2s8vn/Cetrizine.jpg",
+    "category": "Tab",
+    "company": "AllergyCare Ltd",
+    "massUnit": "10 Mg",
+    "price": 8.0,
+    "discount": 5
+  },
+  {
+    "itemName": "Amoxicillin",
+    "genericName": "Amoxicillin Trihydrate",
+    "description": "Amoxicillin is a penicillin antibiotic used to treat bacterial infections, including pneumonia, bronchitis, and infections of the ear, nose, and throat.",
+    "image": "https://i.ibb.co.com/qdMm59S/Amoxicillin.jpg",
+    "category": "Cap",
+    "company": "BioPharma Inc",
+    "massUnit": "250 Mg",
+    "price": 10.0,
+    "discount": 0
+  },
+  {
+    "itemName": "Cough Syrup",
+    "genericName": "Diphenhydramine HCL",
+    "description": "Cough Syrup is used to relieve coughing caused by minor throat and bronchial irritation, often associated with a cold or inhaled irritants.",
+    "image": "https://i.ibb.co.com/ypsVj1f/Cough-Syrup.jpg",
+    "category": "Syp",
+    "company": "Wellness Meds",
+    "massUnit": "100 ML",
+    "price": 50.0,
+    "discount": 10
+  },
+  {
+    "itemName": "Omeprazole",
+    "genericName": "Omeprazole Magnesium",
+    "description": "Omeprazole is used to treat acid reflux, heartburn, and stomach ulcers by reducing the amount of acid produced in the stomach.",
+    "image": "https://i.ibb.co.com/pxVD7RR/Omeprazole.jpg",
+    "category": "Cap",
+    "company": "AcidCare Pharmaceuticals",
+    "massUnit": "20 Mg",
+    "price": 12.0,
+    "discount": 0
+  },
+  {
+    "itemName": "ORS Solution",
+    "genericName": "Oral Rehydration Salts",
+    "description": "ORS Solution is used to treat dehydration caused by diarrhea or vomiting. It restores essential salts and fluids in the body.",
+    "image": "https://i.ibb.co.com/mhcrX2k/ors.jpg",
+    "category": "Sus",
+    "company": "HydraLife Ltd",
+    "massUnit": "200 ML",
+    "price": 25.0,
+    "discount": 7
+  }
+]

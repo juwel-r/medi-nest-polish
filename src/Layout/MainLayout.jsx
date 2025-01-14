@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
+import Navbar from "../Common/Navbar";
+import Footer from "../Common/Footer";
 
 
 const MainLayout = () => {

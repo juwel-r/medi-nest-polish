@@ -28,7 +28,7 @@ const UserProfile = () => {
         <img
           src={formData.photoURL || "https://via.placeholder.com/150"}
           alt="User Avatar"
-          className="w-24 h-24 rounded-full shadow-md mb-4"
+          className="w-24 h-24 rounded-full shadow-md mb-4 object-cover"
         />
         {!editMode ? (
           <>

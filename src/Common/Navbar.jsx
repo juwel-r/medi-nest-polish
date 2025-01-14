@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import ThemeController from "./ThemeController";
+import ThemeController from "../components/ThemeController";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosList } from "react-icons/io";
 import logo from "/logo.png";
 import Swal from "sweetalert2";
 import { Tooltip } from "react-tooltip";
 import useAuth from "../Hooks/useAuth";
+import { FiShoppingCart } from "react-icons/fi";
 
 const Navbar = () => {
   const { userInfo, logOut } = useAuth();
@@ -20,17 +21,8 @@ const Navbar = () => {
       <NavLink to="/" className="px-2">
         Home
       </NavLink>
-      <NavLink to="/find-tutors" className="px-2">
-        Find Tutors
-      </NavLink>
-      <NavLink to="/add-tutorial" className="px-2">
-        Add Tutorials
-      </NavLink>
-      <NavLink to="/my-tutorials" className="px-2">
-        My Tutorials
-      </NavLink>
-      <NavLink to="my-booked-tutorials" className="px-2">
-        My Booked Tutorials
+      <NavLink to="/shop" className="px-2">
+        Shop
       </NavLink>
     </>
   );
@@ -129,6 +121,14 @@ const Navbar = () => {
       </section>
       {/* Right Section */}
       <section className="flex items-center justify-between gap-2">
+        <Link to="/" className="text-white">
+          <p className=" md:p-3 border-2 bg-primary/90 rounded-full relative mr-4 text-lg">
+            <FiShoppingCart />
+            <span className="text-primary text-sm font-bold text-center absolute -top-2 -right-1 bg-white rounded-full h-6 w-6  flex justify-center items-center border border-primary">
+              {/* {cart.length} */}0
+            </span>
+          </p>
+        </Link>
         {/* Avatar */}
         {userInfo && (
           <div className="avatar online placeholder">
@@ -160,7 +160,7 @@ const Navbar = () => {
                 to="/register"
                 className="myBtn mr-2 btn btn-outline btn-sm rounded-none green-button"
               >
-                Register
+                Join Us
               </Link>
               <Link
                 to="/login"
@@ -170,8 +170,17 @@ const Navbar = () => {
               </Link>
             </>
           )}
+          <div className="border rounded-lg p-2">
+            <select name="language" id="" className="">
+              <option disabled selected value="">
+                Languages
+              </option>
+              <option value="English">English</option>
+              <option value="Bangla">Bangla</option>
+            </select>
+          </div>
         </div>
-        <Tooltip id="my-tooltip" />
+        {/* <Tooltip id="my-tooltip" /> */}
         {/* theme controller */}
         <ThemeController></ThemeController>
       </section>
@@ -182,11 +191,11 @@ const Navbar = () => {
       )} */}
       {userInfo && (
         <div
-          className={`flex flex-col items-center gap-2 absolute top-12 sm:top-16 right-0 bg-white p-2 border border-primary shadow-md max-w-80 min-w-52 rounded-md ${
+          className={`flex flex-col items-center gap-2 absolute top-12 sm:top-16 right-0 lg:right-28 bg-white p-4 mr-1 border-2 border-primary/50 shadow-md max-w-80 min-w-52 rounded-xl ${
             profileMenu ? "opacity-100" : "opacity-0"
           } transition-all duration-300 ease-in-out transform`}
         >
-          <div className="w-20 h-20 p-1 border border-primary rounded-full">
+          <div className="w-24 h-24 p-1 border border-primary rounded-full">
             <img
               className=" rounded-full h-full w-full object-cover"
               src={userInfo.photoURL}
@@ -201,16 +210,13 @@ const Navbar = () => {
               <Link to="profile">
                 <button
                   onClick={() => setProfileMenu(false)}
-                  className="px-4 py-2 bg-gradient-to-r from-primary to-cyan-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-cyan-600 hover:to-secondary transform transition-all duration-300"
+                  className="green-button btn btn-sm"
                 >
-                  See Profile
+                  Update Profile
                 </button>
               </Link>
-
-              <button
-                className="px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
-                onClick={handleLogOut}
-              >
+              <Link to="/" className="green-button btn btn-sm">Dashboard</Link>
+              <button className="red-button btn btn-sm" onClick={handleLogOut}>
                 Logout
               </button>
             </>
