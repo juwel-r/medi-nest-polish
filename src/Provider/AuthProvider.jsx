@@ -50,17 +50,18 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUserInfo(currentUser);
       setAuthLoading(false);
-      console.log(currentUser);
     });
 
+    console.log("user-", userInfo, "loading-", authLoading);
     return () => {
       unsubscribe();
     };
-  }, []);
-  console.log("user", userInfo);
+  }, [userInfo]);
+  console.log("user-", userInfo, "loading-", authLoading);
   const authData = {
     userInfo,
     authLoading,
+    setAuthLoading,
     register,
     login,
     loginWithGoogle,

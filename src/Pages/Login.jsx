@@ -8,16 +8,17 @@ import { FcGoogle } from "react-icons/fc";
 import LoadingSpin from "../components/LoadingSpin";
 import Lottie from "lottie-react";
 import loginAnimation from "../assets/animation/login-animation.json";
+import LoginWithGoogle from "../components/LoginWithGoogle";
 
 const Login = () => {
-  const { loginUser, loginWithGoogle, setUserInfo } = useContext(AuthContext);
+  const { authLoading, setAuthLoading, login } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+  
   const navigate = useNavigate();
   const location = useLocation();
-  const [startSpin, setStartSpin] = useState(false);
 
   const validateLogin = () => {
     const errors = [];
@@ -32,13 +33,11 @@ const Login = () => {
     const errors = validateLogin();
     if (errors.length > 0) {
       setErrorMessage(errors.join(". "));
+      setAuthLoading(false)
     } else {
-      setStartSpin(true);
       setErrorMessage("");
-      loginUser(email, password)
+      login(email, password)
         .then((result) => {
-          setStartSpin(false);
-          setUserInfo(result.user);
           e.target.reset();
           Swal.fire({
             title: "Login Successful!",
@@ -52,53 +51,22 @@ const Login = () => {
           }, 1200);
         })
         .catch((error) => {
-          setStartSpin(false);
           Swal.fire({
             title: "Failed To Login!",
             text: error.code,
             icon: "error",
             confirmButtonText: "Try Again",
           });
+          setAuthLoading(false)
         });
     }
   };
 
-  const googleLogin = () => {
-    setStartSpin(true);
-    loginWithGoogle()
-      .then((result) => {
-        setStartSpin(false);
-        setUserInfo(result.user);
-        Swal.fire({
-          title: "Login Successful!",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 800,
-        });
-        setTimeout(() => {
-          if (location.state) navigate(location.state);
-          else navigate("/");
-        }, 1200);
-      })
-      .catch((error) => {
-        setStartSpin(false);
-        Swal.fire({
-          title: "Failed To Login!",
-          text: error.code,
-          icon: "error",
-          confirmButtonText: "Try Again",
-        });
-      });
-  };
-
   return (
     <section className=" py-12">
-      {startSpin ? (
-        <LoadingSpin />
-      ) : (
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 text-primary">
+            <h1 className="text-3xl font-bold text-primary">
               Welcome Back!
             </h1>
             <p className="text-lg  mt-2">Enter your credentials to log in.</p>
@@ -124,7 +92,6 @@ const Login = () => {
                     className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
                   />
                 </div>
 
@@ -138,7 +105,6 @@ const Login = () => {
                     className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                   />
                   <span
                     onClick={() => setShowPass(!showPass)}
@@ -149,12 +115,20 @@ const Login = () => {
                 </div>
 
                 <div>
-                  <button
-                    type="submit"
-                    className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300"
-                  >
-                    Login
-                  </button>
+                {errorMessage && (
+                  <p className="text-red-500 text-sm">{errorMessage}</p>
+                )}
+                <button
+                  type="submit"
+                  className="flex items-center justify-center gap-2 w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-500 transition duration-300"
+                >
+                  <span>Login</span>
+                  <span>
+                    {authLoading && (
+                      <span className="loading loading-spinner  h-4 w-4"></span>
+                    )}
+                  </span>
+                </button>
                 </div>
               </form>
 
@@ -165,16 +139,11 @@ const Login = () => {
                   <div className="w-20 border-t border-gray-300"></div>
                 </div>
 
-                <button
-                  onClick={googleLogin}
-                  className="mt-4 w-full border border-gray-300 text-gray-500 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition duration-300"
-                >
-                  <FcGoogle className="text-2xl" /> Continue with Google
-                </button>
+                <LoginWithGoogle></LoginWithGoogle>
               </div>
 
               <p className="mt-4 text-center text-sm text-gray-600">
-                Don&apos;t have an account?{" "}
+                Don&apos;t have an account?
                 <Link to="/register" className="text-primary hover:underline">
                   Register here.
                 </Link>
@@ -182,7 +151,6 @@ const Login = () => {
             </div>
           </div>
         </div>
-      )}
     </section>
   );
 };

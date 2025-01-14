@@ -7,13 +7,14 @@ import { IoIosList } from "react-icons/io";
 import logo from "/logo.png";
 import Swal from "sweetalert2";
 import { Tooltip } from "react-tooltip";
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
-  const { userInfo, signOutUser } = useContext(AuthContext);
+  const { userInfo, logOut } = useAuth();
   const navigate = useNavigate();
   const [menuClose, setMenuClose] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
-  const email1stLetter = userInfo && userInfo.email.charAt(0).toUpperCase();
+  // const email1stLetter = userInfo.email && userInfo.email.charAt(0).toUpperCase();
   const menus = (
     <>
       <NavLink to="/" className="px-2">
@@ -35,7 +36,7 @@ const Navbar = () => {
   );
 
   //Log Out
-  const logOut = () => {
+  const handleLogOut = () => {
     setProfileMenu(false);
     Swal.fire({
       title: "Do you really want to Log out?",
@@ -47,7 +48,7 @@ const Navbar = () => {
       confirmButtonText: "Yes, Log Out!",
     }).then((result) => {
       if (result.isConfirmed) {
-        signOutUser()
+        logOut()
           .then(() => {
             navigate("/");
             Swal.fire({
@@ -93,22 +94,24 @@ const Navbar = () => {
       </div>
       {/* Logo */}
       <Link to="/" className="ml-3 min-w-fit">
-        <img className="h-9 w-full md:h-10 lg:scale-150 " src={logo} alt="edu-mate-logo" />
+        <img
+          className="h-9 w-full md:h-10 lg:scale-150 "
+          src={logo}
+          alt="edu-mate-logo"
+        />
       </Link>
 
       {/* Menu */}
       <section className="top-menu flex justify-center w-full mx-auto ">
         <div
           className={`text-left text-sm sm:text-base text-black z-40 flex flex-col lg:flex-row absolute lg:static backdrop-blur-sm bg-white/90 lg:bg-transparent  lg:backdrop-blur-none lg:shadow-none shadow-md p-5 space-y-2 lg:space-y-0 pl-2 rounded-sm transition-all duration-200 ease-in-out h-screen lg:h-auto ${
-            menuClose
-              ? " top-[100%] left-0"
-              : "top-[100%]  -left-96"
+            menuClose ? " top-[100%] left-0" : "top-[100%]  -left-96"
           }`}
         >
           {menus}
           <div className="flex flex-col lg:hidden">
             {userInfo ? (
-              <button onClick={logOut} className="text-left px-2">
+              <button onClick={handleLogOut} className="text-left px-2">
                 Logout
               </button>
             ) : (
@@ -130,7 +133,7 @@ const Navbar = () => {
         {userInfo && (
           <div className="avatar online placeholder">
             <div className="text-neutral-content w-10 rounded-full">
-              {userInfo?.photoURL ? (
+              {userInfo?.photoURL && (
                 <img
                   onClick={() => setProfileMenu(!profileMenu)}
                   src={userInfo.photoURL}
@@ -138,8 +141,6 @@ const Navbar = () => {
                   data-tooltip-id="my-tooltip"
                   data-tooltip-content={userInfo.displayName}
                 />
-              ) : (
-                <h1 className="text-2xl font-bold">{email1stLetter}</h1>
               )}
             </div>
           </div>
@@ -149,7 +150,7 @@ const Navbar = () => {
           {userInfo ? (
             <button
               className="hidden px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
-              onClick={logOut}
+              onClick={handleLogOut}
             >
               Logout
             </button>
@@ -208,7 +209,7 @@ const Navbar = () => {
 
               <button
                 className="px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
-                onClick={logOut}
+                onClick={handleLogOut}
               >
                 Logout
               </button>

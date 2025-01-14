@@ -1,17 +1,16 @@
 import React, { useContext, useState } from "react";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import registerAnimation from "../assets/animation/registration-animation.json";
 import useAuth from "../Hooks/useAuth";
 import { showAlert, showToast } from "../Utils/alerts";
 import photoUpload from "../Utils/photoUpload";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import LoginWithGoogle from "../components/LoginWithGoogle";
 
 const Register = () => {
-  const { register, updateUserProfile, authLoading } = useAuth();
+  const { register, updateUserProfile, authLoading, setAuthLoading } = useAuth();
   const [showPass, setShowPass] = useState(false);
   const [name, setName] = useState("");
   const [photo, setPhoto] = useState(null);
@@ -42,11 +41,12 @@ const Register = () => {
   // registration save user to db process
   const handleSubmit = async (e) => {
     e.preventDefault();
-    showToast("This is test", "warn");
     const errors = validateSignup();
     if (errors.length) {
       setErrorMessage(errors.join(", "));
+      setAuthLoading(false)
     } else {
+      setAuthLoading(true)
       const photoURL = await photoUpload(photo);
       if (photoURL) {
         setErrorMessage("");
@@ -63,12 +63,15 @@ const Register = () => {
                 photoURL,
                 roll,
               };
-              axiosPublic.post("/users", user).then((res) => {
-                if (res.data.insertedId) {
-                  showToast("Registration Successful");
-                  navigate("/");
-                }
-              });
+              axiosPublic
+                .post("/users", user)
+                .then((res) => {
+                  if (res.data.insertedId) {
+                    showToast("Registration Successful");
+                    navigate("/");
+                  }
+                })
+                .catch((err) => console.log(err.response.data));
             });
           })
           .catch((error) => {
@@ -78,6 +81,7 @@ const Register = () => {
               icon: "error",
               confirmButtonText: "Try Again",
             });
+            setAuthLoading(false)
           });
       } else {
         showAlert({
@@ -86,6 +90,7 @@ const Register = () => {
           icon: "error",
           confirmButtonText: "Try Again",
         });
+        setAuthLoading(false)
       }
     }
   };
@@ -188,9 +193,14 @@ const Register = () => {
                 )}
                 <button
                   type="submit"
-                  className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-500 transition duration-300"
+                  className="flex items-center justify-center gap-2 w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-500 transition duration-300"
                 >
-                  Register
+                  <span>Register</span>
+                  <span>
+                    {authLoading && (
+                      <span className="loading loading-spinner h-4 w-4"></span>
+                    )}
+                  </span>
                 </button>
               </div>
             </form>
@@ -201,13 +211,7 @@ const Register = () => {
                 <p className="text-sm text-gray-500">OR</p>
                 <div className="w-20 border-t border-gray-300"></div>
               </div>
-
-              <button
-                // onClick={googleLogin}
-                className="mt-4 w-full border border-gray-300 text-gray-500 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition duration-300"
-              >
-                <FcGoogle className="text-2xl" /> Continue with Google
-              </button>
+              <LoginWithGoogle></LoginWithGoogle>
             </div>
 
             <p className="mt-4 text-center text-sm text-gray-600">
