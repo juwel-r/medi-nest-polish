@@ -41,11 +41,13 @@ const SlideContent = ({
           </p>
         </Fade>
           {discount > 0 && (
-            <Fade direction="up" delay={300} className="absolute md:scale-75 scale-90 -top-6 -left-12 w-28 h-28 font-bold text-lg shadow-md shadow-primary rounded-full flex items-center text-center px-4 bg-white text-green-600">
+<div className="lg:scale-90 md:scale-75 absolute -top-10 -left-12">
+<Fade direction="up" delay={300} className=" w-28 h-28 font-bold text-lg shadow-md shadow-primary rounded-full flex items-center text-center px-4 bg-white text-green-600">
                 <p >
               {discount}% Discount
             </p>
             </Fade>
+</div>
           )}
       </div>
     </div>

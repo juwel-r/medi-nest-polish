@@ -1,10 +1,22 @@
 import React from "react";
 
-const CategoryCard = ({image, category }) => {
+const CategoryCard = ({image, category, count, index }) => {
+  const categoryColors = [
+    "#FFDAD4",
+    "#DFF8E3",
+    "#D6EFFF",
+    "#EADCFD",
+    "#FFF0E5",
+    "#FFFBE3",
+  ];
+  
   return (
     <div className="">
-      <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-        <div className="flex justify-center mb-4">
+      <div       style={{
+        backgroundColor: categoryColors[index % categoryColors.length], // Conditional Background Color
+      }} className="p-6 rounded-xl  shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:bg-primary/5">
+        <div className="flex gap-6">
+          {/* Photo */}
           <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center border border-blue-600">
             <img
               src={image}
@@ -12,13 +24,16 @@ const CategoryCard = ({image, category }) => {
               className="w-16 h-16 object-cover rounded-full"
             />
           </div>
-        </div>
-        <h3 className="text-lg font-bold text-center text-blue-600 mb-2">
+          {/* content */}
+          <div className="flex flex-col justify-center">
+        <h3 className="text-lg font-bold text-blue-600 mb-2">
           {category}
         </h3>
-        <p className="text-sm text-center text-gray-500">
-          <span className="text-blue-600 font-semibold">120</span> Medicines
+        <p className="text-sm text-gray-500">
+          <span className="text-blue-600 font-semibold">{count}</span> Medicines
         </p>
+          </div>
+        </div>
       </div>
     </div>
   );

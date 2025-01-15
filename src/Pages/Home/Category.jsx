@@ -3,24 +3,26 @@ import CategoryCard from "../../components/CategoryCard";
 import SectionHeader from "../../components/SectionHeader";
 import { title } from "motion/react-client";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const Category = () => {
   const [categories, setCategories] = useState([]);
-
+  const axiosPublic = useAxiosPublic()
   useEffect(() => {
-    fetch("/slider.json")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
+    axiosPublic('/items/categories').then((res) => setCategories(res.data));
   }, []);
-
+//need to ask that, is category card image static or dynamic
   return (
     <div>
       <SectionHeader title="Shop by Category" subTitle="Find exactly what you need from our carefully curated categories."/>
-      <Link to="/" className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8">
-        {categories.map((category, index) => (
+      <Link to="/" className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8"> 
+      {/*todo: need  add route of Link */}
+        {categories.slice(0,6).map((category, index) => (
           <CategoryCard
             key={index}
             category={category.category}
+            count={category.count}
             image={category.image}
+            index={index}
           ></CategoryCard>
         ))}
       </Link>

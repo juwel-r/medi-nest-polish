@@ -4,14 +4,14 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const DiscountItems = () => {
   const [categories, setCategories] = useState([]);
-  const axisoPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
-    axisoPublic("/items/discount").then((res) => setCategories(res.data));
+    axiosPublic("/items/discount").then((res) => setCategories(res.data));
   }, []);
   return (
-    <div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8">
+    <div className="mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8 place-items-center">
         {categories.map((category, index) => (
           <DiscountCard
             key={index}
