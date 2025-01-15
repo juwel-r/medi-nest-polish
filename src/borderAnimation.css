@@ -1,0 +1,44 @@
+.animate-border {
+    color: rgba(255, 255, 255, 0.889);
+    /* width: 300px; */
+    margin: 48px auto;
+    text-align: center;
+    /* background: #1c1f2b; */
+    padding: 2rem;
+    border-radius: 12px;
+    position: relative;
+  }
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  .animate-border::after,
+  .animate-border::before {
+    position: absolute;
+    content: "";
+    background: conic-gradient(from var(--angle), red, green, blue, red);
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    border-radius: 12px;
+    padding: 2px;
+    animation: 3s spin linear infinite;
+  }
+  .animate-border::before {
+    filter: blur(1.5rem);
+    opacity: .5;
+  }
+  
+  @keyframes spin {
+    from {
+      --angle: 0deg;
+    }
+    to {
+      --angle: 360deg;
+    }
+  }
+  

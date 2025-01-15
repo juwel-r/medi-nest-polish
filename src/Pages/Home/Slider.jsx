@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { delay } from "motion";
 import { useEffect, useState } from "react";
-import SlideContent from "../../components/Slider/SlideContent";
+import SlideContent from "../../components/SlideContent";
 
 const Slider = () => {
   const [slider, setSlider] = useState([]);
