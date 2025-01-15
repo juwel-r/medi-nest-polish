@@ -122,10 +122,11 @@ const Navbar = () => {
       {/* Right Section */}
       <section className="flex items-center justify-between gap-2">
         <Link to="/" className="text-white">
-          <p className=" md:p-3 border-2 bg-primary/90 rounded-full relative mr-4 text-lg">
+          <p className=" md:p-3 p-2 border-2 bg-primary/90 rounded-full relative mr-4 text-lg">
             <FiShoppingCart />
-            <span className="text-primary text-sm font-bold text-center absolute -top-2 -right-1 bg-white rounded-full h-6 w-6  flex justify-center items-center border border-primary">
-              {/* {cart.length} */}0
+            <span className="text-primary md:text-sm text-xs font-bold text-center absolute -top-1 -right-1 bg-white rounded-full h-5 w-5 flex justify-center items-center border border-primary">
+              {/* {cart.length} */}6
+              {/* todo:nedd to add cart length */}
             </span>
           </p>
         </Link>

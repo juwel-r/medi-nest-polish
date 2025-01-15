@@ -4,14 +4,14 @@ import { toast } from "react-toastify";
 
 
 //toastify
-export const  showToast = (message, type = "info") => {
+export const showToast = (message, type = "info") => {
   toast[type](message, {
     position: "top-right",
     autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
-    draggable: true,
+    draggable: true, 
     progress: undefined,
     theme: "colored",
   });

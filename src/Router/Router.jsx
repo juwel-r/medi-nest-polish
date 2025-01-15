@@ -6,12 +6,13 @@ import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import UserProfile from "../Pages/UserProfile";
 import ErrorPage from "../Pages/ErrorPage";
+import Shop from "../Pages/Shop";
 
 const router = createBrowserRouter([
   {
     element: <MainLayout></MainLayout>,
     path: "/",
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         element: <HomeLayout></HomeLayout>,
@@ -25,7 +26,10 @@ const router = createBrowserRouter([
         element: <Register></Register>,
         path: "/register",
       },
-      
+      {
+        element: <Shop></Shop>,
+        path: "/shop",
+      },
       {
         element: (
           <PrivateRoute>

@@ -1,5 +1,5 @@
 import Category from "../Pages/Home/Category";
-import DiscountItems from "../Pages/Home/DiscountItems";
+import DiscountSlide from "../Pages/Home/DiscountSlide";
 import Slider from "../Pages/Home/Slider";
 
 const HomeLayout = () => {
@@ -8,7 +8,7 @@ const HomeLayout = () => {
       <Slider></Slider>
       <div className="w-11/12 mx-auto">
         <Category></Category>
-        <DiscountItems></DiscountItems>
+        <DiscountSlide></DiscountSlide>
       </div>
     </div>
   );
