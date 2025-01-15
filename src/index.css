@@ -1,146 +1,144 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.active{
-    color: #3b82f6;
+.active {
+  color: #3b82f6;
 }
 
-body{
-    font-family: "Sora", serif;
+body {
+  font-family: "Sora", serif;
 }
 /* html{
     overflow-y: scroll;
 } */
 
-
 /* Sweet Alert Btn */
 /* Base button styles */
 .swal-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #fff;
-    border-radius: 0.5rem;
-    text-align: center;
-    text-decoration: none;
-    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-    cursor: pointer;
-    outline: none;
-    border: none;
-  }
-  
-  /* Confirm (Success) Button */
-  .swal-button-confirm {
-    background: linear-gradient(to right, #6a78ff, #02b4bd);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .swal-button-confirm:hover {
-    background: linear-gradient(to right, #00f2fe, #6a78ff);
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .swal-button-confirm:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Cancel Button */
-  .swal-button-cancel {
-    background: linear-gradient(to right, #f97316, #fb923c);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .swal-button-cancel:hover {
-    background: linear-gradient(to right, #fb923c, #f97316);
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .swal-button-cancel:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Error Button */
-  .swal-button-error {
-    background: linear-gradient(to right, #ef4444, #f87171);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .swal-button-error:hover {
-    background: linear-gradient(to right, #f87171, #ef4444);
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .swal-button-error:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  /* Warning Button */
-.swal-button-warning {
-    background: linear-gradient(to right, #facc15, #fbbf24);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #000; /* Darker text for better contrast */
-  }
-  
-  .swal-button-warning:hover {
-    background: linear-gradient(to right, #fbbf24, #facc15);
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .swal-button-warning:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-
-  #my-tooltip{
-    z-index: 999;
-    background-color: #6a78ff;
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  cursor: pointer;
+  outline: none;
+  border: none;
 }
 
+/* Confirm (Success) Button */
+.swal-button-confirm {
+  background: linear-gradient(to right, #6a78ff, #02b4bd);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.swal-button-confirm:hover {
+  background: linear-gradient(to right, #00f2fe, #6a78ff);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.swal-button-confirm:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cancel Button */
+.swal-button-cancel {
+  background: linear-gradient(to right, #f97316, #fb923c);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.swal-button-cancel:hover {
+  background: linear-gradient(to right, #fb923c, #f97316);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.swal-button-cancel:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Error Button */
+.swal-button-error {
+  background: linear-gradient(to right, #ef4444, #f87171);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.swal-button-error:hover {
+  background: linear-gradient(to right, #f87171, #ef4444);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.swal-button-error:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Warning Button */
+.swal-button-warning {
+  background: linear-gradient(to right, #facc15, #fbbf24);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #000; /* Darker text for better contrast */
+}
+
+.swal-button-warning:hover {
+  background: linear-gradient(to right, #fbbf24, #facc15);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.swal-button-warning:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#my-tooltip {
+  z-index: 999;
+  background-color: #6a78ff;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
 
 /* Common Use */
-.red-button{
-    padding: 0.5rem 1rem; 
-    background: linear-gradient(to right, #ec4899, #ef4444); 
-    color: white; 
-    font-weight: 600; 
-    border-radius: 9999px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    transition: all 0.3s ease; 
-  }
-  
-  .red-button:hover {
-    background: linear-gradient(to right, #dc2626, #ec4899); 
-    transform: scale(1.05); 
-  }
-  
-  .green-button {
-    padding: 0.5rem 1rem; 
-    background: linear-gradient(to right, #3b82f6, #6a78ff); 
-    color: white; 
-    /* font-size: 0.75rem;  */
-    font-weight: 600; 
-    border-radius: 9999px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    transition: all 0.3s ease; 
-  }
-  
-  .green-button:hover {
-    background: linear-gradient(to right, #6a78ff, #2563eb); 
-    transform: scale(1.02); 
-    border: none;
-  }
-  
+.red-button {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(to right, #ec4899, #ef4444);
+  color: white;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-size: 200%;
+  background-position: left;
+  transition: transform 0.3s ease, background-position 0.3s ease;
+}
+
+.red-button:hover {
+  background-position: right;
+  transform: scale(1.05);
+}
+
+.green-button {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #3b82f6, #6a78ff);
+  color: white;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-position 0.3s ease;
+  background-size: 200%;
+  background-position: left;
+}
+
+.green-button:hover {
+  background-position: right;
+  transform: scale(1.02);
+}

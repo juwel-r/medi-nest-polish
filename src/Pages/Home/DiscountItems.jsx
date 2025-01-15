@@ -12,11 +12,10 @@ const DiscountItems = () => {
   return (
     <div className="mx-auto">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8 place-items-center">
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <DiscountCard
-            key={index}
-            category={category.category}
-            image={category.image}
+            key={category._id}
+            category={category}
           ></DiscountCard>
         ))}
       </div>
