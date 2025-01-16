@@ -10,7 +10,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
 
-  // Add a request interceptor
+  // Add a request interceptor.
   axiosSecure.interceptors.request.use(
     //backend a request send ar somoy headers soho dite hobe and headers a modde jwt token add kore dite hobe,,, cookie or localStorage theke
     function (config) {

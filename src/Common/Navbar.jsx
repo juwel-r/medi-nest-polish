@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import ThemeController from "../components/ThemeController";
@@ -6,16 +6,16 @@ import { RxCross2 } from "react-icons/rx";
 import { IoIosList } from "react-icons/io";
 import logo from "/logo.png";
 import Swal from "sweetalert2";
-import { Tooltip } from "react-tooltip";
 import useAuth from "../Hooks/useAuth";
 import { FiShoppingCart } from "react-icons/fi";
+import useCart from "../Hooks/useCart";
 
 const Navbar = () => {
   const { userInfo, logOut } = useAuth();
   const navigate = useNavigate();
   const [menuClose, setMenuClose] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
-  // const email1stLetter = userInfo.email && userInfo.email.charAt(0).toUpperCase();
+  const [cart]= useCart()
   const menus = (
     <>
       <NavLink to="/" className="px-2">
@@ -23,6 +23,12 @@ const Navbar = () => {
       </NavLink>
       <NavLink to="/shop" className="px-2">
         Shop
+      </NavLink>
+      <NavLink to="/dashboard" className="px-2">
+        Dashboard
+      </NavLink>
+      <NavLink to="/blog" className="px-2">
+        Blog
       </NavLink>
     </>
   );
@@ -94,7 +100,7 @@ const Navbar = () => {
       </Link>
 
       {/* Menu */}
-      <section className="top-menu flex justify-center w-full mx-auto ">
+      <section className="top-menu flex justify-start w-full mx-auto ml-10">
         <div
           className={`text-left text-sm sm:text-base text-black z-40 flex flex-col lg:flex-row absolute lg:static backdrop-blur-sm bg-white/90 lg:bg-transparent  lg:backdrop-blur-none lg:shadow-none shadow-md p-5 space-y-2 lg:space-y-0 pl-2 rounded-sm transition-all duration-200 ease-in-out h-screen lg:h-auto ${
             menuClose ? " top-[100%] left-0" : "top-[100%]  -left-96"
@@ -111,8 +117,8 @@ const Navbar = () => {
                 <Link to="/login" className="px-2">
                   Login
                 </Link>
-                <Link to="/register" className="px-2">
-                  Register
+                <Link to="/register" className="px-2 pt-2">
+                  Join Us
                 </Link>
               </>
             )}
@@ -121,15 +127,20 @@ const Navbar = () => {
       </section>
       {/* Right Section */}
       <section className="flex items-center justify-between gap-2">
-        <Link to="/" className="text-white">
+        <Link
+          to="/cart"
+          className="text-white"
+          data-tooltip-id="my-tooltip"
+          data-tooltip-content="Cart"
+        >
           <p className=" md:p-3 p-2 border-2 bg-primary/90 rounded-full relative mr-4 text-lg">
             <FiShoppingCart />
             <span className="text-primary md:text-sm text-xs font-bold text-center absolute -top-1 -right-1 bg-white rounded-full h-5 w-5 flex justify-center items-center border border-primary">
-              {/* {cart.length} */}6
-              {/* todo:nedd to add cart length */}
+              {cart?.length}
             </span>
           </p>
         </Link>
+
         {/* Avatar */}
         {userInfo && (
           <div className="avatar online placeholder">
@@ -216,7 +227,9 @@ const Navbar = () => {
                   Update Profile
                 </button>
               </Link>
-              <Link to="/" className="green-button btn btn-sm">Dashboard</Link>
+              <Link to="/" className="green-button btn btn-sm">
+                Dashboard
+              </Link>
               <button className="red-button btn btn-sm" onClick={handleLogOut}>
                 Logout
               </button>

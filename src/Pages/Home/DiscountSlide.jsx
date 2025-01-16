@@ -26,7 +26,7 @@ const DiscountSlide = () => {
       }
     };
 
-    updateSlidesPerView(); // Initialize
+    updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
 
     return () => {
@@ -48,8 +48,8 @@ const DiscountSlide = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {categories.map((category) => (
-          <SwiperSlide className="my-12">
+        {categories.map((category, index) => (
+          <SwiperSlide className="my-12" key={index}>
             <DiscountCard key={category._id} category={category}></DiscountCard>
           </SwiperSlide>
         ))}

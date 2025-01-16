@@ -1,16 +1,5 @@
 [
   {
-    "itemName": "Paracetamol",
-    "genericName": "Acetaminophen",
-    "description": "Paracetamol is used to treat mild to moderate pain and reduce fever. It is commonly used for headaches, muscle aches, and cold-related symptoms.",
-    "image": "https://i.ibb.co.com/Rzq9bhR/Paracetamol.jpg",
-    "category": "Tablet",
-    "company": "HealthCare Pharma",
-    "massUnit": "500 Mg",
-    "price": 5.0,
-    "discount": 2
-  },
-  {
     "itemName": "Cetrizine",
     "genericName": "Cetirizine Hydrochloride",
     "description": "Cetrizine is an antihistamine used to relieve allergy symptoms like runny nose, itching, and watery eyes. It is effective for hay fever and hives.",
@@ -21,6 +10,18 @@
     "price": 8.0,
     "discount": 5
   },
+  {
+    "itemName": "Paracetamol",
+    "genericName": "Acetaminophen",
+    "description": "Paracetamol is used to treat mild to moderate pain and reduce fever. It is commonly used for headaches, muscle aches, and cold-related symptoms.",
+    "image": "https://i.ibb.co.com/ypsVj1f/Cough-Syrup.jpg",
+    "category": "Tablet",
+    "company": "HealthCare Pharma",
+    "massUnit": "500 Mg",
+    "price": 5.0,
+    "discount": 2
+  },
+
   {
     "itemName": "Amoxicillin",
     "genericName": "Amoxicillin Trihydrate",
@@ -36,7 +37,7 @@
     "itemName": "Cough Syrup",
     "genericName": "Diphenhydramine HCL",
     "description": "Cough Syrup is used to relieve coughing caused by minor throat and bronchial irritation, often associated with a cold or inhaled irritants.",
-    "image": "https://i.ibb.co.com/ypsVj1f/Cough-Syrup.jpg",
+    "image": "https://i.ibb.co.com/Rzq9bhR/Paracetamol.jpg",
     "category": "Syrup",
     "company": "Wellness Meds",
     "massUnit": "100 ML",

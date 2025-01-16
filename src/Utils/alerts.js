@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 //toastify
 export const showToast = (message, type = "info") => {
   toast[type](message, {
-    position: "top-right",
+    position: "top-center",
     autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,

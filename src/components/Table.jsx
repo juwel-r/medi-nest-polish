@@ -3,15 +3,17 @@ import useAddToCart from "../Hooks/useAddToCart";
 import useAuth from "../Hooks/useAuth";
 import ItemDetailsModal from "../Modals/ItemDetailsModal";
 import './table.css'
+import { showToast } from "../Utils/alerts";
 //todo: need to change font
 const Table = ({ items }) => {
   const { userInfo } = useAuth();
-  const [addToCart, data, isLoading, refetch] = useAddToCart();
+  const [addToCart] = useAddToCart();
   const navigate = useNavigate();
 
   const handleAddToCart = async (item) => {
     if (!userInfo?.email) {
       navigate("/login");
+      return showToast("Please login to add cart!", "info")
     }
     addToCart(item);
   };

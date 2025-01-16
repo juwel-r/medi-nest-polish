@@ -39,7 +39,7 @@ const SlideContent = ({
       <div className="relative lg:ml-16 ml-10 mt-8 ">
         <Fade
           direction="right"
-          className="bg-primary/50 max-w-[450px] max-h-56 rounded-3xl lg:self-end flex items-center border-2 border-white/50 p-4"
+          className="bg-primary/30 backdrop-blur-md max-w-[450px] max-h-56 rounded-3xl lg:self-end flex items-center border-2 border-white/20 p-4"
         >
           <p className="lg:text-xl md:text-base text-sm max-w-[500px] text-white/80 text-center ml-10">
             {description}
@@ -50,7 +50,7 @@ const SlideContent = ({
             <Fade
               direction="up"
               delay={300}
-              className=" w-28 h-28 font-bold text-lg shadow-md shadow-primary rounded-full flex items-center text-center px-4 bg-white text-green-600"
+              className=" w-28 h-28 font-bold text-lg shadow-md shadow-primary rounded-full flex items-center text-center px-4 bg-white/70 text-green-600"
             >
               <p>{discount}% Discount</p>
             </Fade>

@@ -32,7 +32,7 @@ const Slider = () => {
     <>
       <Swiper
         autoplay={{
-          delay: 3000,
+          delay: 300000,
           disableOnInteraction: false,
         }}
         pagination={{

@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
 import useAxiosSecure from "./useAxiosSecure";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { showToast } from "../Utils/alerts";
 import useAuth from "./useAuth";
+import useCart from "./useCart";
 
 const useAddToCart = () => {
   const { userInfo } = useAuth();
+  const [, refetch] = useCart();
   const axiosSecure = useAxiosSecure();
   const {
     mutate: addToCart,
     data,
     isLoading,
-    refetch,
     error,
   } = useMutation({
     mutationKey: ["addToCart"],
@@ -25,16 +26,23 @@ const useAddToCart = () => {
           email: userInfo.email,
           itemId: item._id,
           name: item.itemName,
+          image: item.image,
           category: item.category,
           company: item.company,
           price: itemPrice,
+          quantity: 1,
         };
 
         const res = await axiosSecure.post("/cart", cartData);
+        refetch();
         return res.data;
       } catch (error) {
-        showToast("Something went wrong, Try Again!", "error");
-        console.log(error);
+        if (error.status === 400) {
+          showToast(`${item.itemName} is already added!`, "warning");
+        } else {
+          showToast("Something went wrong, Try Again!", "error");
+        }
+        // console.log(error);
       }
     },
   });
@@ -44,7 +52,8 @@ const useAddToCart = () => {
       showToast("Add to Cart Successful!", "success");
     }
   }, [data]);
-  return [addToCart, data, isLoading, refetch];
+  return [addToCart, data, isLoading];
 };
 
 export default useAddToCart;
+//todo: logo color change

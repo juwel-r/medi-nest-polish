@@ -1,19 +1,31 @@
-import { image } from "motion/react-client";
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import useAddToCart from "../Hooks/useAddToCart";
+import useAuth from "../Hooks/useAuth";
+import { showToast } from "../Utils/alerts";
 
 const DiscountCard = ({ category }) => {
   const {
     itemName,
     genericName,
-    category:categoryName,
+    category: categoryName,
     company,
     massUnit,
     discount,
     description,
     price,
-    image
+    image,
   } = category || {};
-  
+  const { userInfo } = useAuth();
+  const [addToCart] = useAddToCart();
+  const navigate = useNavigate();
+  const handleAddToCart = async () => {
+    if (!userInfo?.email) {
+      navigate("/login");
+      return showToast("Please login to add cart!", "info");
+    }
+    addToCart(category);
+  };
+ 
   return (
     <div className="p-4 rounded-xl shadow-lg border border-gray-200 group hover:shadow-xl hover:bg-primary/5 transition-all duration-300 max-w-sm">
       <div className="relative overflow-hidden rounded-lg">
@@ -31,21 +43,23 @@ const DiscountCard = ({ category }) => {
         <h3 className="text-lg font-bold text-gray-800 truncate">{itemName}</h3>
         <p className="text-sm text-gray-500 italic">Generic: {genericName}</p>
         <p className="text-sm text-gray-500 mt-1">
-          Mass Unit: {massUnit} | Company: {company}
+          Mass Unit: {massUnit} | {company}
         </p>
         <p className="text-xs text-blue-600 font-medium mt-1">
           Category: {categoryName}
         </p>
-        <p className="text-sm text-gray-700 mt-2 line-clamp-2">
-         {description}
-        </p>
+        <p className="text-sm text-gray-700 mt-2 line-clamp-2">{description}</p>
 
         <div className="flex items-center justify-between mt-4">
           <div>
-            <p className="text-sm text-gray-400 line-through">${price.toFixed(2)}</p>
-            <p className="text-lg font-bold text-blue-600">${(price-((price*discount)/100)).toFixed(2)}</p>
+            <p className="text-sm text-gray-400 line-through">
+              ${price.toFixed(2)}
+            </p>
+            <p className="text-lg font-bold text-blue-600">
+              ${(price - (price * discount) / 100).toFixed(2)}
+            </p>
           </div>
-          <button className="green-button">
+          <button onClick={handleAddToCart} className="green-button">
             Add to Cart
           </button>
         </div>

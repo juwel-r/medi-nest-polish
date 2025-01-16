@@ -8,6 +8,9 @@ import UserProfile from "../Pages/UserProfile";
 import ErrorPage from "../Pages/ErrorPage";
 import Shop from "../Pages/Shop";
 import ItemsByCategory from "../Pages/ItemsByCategory";
+import Cart from "../Pages/Cart";
+import CheckOutForm from "../Pages/Checkout/CheckOutForm";
+import Checkout from "../Pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,14 @@ const router = createBrowserRouter([
       {
         element: <ItemsByCategory></ItemsByCategory>,
         path: "/category/:categoryName",
+      },
+      {
+        element: <Cart></Cart>,
+        path: "/cart",
+      },
+      {
+        element: <Checkout></Checkout>,
+        path: "/checkout",
       },
       {
         element: (
