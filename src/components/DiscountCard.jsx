@@ -42,7 +42,7 @@ const DiscountCard = ({ category }) => {
 
         <div className="flex items-center justify-between mt-4">
           <div>
-            <p className="text-sm text-gray-400 line-through">${price}.00</p>
+            <p className="text-sm text-gray-400 line-through">${price.toFixed(2)}</p>
             <p className="text-lg font-bold text-blue-600">${(price-((price*discount)/100)).toFixed(2)}</p>
           </div>
           <button className="green-button">

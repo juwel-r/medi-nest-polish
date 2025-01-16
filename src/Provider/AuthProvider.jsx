@@ -52,12 +52,11 @@ const AuthProvider = ({ children }) => {
       setAuthLoading(false);
     });
 
-    console.log("user-", userInfo, "loading-", authLoading);
     return () => {
       unsubscribe();
     };
   }, [userInfo]);
-  console.log("user-", userInfo, "loading-", authLoading);
+  console.log( userInfo);
   const authData = {
     userInfo,
     authLoading,

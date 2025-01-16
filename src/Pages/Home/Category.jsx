@@ -6,27 +6,27 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const Category = () => {
   const [categories, setCategories] = useState([]);
-  const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
   useEffect(() => {
-    axiosPublic('/items/categories').then((res) => setCategories(res.data));
+    axiosPublic("/items/categories").then((res) => setCategories(res.data));
   }, []);
-  console.log(categories)
-//need to ask that, is category card image static or dynamic
+  console.log(categories);
+  //need to ask that, is category card image static or dynamic
   return (
     <div>
-      <SectionHeader title="Shop by Category" subTitle="Find exactly what you need from our carefully curated categories."/>
-      <Link to="/" className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8"> 
-      {/*todo: need  add route of Link */}
-        {categories.slice(0,6).map((category, index) => (
-          <CategoryCard
-            key={index}
-            category={category.category}
-            count={category.count}
-            image={category.image}
-            index={index}
-          ></CategoryCard>
+      <SectionHeader
+        title="Shop by Category"
+        subTitle="Find exactly what you need from our carefully curated categories."
+      />
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8">
+        {/*todo: need  add route of Link 
+        need to add category photo*/}
+        {categories.slice(0, 6).map((category, index) => (
+          <Link key={index} to={`/category/${category.category}`}>
+            <CategoryCard category={category} index={index}></CategoryCard>
+          </Link>
         ))}
-      </Link>
+      </div>
     </div>
   );
 };

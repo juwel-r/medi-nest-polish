@@ -2,21 +2,24 @@ import React, { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import Table from "../components/Table";
+import { useParams } from "react-router-dom";
 
-const Shop = () => {
+const ItemsByCategory = () => {
   const [items, setItems] = useState([]);
   const axiosPublic = useAxiosPublic();
-
+  const { categoryName } = useParams();
   useEffect(() => {
-    axiosPublic("/items").then((result) => setItems(result.data));
+    axiosPublic(`/category/${categoryName}`).then((result) =>
+      setItems(result.data)
+    );
   }, []);
 
   return (
-    <div  className="md:w-11/12 mx-auto">
+    <div className="md:w-11/12 mx-auto">
       <SectionHeader
-        title={"Explore Our Full Medicine Catalog"}
+        title={`All Medicine of ${categoryName} `}
         subTitle={
-          "Find the right medicines for your needs from our extensive collection of quality healthcare products."
+          "Easily browse our wide range of medicines, grouped by category for your convenience."
         }
       ></SectionHeader>
       <section>
@@ -28,4 +31,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ItemsByCategory;

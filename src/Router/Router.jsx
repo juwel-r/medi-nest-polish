@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserProfile from "../Pages/UserProfile";
 import ErrorPage from "../Pages/ErrorPage";
 import Shop from "../Pages/Shop";
+import ItemsByCategory from "../Pages/ItemsByCategory";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         element: <Shop></Shop>,
         path: "/shop",
+      },
+      {
+        element: <ItemsByCategory></ItemsByCategory>,
+        path: "/category/:categoryName",
       },
       {
         element: (

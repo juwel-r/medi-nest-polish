@@ -5,31 +5,37 @@ import { showToast } from "../Utils/alerts";
 import useAuth from "./useAuth";
 
 const useAddToCart = () => {
-  const {userInfo}= useAuth()
+  const { userInfo } = useAuth();
   const axiosSecure = useAxiosSecure();
   const {
     mutate: addToCart,
     data,
     isLoading,
     refetch,
+    error,
   } = useMutation({
     mutationKey: ["addToCart"],
     mutationFn: async (item) => {
-      let itemPrice = item.price;
-      if (item.discount > 0) {
-        itemPrice = item.price - (item.price * item.discount) / 100;
-      }
-      const cartData = {
-        email: userInfo.email,
-        itemId: item._id,
-        name: item.itemName,
-        category: item.category,
-        company: item.company,
-        price: itemPrice,
-      };
+      try {
+        let itemPrice = item.price;
+        if (item.discount > 0) {
+          itemPrice = item.price - (item.price * item.discount) / 100;
+        }
+        const cartData = {
+          email: userInfo.email,
+          itemId: item._id,
+          name: item.itemName,
+          category: item.category,
+          company: item.company,
+          price: itemPrice,
+        };
 
-      const res = await axiosSecure.post("/cart", cartData);
-      return res.data;
+        const res = await axiosSecure.post("/cart", cartData);
+        return res.data;
+      } catch (error) {
+        showToast("Something went wrong, Try Again!", "error");
+        console.log(error);
+      }
     },
   });
   useEffect(() => {

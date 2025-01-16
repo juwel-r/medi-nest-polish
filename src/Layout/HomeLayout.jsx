@@ -6,7 +6,7 @@ const HomeLayout = () => {
   return (
     <div className="">
       <Slider></Slider>
-      <div className="w-11/12 mx-auto">
+      <div className="md:w-11/12 mx-auto">
         <Category></Category>
         <DiscountSlide></DiscountSlide>
       </div>
