@@ -56,7 +56,6 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, [userInfo]);
-  console.log( userInfo);
   const authData = {
     userInfo,
     authLoading,

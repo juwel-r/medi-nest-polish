@@ -4,9 +4,9 @@ import { Navigate, useLocation } from "react-router-dom";
 import LoadingSpin from "../components/LoadingSpin";
 
 const PrivateRoute = ({ children }) => {
-  const { userInfo, loading } = useContext(AuthContext);
+  const { userInfo, authLoading } = useContext(AuthContext);
   const location = useLocation();
-  if (loading) return <LoadingSpin></LoadingSpin>;
+  if (authLoading) return <LoadingSpin></LoadingSpin>;
   if (userInfo) return <div>{children}</div>;
   return <Navigate to="/login" state={location.pathname}></Navigate>;
 };

@@ -18,8 +18,8 @@ const Navbar = () => {
   const [menuClose, setMenuClose] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
   const [cart] = useCart();
-  const [role]=useRole()
-  console.log("role", role)
+  const [role] = useRole();
+  console.log("role", role);
   const menus = (
     <>
       <NavLink to="/" className="px-2">
@@ -28,9 +28,28 @@ const Navbar = () => {
       <NavLink to="/shop" className="px-2">
         Shop
       </NavLink>
-      <NavLink to="/dashboard" className="px-2">
-        Dashboard
-      </NavLink>
+      {/* Dashboard  */}
+      {userInfo?.email && (
+        <NavLink to={`${role === "admin"?"/dashboard/admin":role === "seller" ? "/dashboard/seller":"/dashboard/user"}`} className="px-2">
+          Dashboard
+        </NavLink>
+      )}
+
+      {/* {role === "admin" ? (
+        <NavLink to="/dashboard/admin" className="px-2">
+          Dashboard
+        </NavLink>
+      ) : role === "seller" ? (
+        <NavLink to="/dashboard/seller" className="px-2">
+          Dashboard
+        </NavLink>
+      ) : (
+        <NavLink to="/dashboard/user" className="px-2">
+          Dashboard
+        </NavLink>
+      )} */}
+
+      
       <NavLink to="/blog" className="px-2">
         Blog
       </NavLink>

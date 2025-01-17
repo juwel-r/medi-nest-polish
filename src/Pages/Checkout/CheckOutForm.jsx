@@ -78,14 +78,14 @@ const CheckOutForm = () => {
       if (paymentIntent.status === "succeeded") {
         setTransaction(paymentIntent.id);
         const paymentInfo = {
-          name:userInfo.displayName,
+          name: userInfo.displayName,
           email: userInfo.email,
           amount: totalPrice,
           transactionId: paymentIntent.id,
           cartIds: cart.map((item) => item._id),
           itemIds: cart.map((item) => item.itemId),
           date: new Date(),
-          status: "pending",
+          status: "Pending",
         };
         axiosSecure.post("/payment", paymentInfo).then((res) => {
           // console.log(res.data);
@@ -95,7 +95,7 @@ const CheckOutForm = () => {
             icon: "success",
             confirmButtonText: "Thanks",
           });
-          navigate("/invoice", {state:{paymentInfo, cart}});
+          navigate("/invoice", { state: { paymentInfo, cart } });
         });
       }
     }

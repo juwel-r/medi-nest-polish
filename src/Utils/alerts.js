@@ -18,6 +18,14 @@ export const showToast = (message, type = "info") => {
 };
 
 
+      // showAlert({
+      //   title: "Something went wrong!",
+      //   text: "error.message",
+      //   icon: "error",
+      //   confirmButtonText: "Try Again",
+      // });
+
+
 //sweet alert single button
 export const showAlert = ({ title, text, icon="success", confirmButtonText = "OK" }) => {
     return Swal.fire({
