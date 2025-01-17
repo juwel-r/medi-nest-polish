@@ -9,7 +9,7 @@ const ItemsByCategory = () => {
   const axiosPublic = useAxiosPublic();
   const { categoryName } = useParams();
   useEffect(() => {
-    axiosPublic(`/category/${categoryName}`).then((result) =>
+    axiosPublic(`/items/${categoryName}`).then((result) =>
       setItems(result.data)
     );
   }, []);

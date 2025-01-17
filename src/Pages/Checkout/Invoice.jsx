@@ -10,7 +10,6 @@ const Invoice = () => {
   const navigate = useNavigate();
   const { cart, paymentInfo } = location.state || {};
 
-  console.log(location)
   const handleDownload = async () => {
     try {
       const invoiceElement = invoiceRef.current;
@@ -18,6 +17,18 @@ const Invoice = () => {
       const canvas = await html2canvas(invoiceElement, {
         useCORS: true,
         scale: 2,
+        onclone: (document) => {
+          // Remove any unsupported color formats dynamically
+          document.querySelectorAll("*").forEach((element) => {
+            const computedStyle = getComputedStyle(element);
+            if (computedStyle.color.startsWith("oklch")) {
+              element.style.color = "#000";
+            }
+            if (computedStyle.backgroundColor.startsWith("oklch")) {
+              element.style.backgroundColor = "#fff";
+            }
+          });
+        },
       });
 
       // Convert canvas to image
@@ -98,7 +109,7 @@ const Invoice = () => {
             </thead>
             <tbody>
               {cart && cart.map((item) => (
-                <tr>
+                <tr key={item._id}>
                   <td className="px-4 py-2">{item.name}</td>
                   <td className="px-4 py-2 text-right">{item.quantity}</td>
                   <td className="px-4 py-2 text-right">

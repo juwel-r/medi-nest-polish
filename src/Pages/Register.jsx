@@ -16,7 +16,7 @@ const Register = () => {
   const [photo, setPhoto] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [roll, setRoll] = useState("user");
+  const [role, setRole] = useState("user");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -60,8 +60,7 @@ const Register = () => {
               const user = {
                 name,
                 email,
-                photoURL,
-                roll,
+                role,
               };
               axiosPublic
                 .post("/users", user)
@@ -178,11 +177,11 @@ const Register = () => {
 
               {/* Role */}
               <select
-                onChange={(e) => setRoll(e.target.value)}
-                value={roll}
+                onChange={(e) => setRole(e.target.value)}
+                value={role}
                 className="select select-bordered w-full "
               >
-                <option value="user">Select Roll</option>
+                <option value="user">Select Role</option>
                 <option value="user">User</option>
                 <option value="seller">Seller</option>
               </select>

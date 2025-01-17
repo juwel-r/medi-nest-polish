@@ -10,8 +10,7 @@ const Category = () => {
   useEffect(() => {
     axiosPublic("/items/categories").then((res) => setCategories(res.data));
   }, []);
-  console.log(categories);
- 
+
   return (
     <div>
       <SectionHeader
@@ -22,7 +21,7 @@ const Category = () => {
         {/*todo: need  add route of Link 
         need to add category photo*/}
         {categories.slice(0, 6).map((category, index) => (
-          <Link key={index} to={`/category/${category.category}`}>
+          <Link key={index} to={`/items/${category.category}`}>
             <CategoryCard category={category} index={index}></CategoryCard>
           </Link>
         ))}

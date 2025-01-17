@@ -10,6 +10,7 @@ import useAuth from "../Hooks/useAuth";
 import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../Hooks/useCart";
 import { showAlert, showToast } from "../Utils/alerts";
+import useRole from "../Hooks/useRoll";
 
 const Navbar = () => {
   const { userInfo, logOut } = useAuth();
@@ -17,6 +18,8 @@ const Navbar = () => {
   const [menuClose, setMenuClose] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
   const [cart] = useCart();
+  const [role]=useRole()
+  console.log("role", role)
   const menus = (
     <>
       <NavLink to="/" className="px-2">

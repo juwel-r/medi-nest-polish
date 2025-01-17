@@ -18,7 +18,7 @@ const LoginWithGoogle = () => {
           name: userData?.displayName,
           email: userData?.email,
           photoURL: userData?.photoURL,
-          roll: "user",
+          role: "user",
         };
         axiosPublic
           .post("/users", user)
