@@ -30,7 +30,7 @@ const Navbar = () => {
       </NavLink>
       {/* Dashboard  */}
       {userInfo?.email && (
-        <NavLink to={`${role === "admin"?"/dashboard/admin":role === "seller" ? "/dashboard/seller":"/dashboard/user"}`} className="px-2">
+        <NavLink to={`${role === "admin"?"/dashboard":role === "seller" ? "/dashboard/seller":"/dashboard/user"}`} className="px-2">
           Dashboard
         </NavLink>
       )}

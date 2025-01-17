@@ -5,6 +5,8 @@ import "./borderAnimation.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./Router/Router.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
+import { ToastContainer } from "react-toastify";
+import { Tooltip } from 'react-tooltip'
 import {
   useQuery,
   useMutation,
@@ -20,6 +22,8 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router}></RouterProvider>
+        <ToastContainer />
+        <Tooltip id="my-tooltip" />
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>

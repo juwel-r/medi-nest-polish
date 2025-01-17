@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpin from "../../components/LoadingSpin";
 
 const AdminDashboard = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data = [] } = useQuery({
+  const { data = [], isLoading } = useQuery({
     queryKey: ["overview"],
     queryFn: async () => {
       try {
@@ -17,38 +18,43 @@ const AdminDashboard = () => {
     },
   });
   console.log(data);
+
   return (
     <div className="mt-6">
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
-          <h2 className="text-lg font-semibold">Total Orders</h2>
-          <p className="text-xl font-bold">
-            {data?.totalOrders.toString().padStart(2, "0")}
-          </p>
+      {isLoading ? (
+        <LoadingSpin></LoadingSpin>
+      ) : (
+        <div className="grid grid-cols-4 gap-4">
+          <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+            <h2 className="text-lg font-semibold">Total Orders</h2>
+            <p className="text-xl font-bold">
+              {data?.totalOrders.toString().padStart(2, "0")}
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+            <h2 className="text-lg font-semibold">
+              Total {data?.statuses[0].status}
+            </h2>
+            <p className="text-xl font-bold">
+              {data?.statuses[0].totalAmount.toFixed(2)}
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+            <h2 className="text-lg font-semibold">
+              Total {data?.statuses[1].status}
+            </h2>
+            <p className="text-xl font-bold">
+              {data?.statuses[1].totalAmount.toFixed(2)}
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+            <h2 className="text-lg font-semibold">Available Items</h2>
+            <p className="text-xl font-bold">
+              {data?.totalAvailable.toString().padStart(2, "0")}
+            </p>
+          </div>
         </div>
-        <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
-          <h2 className="text-lg font-semibold">
-            Total {data?.statuses[0].status}
-          </h2>
-          <p className="text-xl font-bold">
-            {data?.statuses[0].totalAmount.toFixed(2)}
-          </p>
-        </div>
-        <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
-          <h2 className="text-lg font-semibold">
-            Total {data?.statuses[1].status}
-          </h2>
-          <p className="text-xl font-bold">
-            {data?.statuses[1].totalAmount.toFixed(2)}
-          </p>
-        </div>
-        <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
-          <h2 className="text-lg font-semibold">Available Items</h2>
-          <p className="text-xl font-bold">
-            {data?.totalAvailable.toString().padStart(2, "0")}
-          </p>
-        </div>
-      </div>
+      )}
 
       <div className="grid grid-cols-3 gap-4 mt-6">
         <div className="col-span-2 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20">

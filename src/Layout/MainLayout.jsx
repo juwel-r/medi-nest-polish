@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { ToastContainer } from "react-toastify";
 import Navbar from "../Common/Navbar";
 import Footer from "../Common/Footer";
-import { Tooltip } from 'react-tooltip'
+
 
 
 const MainLayout = () => {
@@ -23,8 +22,6 @@ const MainLayout = () => {
       <Outlet></Outlet>
       </div>
       <Footer></Footer>
-      <ToastContainer />
-      <Tooltip id="my-tooltip" />
     </div>
   );
 };

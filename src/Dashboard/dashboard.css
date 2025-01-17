@@ -1,0 +1,23 @@
+/* .glassmorphism {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0);
+  color: #ffffff;
+  text-align: center;
+} */
+manage-users{
+    
+}
+.custom-select {
+  background-color: transparent; /* Make the select's background transparent */
+}
+.custom-select option {
+  background-color: transparent; /* Make the dropdown options' background transparent */
+  color: #000; /* Ensure text color is still visible */
+} /* For specific browsers: */
+.custom-select::-ms-expand {
+  background: transparent; /* For Internet Explorer */
+}
