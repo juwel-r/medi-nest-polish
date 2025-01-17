@@ -11,7 +11,7 @@ const Category = () => {
     axiosPublic("/items/categories").then((res) => setCategories(res.data));
   }, []);
   console.log(categories);
-  //need to ask that, is category card image static or dynamic
+ 
   return (
     <div>
       <SectionHeader

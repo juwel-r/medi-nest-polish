@@ -11,6 +11,7 @@ import ItemsByCategory from "../Pages/ItemsByCategory";
 import Cart from "../Pages/Cart";
 import CheckOutForm from "../Pages/Checkout/CheckOutForm";
 import Checkout from "../Pages/Checkout/Checkout";
+import Invoice from "../Pages/Checkout/Invoice";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         element: <Checkout></Checkout>,
         path: "/checkout",
+      },
+      {
+        element: <Invoice></Invoice>,
+        path: "/invoice",
       },
       {
         element: (

@@ -147,11 +147,11 @@ const Cart = () => {
                     <p className="text-sm text-gray-500">{item.company}</p>
                     <p className="text-gray-700">
                       <span className="font-semibold">Price:</span> $
-                      {item.price} per unit
+                      {item.price.toFixed(2)} per unit
                     </p>
-                    <p className="text-gray-700">
-                      <span className="font-semibold">Total:</span> $
-                      {item.price * item.quantity}
+                    <p className="text-gray-700 ">
+                      <span className="font-semibold ">Total:</span> 
+                      <span className="text-primary"> ${(item.price * item.quantity).toFixed(2)}</span>
                     </p>
                   </div>
 
@@ -162,7 +162,7 @@ const Cart = () => {
                       onClick={() => handleQuantity(item._id, -1)}
                       data-tooltip-id="my-tooltip"
                       data-tooltip-content={`${
-                        item.quantity === 1 && "Minimum Quantity Limit Reached!"
+                        item.quantity === 1 ? "Minimum Quantity Limit Reached!":""
                       }`}
                       className="px-3 py-1 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300"
                     >
@@ -203,7 +203,7 @@ const Cart = () => {
               {/* Total Cost */}
               <div className="flex items-center gap-4">
                 <p className="text-xl font-bold">
-                  Subtotal: <span className="text-blue-600">${totalCost}</span>
+                  Subtotal: <span className="text-blue-600">${totalCost.toFixed(2)}</span>
                 </p>
                 <Link to="/checkout"><button className="green-button">
                   Checkout ({cartItems.length})

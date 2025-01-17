@@ -9,13 +9,14 @@ import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../Hooks/useCart";
+import { showAlert, showToast } from "../Utils/alerts";
 
 const Navbar = () => {
   const { userInfo, logOut } = useAuth();
   const navigate = useNavigate();
   const [menuClose, setMenuClose] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
-  const [cart]= useCart()
+  const [cart] = useCart();
   const menus = (
     <>
       <NavLink to="/" className="px-2">
@@ -36,24 +37,17 @@ const Navbar = () => {
   //Log Out
   const handleLogOut = () => {
     setProfileMenu(false);
-    Swal.fire({
-      title: "Do you really want to Log out?",
-      // text: "You won't be able to revert this!",
+    showAlert({
+      title: "Are you sure to Log Out!",
       icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#1a7bc0",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Log Out!",
+      cancelButton: true,
+      confirmButtonText: "Yes, Log Out",
     }).then((result) => {
       if (result.isConfirmed) {
         logOut()
           .then(() => {
             navigate("/");
-            Swal.fire({
-              title: "Logged Out!",
-              // text: "Your file has been deleted.",
-              icon: "info",
-            });
+            showToast("Log out Successful!", "success");
           })
           .catch((error) => {
             Swal.fire({

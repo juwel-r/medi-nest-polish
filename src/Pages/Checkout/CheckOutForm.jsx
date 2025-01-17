@@ -78,6 +78,7 @@ const CheckOutForm = () => {
       if (paymentIntent.status === "succeeded") {
         setTransaction(paymentIntent.id);
         const paymentInfo = {
+          name:userInfo.displayName,
           email: userInfo.email,
           amount: totalPrice,
           transactionId: paymentIntent.id,
@@ -90,11 +91,11 @@ const CheckOutForm = () => {
           // console.log(res.data);
           refetch();
           showAlert({
-            title: `Payment successful $${totalPrice}`,
+            title: `Payment successful $${totalPrice.toFixed(2)}`,
             icon: "success",
             confirmButtonText: "Thanks",
           });
-          navigate("/dashboard/payment-history");
+          navigate("/invoice", {state:{paymentInfo, cart}});
         });
       }
     }
