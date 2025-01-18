@@ -6,7 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import AddCategoryModal from "../../Modals/AddCategoryModal";
 
 const ManageCategory = () => {
-  // <LoadingSpin></LoadingSpin>
   const axiosSecure = useAxiosSecure();
   const {
     data: category = [],
@@ -30,32 +29,36 @@ const ManageCategory = () => {
   });
 
   // add category
-  const handleAddCategory =()=>{
+  const handleAddCategory = () => {};
 
-  }
-
-//update
-  const handleUpdate = async (updateRole, name, email) => {
-    try {
-      const res = await axiosSecure.patch(`/user/${email}`, {
-        role: updateRole,
-      });
-      if (res.data.modifiedCount > 0) {
-        showToast(`${name} is now ${updateRole.toUpperCase()}!`, "success");
-        refetch();
-        console.log(res.data);
+  //delete
+  const handleDelete = (item) => {
+    showAlert({
+      title: "Are you sure",
+      icon: "warning",
+      text: "You can't recover this category ",
+      confirmButtonText: "Delete",
+      showCancelButton:true
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure.delete(`/category/${item._id}`);
+          if (res.data.deletedCount > 0) {
+            showToast(`${item.name} is Deleted!`, "success");
+            refetch();
+          }
+        } catch (error) {
+          showAlert({
+            title: "Something went wrong!",
+            text: error.message,
+            icon: "error",
+            confirmButtonText: "Try Again",
+          });
+          console.log(error)
+        }
       }
-    } catch (error) {
-      showAlert({
-        title: "Something went wrong!",
-        text: error.message,
-        icon: "error",
-        confirmButtonText: "Try Again",
-      });
-    }
-    console.log(updateRole, name, email);
+    });
   };
-
 
   return (
     <div className="container mx-auto py-4 mt-4">
@@ -63,41 +66,49 @@ const ManageCategory = () => {
         <h2 className="text-2xl font-semibold  text-white">
           Category Management
         </h2>
-        <button onClick={handleAddCategory} className="alert-button-success text-xl">Add New Category</button>
+        <div onClick={handleAddCategory} className="green-button text-md">
+          <AddCategoryModal refetch={refetch}></AddCategoryModal>
+        </div>
       </div>
       {isLoading ? (
         <LoadingSpin></LoadingSpin>
       ) : (
-        <div className="manage-category overflow-auto bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center ">
+        <div className="manage-category overflow-auto bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg text-white text-center ">
           <table className="table-auto w-full border-collapse">
-            <thead>
+            <thead className="bg-white/10">
               <tr>
-                <th className="border border-white/20 p-2">SL</th>
-                <th className="border border-white/20 p-2">Category Photo</th>
-                <th className="border border-white/20 p-2">Category Name</th>
-                <th className="border border-white/20 p-2">Action</th>
+                <th className="p-2">SL</th>
+                <th className="p-2">Category Photo</th>
+                <th className="p-2">Category Name</th>
+                <th className="p-2">Action</th>
               </tr>
             </thead>
             <tbody>
               {category &&
                 category.map((item, index) => (
-                  <tr key={item._id}>
-                    <td className="border border-white/20 p-2">{index + 1}</td>
-                    <td className="border border-white/20 p-2 ">
-                    <div className="flex justify-center">
-
-                      <img
-                        src={item.categoryImage}
-                        alt={item.name}
-                        className="w-16 h-16 rounded-full border border-white/20 object-cover"
-                      />
-                    </div>
+                  <tr key={item._id} className="even:bg-white/10">
+                    <td className="p-2">{index + 1}</td>
+                    <td className="p-2 ">
+                      <div className="flex justify-center">
+                        <img
+                          src={item.categoryImage}
+                          alt={item.name}
+                          className="w-16 h-16 rounded-full object-cover"
+                        />
+                      </div>
                     </td>
-                    <td className="border border-white/20 p-2 w-1/2">{item.name}</td>
-                    <td className="border border-white/20 p-2">
-                      {/* <button onClick={handleUpdate} className="alert-button-success mr-2">Update</button> */}
-                      <AddCategoryModal item={item}></AddCategoryModal>
-                      <button onClick={"handleDelete"} className="alert-button-error">Delete</button>
+                    <td className="p-2 w-1/2">{item.name}</td>
+                    <td className="p-2">
+                      <AddCategoryModal
+                        item={item}
+                        refetch={refetch}
+                      ></AddCategoryModal>
+                      <button
+                        onClick={() => handleDelete(item)}
+                        className="alert-button-error ml-4"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}

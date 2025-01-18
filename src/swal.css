@@ -1,6 +1,6 @@
 /* Confirm button */
 .popup{
-  background-color: white;
+  /* background-color: white; */
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   width: 350px;
@@ -8,7 +8,7 @@
 }
 .alert-button-success {
     padding: 0.5rem 1rem; 
-    background: linear-gradient(to right, #2563eb, #06b6d4); 
+    background: linear-gradient(to right, #2563eb, #089afc); 
     color: white;
     font-size: 0.75rem; 
     font-weight: 600; 
@@ -19,9 +19,9 @@
   
   
   .alert-button-success:hover {
-    background: linear-gradient(to right, #06b6d4, #2563eb); 
+    background:  #2563eb; 
     transform: translateY(-1px); 
-    color:black;
+    color:rgba(255, 255, 255, 0.664);
     outline: 1px solid #2563eb;
   }
   
@@ -30,7 +30,7 @@
 
 .alert-button-error {
     padding: 0.5rem 1rem; 
-    background: linear-gradient(to right, #ec4899, #f43f5e); 
+    background: linear-gradient(to right, #b9025e, #f43f5e); 
     color: white;
     font-size: 0.75rem; 
     font-weight: 600; 
@@ -40,9 +40,9 @@
   }
   
   .alert-button-error:hover {
-    background: linear-gradient(to right, #f43f5e, #ec4899); 
+    background:  #ee3453; 
     transform: translateY(-1px); 
-    color: black;
+    color:rgba(255, 255, 255, 0.664);
     outline: 1px solid #f43f5e;
   }
   

@@ -1,7 +1,6 @@
 import Swal from "sweetalert2";
-import '../swal.css'
+import "../swal.css";
 import { toast } from "react-toastify";
-
 
 //toastify
 export const showToast = (message, type = "info") => {
@@ -11,37 +10,40 @@ export const showToast = (message, type = "info") => {
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
-    draggable: true, 
+    draggable: true,
     progress: undefined,
     theme: "colored",
   });
 };
 
-
-      // showAlert({
-      //   title: "Something went wrong!",
-      //   text: "error.message",
-      //   icon: "error",
-      //   confirmButtonText: "Try Again",
-      // });
-
+// showAlert({
+//   title: "Something went wrong!",
+//   text: "error.message",
+//   icon: "error",
+//   confirmButtonText: "Try Again",
+// });
 
 //sweet alert single button
-export const showAlert = ({ title, text, icon="success", confirmButtonText = "OK" }) => {
-    return Swal.fire({
-      title: title || "Alert!",
-      text: text || "",
-      icon: icon || "info ",
-      confirmButtonText,
-      customClass: {
-        popup: "popup",
-        title: `text-2xl font-semibold ${icon === "error"?"text-red-600": "text-green-600"}`,
-        content: "text-gray-600",
-        confirmButton:`${icon === "error"?"alert-button-error": "alert-button-success"}`
-      },
-    });
-  };
-
+export const showAlert = ({title,text,icon = "success",confirmButtonText = "OK",showCancelButton,}) => {
+  return Swal.fire({
+    title: title || "Alert!",
+    text: text || "",
+    icon: icon || "info ",
+    confirmButtonText,
+    showCancelButton: showCancelButton,
+    customClass: {
+      popup: "popup",
+      title: `text-2xl font-semibold ${
+        icon === "error" ? "text-red-600" : "text-green-600"
+      }`,
+      content: "text-gray-600",
+      confirmButton: `${
+        icon === "error" ? "alert-button-error" : "alert-button-success"
+      }`,
+      cancelButton:"alert-button-error"
+    },
+  });
+};
 
 //   confirm confirmButton
 // Swal.fire({

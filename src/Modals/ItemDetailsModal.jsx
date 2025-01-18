@@ -61,7 +61,7 @@ const ItemDetailsModal = ({ item }) => {
                   {/* Close Button */}
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="absolute top-4 right-4 text-red-600 hover:text-primary bg-white rounded-full w-8 h-8 p-1 flex items-center justify-center border-2"
+                    className="absolute top-4 right-4 text-red-600 hover:scale-110 transition-all duration-300 hover:text-primary bg-white rounded-full w-8 h-8 p-1 flex items-center justify-center border-2"
                   >
                     <IoClose />
                   </button>

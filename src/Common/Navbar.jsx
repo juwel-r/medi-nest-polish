@@ -34,22 +34,6 @@ const Navbar = () => {
           Dashboard
         </NavLink>
       )}
-
-      {/* {role === "admin" ? (
-        <NavLink to="/dashboard/admin" className="px-2">
-          Dashboard
-        </NavLink>
-      ) : role === "seller" ? (
-        <NavLink to="/dashboard/seller" className="px-2">
-          Dashboard
-        </NavLink>
-      ) : (
-        <NavLink to="/dashboard/user" className="px-2">
-          Dashboard
-        </NavLink>
-      )} */}
-
-      
       <NavLink to="/blog" className="px-2">
         Blog
       </NavLink>
@@ -64,6 +48,7 @@ const Navbar = () => {
       icon: "warning",
       cancelButton: true,
       confirmButtonText: "Yes, Log Out",
+      showCancelButton:true
     }).then((result) => {
       if (result.isConfirmed) {
         logOut()

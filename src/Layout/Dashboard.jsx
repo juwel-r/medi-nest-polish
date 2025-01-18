@@ -12,7 +12,7 @@ const Dashboard = () => {
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-12 gap-4">
           {/* sidebar */}
-          <div className="col-span-3 bg-white/20 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 h-fit">
+          <div className="col-span-3 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 h-fit">
             <div className="flex  items-center mb-6">
               <img
                 src={userInfo?.photoURL}
@@ -29,7 +29,7 @@ const Dashboard = () => {
             </div>
 
             {/* sidebar menu */}
-            <nav className="text-white">
+            <nav className="text-white ">
               <ul className="dashboard-NavLink flex flex-col gap-2 ">
                 <Link
                   to="/dashboard"
@@ -80,7 +80,7 @@ const Dashboard = () => {
               <h1 className="text-white text-xl font-semibold">
                 Dashboard of {role?.toUpperCase()} - Medi Nest
               </h1>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+              <button className="green-button">
                 Upgrade
                 {/* todo: need to conditional */}
               </button>

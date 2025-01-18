@@ -4,20 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
+html {
   overflow-y: scroll;
 }
 .active {
   color: #3b82f6;
 }
-.dashboard-NavLink .active{
-  color: white;
+.dashboard-NavLink .active {
+  color: rgba(255, 255, 255, 0.801);
   background-color: rgba(0, 0, 255, 0.147);
-  border-right:4px solid rgba(0, 0, 255, 0.442);
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.39);
+  /* border-right: 4px solid rgba(0, 0, 255, 0.442); */
   border-radius: 6px;
 }
-.dashboard-NavLink a{
- padding: 2px 0px 2px 12px;
+.dashboard-NavLink a {
+  padding: 2px 0px 2px 12px;
 }
 body {
   font-family: "Sora", serif;
@@ -134,19 +135,19 @@ body {
 
 .green-button {
   padding: 0.5rem 1rem;
-  background: linear-gradient(90deg, #3b82f6, #6a78ff);
+  background: linear-gradient(45deg, #2563eb, #089afc);
   color: white;
   font-weight: 600;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, background-position 0.3s ease;
-  background-size: 200%;
+  transition: all 0.3s ease, background-position 0.3s ease;
+  /* background-size: 200%; */
   background-position: left;
 }
 
 .green-button:hover {
+  background: linear-gradient(45deg, #089afc, #2563eb);
   background-position: right;
-  transform: scale(1.01 );
+  color: rgba(255, 255, 255, 0.63);
+  transform: scale(1.01);
 }
-
-
