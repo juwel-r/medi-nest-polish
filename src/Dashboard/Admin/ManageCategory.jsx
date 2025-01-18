@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import LoadingSpin from "../../components/LoadingSpin";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { showAlert, showToast } from "../../Utils/alerts";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import "../dashboard.css";
-import LoadingSpin from "../../components/LoadingSpin";
 
-const ManageUser = () => {
+const ManageCategory = () => {
+  // <LoadingSpin></LoadingSpin>
   const axiosSecure = useAxiosSecure();
   const {
-    data: users = [],
+    data: category = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["category"],
     queryFn: async () => {
       try {
-        const res = await axiosSecure("/user");
+        const res = await axiosSecure("/category");
         return res.data;
       } catch (error) {
         showAlert({
@@ -51,37 +51,39 @@ const ManageUser = () => {
 
   return (
     <div className="container mx-auto py-4 mt-4">
-      <h2 className="text-2xl font-semibold mb-4 text-white">User Management</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-white">
+        Category Management
+      </h2>
       {isLoading ? (
         <LoadingSpin></LoadingSpin>
       ) : (
-        <div className="manage-users overflow-auto bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+        <div className="manage-category overflow-auto bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center ">
           <table className="table-auto w-full border-collapse">
             <thead>
               <tr>
+                <th className="border border-white/30 p-2">SL</th>
+                <th className="border border-white/30 p-2">Photo</th>
                 <th className="border border-white/30 p-2">Name</th>
-                <th className="border border-white/30 p-2">Email</th>
-                <th className="border border-white/30 p-2">Role</th>
-                <th className="border border-white/30 p-2">Update Role</th>
+                <th className="border border-white/30 p-2">Action</th>
               </tr>
             </thead>
             <tbody>
-              {users &&
-                users.map((item) => (
+              {category &&
+                category.map((item, index) => (
                   <tr key={item._id}>
-                    <td className="border border-white/30 p-2">{item.name}</td>
-                    <td className="border border-white/30 p-2">{item.email}</td>
+                    <td className="border border-white/30 p-2">{index + 1}</td>
                     <td className="border border-white/30 p-2">
-                      <input
-                        value={item.role.toUpperCase()}
-                        disabled
-                        className="bg-transparent text-center"
+                      <img
+                        src={item.categoryImage}
+                        alt={item.name}
+                        className="w-16 h-16 rounded-full"
                       />
                     </td>
+                    <td className="border border-white/30 p-2">{item.name}</td>
                     <td className="border border-white/30 p-2">
                       <form>
                         <select
-                        defaultValue={item.role}
+                          defaultValue={item.role}
                           onChange={(e) =>
                             handleRoleChange(
                               e.target.value,
@@ -107,4 +109,4 @@ const ManageUser = () => {
   );
 };
 
-export default ManageUser;
+export default ManageCategory;

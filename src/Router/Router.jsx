@@ -18,6 +18,7 @@ import SellerRoute from "./SellerRoute";
 import SellerDashboard from "../Dashboard/Seller/SellerDashboard";
 import UserDashboard from "../Dashboard/User/UserDashboard";
 import ManageUser from "../Dashboard/Admin/ManageUser";
+import ManageCategory from "../Dashboard/Admin/ManageCategory";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,7 @@ const router = createBrowserRouter([
     ),
     path: "/dashboard",
     children: [
+      //===========admin route===========//
       {
         element: (
           <AdminRoute>
@@ -105,6 +107,15 @@ const router = createBrowserRouter([
         ),
         path: "manage-user",
       },
+      {
+        element: (
+          <AdminRoute>
+            <ManageCategory></ManageCategory>
+          </AdminRoute>
+        ),
+        path: "manage-category",
+      },
+      //===========seller route===========//
       {
         element: (
           <SellerRoute>

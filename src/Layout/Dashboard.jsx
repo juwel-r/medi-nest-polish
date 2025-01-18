@@ -11,7 +11,7 @@ const Dashboard = () => {
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-12 gap-4">
           {/* sidebar */}
-          <div className="col-span-3 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20">
+          <div className="col-span-3 bg-white/20 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 h-fit">
             <div className="flex  items-center mb-6">
               <img
                 src={userInfo?.photoURL}
@@ -38,8 +38,8 @@ const Dashboard = () => {
                 <Link to="manage-user" className="font-medium hover:text-white/80 cursor-pointer">
                   Manage Users
                 </Link>
-                <Link to="" className="font-medium hover:text-white/80 cursor-pointer">
-                  Payments Schedule
+                <Link to="manage-category" className="font-medium hover:text-white/80 cursor-pointer">
+                  Manage Category
                 </Link>
                 <Link to="" className="font-medium hover:text-white/80 cursor-pointer">
                   Shift Planner
@@ -80,6 +80,7 @@ const Dashboard = () => {
               </h1>
               <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
                 Upgrade
+                {/* todo: need to conditional */}
               </button>
             </div>
             <Outlet></Outlet>

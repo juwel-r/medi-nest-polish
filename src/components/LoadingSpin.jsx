@@ -1,10 +1,18 @@
-import React from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const LoadingSpin = () => {
   return (
     <div className="flex items-center flex-col justify-start py-[5%] h-auto">
-      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-primary border-solid"></div>
-      <p className="text-3xl font-semibold mt-5 text-primary">Loading . . .</p>
+      <ClipLoader
+        color="#2563eb"
+        cssOverride={{ borderWidth: "5px" }}
+        loading
+        size={80}
+        speedMultiplier={1.5}
+      />
+      <p className="text-3xl font-semibold mt-5 text-primary animate-spin">
+        Loading . . .
+      </p>
     </div>
   );
 };
