@@ -10,7 +10,15 @@ html{
 .active {
   color: #3b82f6;
 }
-
+.dashboard-NavLink .active{
+  color: white;
+  background-color: rgba(0, 0, 255, 0.147);
+  border-right:4px solid rgba(0, 0, 255, 0.442);
+  border-radius: 6px;
+}
+.dashboard-NavLink a{
+ padding: 2px 0px 2px 12px;
+}
 body {
   font-family: "Sora", serif;
 }

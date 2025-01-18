@@ -17,7 +17,7 @@ const MainLayout = () => {
       <nav className="sticky top-0 left-0 right-0 w-full z-50 backdrop-blur-sm bg-white/80">
         <Navbar></Navbar>
       </nav>
-      <div className="" style={{ minHeight: `calc(100vh - 269px)` }}
+      <div className="" style={{ minHeight: `calc(100vh - 445px)` }}
       >
       <Outlet></Outlet>
       </div>

@@ -20,8 +20,8 @@
   
   .alert-button-success:hover {
     background: linear-gradient(to right, #06b6d4, #2563eb); 
-    transform: translateY(-2px); 
-    color:#2563eb;
+    transform: translateY(-1px); 
+    color:black;
     outline: 1px solid #2563eb;
   }
   
@@ -41,8 +41,8 @@
   
   .alert-button-error:hover {
     background: linear-gradient(to right, #f43f5e, #ec4899); 
-    transform: translateY(-2px); 
-    color: #f43f5e;
+    transform: translateY(-1px); 
+    color: black;
     outline: 1px solid #f43f5e;
   }
   

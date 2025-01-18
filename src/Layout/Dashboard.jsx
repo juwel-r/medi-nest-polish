@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import useRole from "../Hooks/useRoll";
+import { VscVerifiedFilled } from "react-icons/vsc";
 
 const Dashboard = () => {
   const { userInfo } = useAuth();
@@ -19,8 +20,9 @@ const Dashboard = () => {
                 className="rounded-full object-cover w-12 h-12 mr-3"
               />
               <div>
-                <h2 className="text-white font-semibold text-lg">
+                <h2 className="text-white font-semibold text-lg flex items-center gap-1">
                   {userInfo?.displayName}
+                  <span className="text-2xl"><VscVerifiedFilled className=""/></span>
                 </h2>
                 <p className="text-white/70 text-sm">{role?.toUpperCase()}</p>
               </div>
@@ -28,46 +30,46 @@ const Dashboard = () => {
 
             {/* sidebar menu */}
             <nav className="text-white">
-              <ul className="flex flex-col gap-4">
+              <ul className="dashboard-NavLink flex flex-col gap-2 ">
                 <Link
                   to="/dashboard"
                   className="font-medium hover:text-white/80 cursor-pointer"
                 >
                   Overview
                 </Link>
-                <Link to="manage-user" className="font-medium hover:text-white/80 cursor-pointer">
+                <NavLink to="manage-user" className="font-medium hover:text-white/80 cursor-pointer">
                   Manage Users
-                </Link>
-                <Link to="manage-category" className="font-medium hover:text-white/80 cursor-pointer">
+                </NavLink>
+                <NavLink to="manage-category" className="font-medium hover:text-white/80 cursor-pointer">
                   Manage Category
-                </Link>
-                <Link to="" className="font-medium hover:text-white/80 cursor-pointer">
+                </NavLink>
+                <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                   Shift Planner
                   <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
                     7
                   </span>
-                </Link>
-                <Link to="" className="font-medium hover:text-white/80 cursor-pointer">
+                </NavLink>
+                <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                   Employees
-                </Link>
-                <Link to="" className="font-medium hover:text-white/80 cursor-pointer">
+                </NavLink>
+                <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                   Providers
-                </Link>
+                </NavLink>
               </ul>
               <div className="mt-6 border-t border-white/20 pt-4 ">
                 <ul className="flex flex-col gap-4">
-                  <Link to="" className="font-medium hover:text-white/80 cursor-pointer">
+                  <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                     Client Satisfaction
-                  </Link>
-                  <Link to="" className="font-medium hover:text-white/80 cursor-pointer">
+                  </NavLink>
+                  <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                     Employee Reviews
                     <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
                       1
                     </span>
-                  </Link>
-                  <Link to="" className="font-medium hover:text-white/80 cursor-pointer">
+                  </NavLink>
+                  <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                     Social Media
-                  </Link>
+                  </NavLink>
                 </ul>
               </div>
             </nav>
