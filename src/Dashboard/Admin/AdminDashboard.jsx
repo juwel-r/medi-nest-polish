@@ -36,7 +36,7 @@ const AdminDashboard = () => {
               Total {data?.statuses[0].status}
             </h2>
             <p className="text-xl font-bold">
-              {data?.statuses[0].totalAmount.toFixed(2)}
+              ${data?.statuses[0].totalAmount.toFixed(2)}
             </p>
           </div>
           <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
@@ -44,7 +44,7 @@ const AdminDashboard = () => {
               Total {data?.statuses[1].status}
             </h2>
             <p className="text-xl font-bold">
-              {data?.statuses[1].totalAmount.toFixed(2)}
+              ${data?.statuses[1].totalAmount.toFixed(2)}
             </p>
           </div>
           <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">

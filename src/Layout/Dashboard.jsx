@@ -43,14 +43,14 @@ const Dashboard = () => {
                 <NavLink to="manage-category" className="font-medium hover:text-white/80 cursor-pointer">
                   Manage Category
                 </NavLink>
-                <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
-                  Shift Planner
-                  <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
+                <NavLink to="payment-management" className="font-medium hover:text-white/80 cursor-pointer">
+                 Payment Management
+                  {/* <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
                     7
-                  </span>
+                  </span> */}
                 </NavLink>
-                <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
-                  Employees
+                <NavLink to="sales-report" className="font-medium hover:text-white/80 cursor-pointer">
+                  Sales Report
                 </NavLink>
                 <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                   Providers
@@ -63,9 +63,9 @@ const Dashboard = () => {
                   </NavLink>
                   <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                     Employee Reviews
-                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
+                    {/* <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
                       1
-                    </span>
+                    </span> */}
                   </NavLink>
                   <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
                     Social Media

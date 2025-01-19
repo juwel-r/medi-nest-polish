@@ -19,6 +19,8 @@ import SellerDashboard from "../Dashboard/Seller/SellerDashboard";
 import UserDashboard from "../Dashboard/User/UserDashboard";
 import ManageUser from "../Dashboard/Admin/ManageUser";
 import ManageCategory from "../Dashboard/Admin/ManageCategory";
+import PaymentManagement from "../Dashboard/Admin/PaymentManagement";
+import SalesReport from "../Dashboard/Admin/SalesReport";
 
 const router = createBrowserRouter([
   {
@@ -114,6 +116,22 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         path: "manage-category",
+      },
+      {
+        element: (
+          <AdminRoute>
+           <PaymentManagement></PaymentManagement>
+          </AdminRoute>
+        ),
+        path: "payment-management",
+      },
+      {
+        element: (
+          <AdminRoute>
+          <SalesReport/>
+          </AdminRoute>
+        ),
+        path: "sales-report",
       },
       //===========seller route===========//
       {
