@@ -12,7 +12,7 @@ const ManageUser = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["manageUsers"],
     queryFn: async () => {
       try {
         const res = await axiosSecure("/user");

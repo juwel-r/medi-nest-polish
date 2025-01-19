@@ -13,7 +13,7 @@ const PaymentManagement = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["payment"],
+    queryKey: ["managePayment"],
     queryFn: async () => {
       try {
         const res = await axiosSecure("/payment?value=payment-management");
@@ -77,12 +77,12 @@ const PaymentManagement = () => {
                     <td className="p-2">{item.name}</td>
                     <td className="p-2">{item.email}</td>
                     <td className="p-2 text-right pr-4">
-                      ${item.amount.toFixed(2)}
+                      ${item?.amount.toFixed(2)}
                     </td>
                     <td className="p-2 text-right pr-4">{item.status}</td>
                     <td className="border-l border-white/30 p-2">
-                      <div className="rounded-full text-sm px-x py-1">
-                        {item.status === "Pending" ? (
+                      <div className="rounded-full text-sm py-1">
+                        {item?.status === "Pending" ? (
                           <button
                             onClick={() => handleAccept(item)}
                             className="alert-button-success btn btn-sm border-none"

@@ -52,8 +52,8 @@ const Dashboard = () => {
                 <NavLink to="sales-report" className="font-medium hover:text-white/80 cursor-pointer">
                   Sales Report
                 </NavLink>
-                <NavLink to="/" className="font-medium hover:text-white/80 cursor-pointer">
-                  Providers
+                <NavLink to="manage-banner-advertise" className="font-medium hover:text-white/80 cursor-pointer">
+                  Manage Banner Advertise
                 </NavLink>
               </ul>
               <div className="mt-6 border-t border-white/20 pt-4 ">

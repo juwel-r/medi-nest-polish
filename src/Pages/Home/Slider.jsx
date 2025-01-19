@@ -7,13 +7,13 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { delay } from "motion";
 import { useEffect, useState } from "react";
 import SlideContent from "../../components/SlideContent";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Slider = () => {
   const [slider, setSlider] = useState([]);
+  const axiosPublic = useAxiosPublic()
   useEffect(() => {
-    fetch("/slider.json")
-      .then((res) => res.json())
-      .then((data) => setSlider(data));
+axiosPublic('/items/slider').then((res) => setSlider(res.data));
   }, []);
 
   // const {

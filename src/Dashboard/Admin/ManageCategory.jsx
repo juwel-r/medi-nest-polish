@@ -12,7 +12,7 @@ const ManageCategory = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["category"],
+    queryKey: ["manageCategory"],
     queryFn: async () => {
       try {
         const res = await axiosSecure("/category");

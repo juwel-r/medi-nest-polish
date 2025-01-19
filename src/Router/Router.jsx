@@ -21,6 +21,7 @@ import ManageUser from "../Dashboard/Admin/ManageUser";
 import ManageCategory from "../Dashboard/Admin/ManageCategory";
 import PaymentManagement from "../Dashboard/Admin/PaymentManagement";
 import SalesReport from "../Dashboard/Admin/SalesReport";
+import ManageBannerAdvertise from "../Dashboard/Admin/ManageBannerAdvertise";
 
 const router = createBrowserRouter([
   {
@@ -132,6 +133,14 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         path: "sales-report",
+      },
+      {
+        element: (
+          <AdminRoute>
+          <ManageBannerAdvertise/>
+          </AdminRoute>
+        ),
+        path: "manage-banner-advertise",
       },
       //===========seller route===========//
       {

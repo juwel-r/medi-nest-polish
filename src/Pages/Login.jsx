@@ -45,7 +45,7 @@ const Login = () => {
         })
         .catch((error) => {
           showAlert({
-            title: "Are you sure to Log Out!",
+            title: "Something went wrong!",
             text: error.message,
             icon: "error",
             cancelButton: true,
