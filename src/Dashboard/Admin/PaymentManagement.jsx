@@ -30,25 +30,37 @@ const PaymentManagement = () => {
     },
   });
 
-  const handleAccept = async (item) => {
-    try {
-      const res = await axiosSecure.patch(`/payment/${item._id}`, { "status":"Paid" });
-      if (res.data.modifiedCount > 0) {
-        showToast(
-          `${item.name}'s $${item.amount} payment accepted!`,
-          "success"
-        );
-        refetch();
+  const handleAccept = (item) => {
+    showAlert({
+      title: "Are you sure",
+      icon: "warning",
+      text: "You can't recover this category ",
+      confirmButtonText: "Delete",
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure.patch(`/payment/${item._id}`, {
+            status: "Paid",
+          });
+          if (res.data.modifiedCount > 0) {
+            showToast(
+              `${item.name}'s $${item.amount} payment accepted!`,
+              "success"
+            );
+            refetch();
+          }
+        } catch (error) {
+          console.log(error);
+          showAlert({
+            title: "Something went wrong!",
+            text: error.message,
+            icon: "error",
+            confirmButtonText: "Try Again",
+          });
+        }
       }
-    } catch (error) {
-      console.log(error);
-      showAlert({
-        title: "Something went wrong!",
-        text: error.message,
-        icon: "error",
-        confirmButtonText: "Try Again",
-      });
-    }
+    });
   };
 
   return (
@@ -81,18 +93,18 @@ const PaymentManagement = () => {
                     </td>
                     <td className="p-2 text-right pr-4">{item.status}</td>
                     <td className="border-l border-white/30 p-2">
-                      <div className="rounded-full text-sm py-1">
+                      <div className="rounded-full text-sm py-1 flex justify-center items-center flex-nowrap">
                         {item?.status === "Pending" ? (
                           <button
                             onClick={() => handleAccept(item)}
                             className="alert-button-success btn btn-sm border-none"
                           >
-                            Accept
+                            <span className="px-2.5 ">Accept</span>
                           </button>
                         ) : (
-                          <button className="bg-primary/40 btn btn-sm rounded-full border-none text-white/70 hover:bg-primary/40">
-                            Accepted{" "}
-                            <span className="text-white">
+                          <button className="bg-primary/40 shadow-inner shadow-black/30 btn btn-sm rounded-full border-none text-white/60 hover:bg-primary/40 text-[10px] h-fit ">
+                            <span>Accepted</span>
+                            <span className="text-white text-lg">
                               <RiVerifiedBadgeFill />
                             </span>
                           </button>

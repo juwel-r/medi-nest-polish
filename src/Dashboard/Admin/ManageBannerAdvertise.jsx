@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { showAlert } from "../../Utils/alerts";
+import { showAlert, showToast } from "../../Utils/alerts";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import LoadingSpin from "../../components/LoadingSpin";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
@@ -30,49 +30,71 @@ const ManageBannerAdvertise = () => {
     },
   });
 
-  console.log("slide", sliderData);
-
-  const handleAccept = async (item) => {
-    try {
-      const res = await axiosSecure.patch(`/payment/${item._id}`, {
-        status: "Paid",
-      });
-      if (res.data.modifiedCount > 0) {
-        showToast(
-          `${item.name}'s $${item.amount} payment accepted!`,
-          "success"
-        );
-        refetch();
+  const handleUpdate = async (item, action) => {
+    showAlert({
+      title: "Are you sure",
+      icon: `${action === "Approve" || "Add" ? "info" : "warning"}`,
+      text: `You are going to ${action} ${item.itemName}!`,
+      confirmButtonText: action,
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          if (action === "Remove") {
+            const res = await axiosSecure.patch(`/items/slider/${item._id}`, {
+              status: "",
+            });
+            if (res.data.modifiedCount > 0) {
+              showToast(
+                `${item.itemName} successfully $${item.amount}!`,
+                "success"
+              );
+              refetch();
+            }
+          } else {
+            const res = await axiosSecure.patch(`/items/slider/${item._id}`, {
+              status: "Approved",
+            });
+            if (res.data.modifiedCount > 0) {
+              showToast(
+                `${item.itemName} successfully $${item.amount}!`,
+                "success"
+              );
+              refetch();
+            }
+          }
+        } catch (error) {
+          console.log(error);
+          showAlert({
+            title: "Something went wrong!",
+            text: error.message,
+            icon: "error",
+            confirmButtonText: "Try Again",
+          });
+        }
       }
-    } catch (error) {
-      console.log(error);
-      showAlert({
-        title: "Something went wrong!",
-        text: error.message,
-        icon: "error",
-        confirmButtonText: "Try Again",
-      });
-    }
+    });
   };
 
   return (
     <div className="container mx-auto py-4 mt-4">
-      <h2 className="text-2xl font-semibold mb-4 text-white">
-        Payment Management
+      <h2 className="text-lg md:text-2xl font-semibold mb-4 text-white">
+        Banner Slider Management
       </h2>
       {isLoading ? (
         <LoadingSpin></LoadingSpin>
       ) : (
         <div className="manage-users overflow-auto bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
           <table className="table-auto w-full border-collapse">
-            <thead className="bg-white/10">
+            <thead className="bg-white/30 text-xs md:text-base">
               <tr>
                 <th className="p-2">SL</th>
-                <th className="p-2">Image</th>
-                <th className="p-2">Name</th>
+                <th className="p-2">Photo</th>
+                <th className="p-2 hidden lg:block">
+                  Item Name & Seller Email
+                </th>
                 <th className="p-2">Description</th>
-                <th className="p-2">Seller Email</th>
-                <th className="p-2">Status</th>
+                <th className="p-2 hidden lg:block">Status</th>
                 <th className="border-l border-white/30 p-2">Action</th>
               </tr>
             </thead>
@@ -82,47 +104,73 @@ const ManageBannerAdvertise = () => {
                   <tr key={item._id} className="even:bg-white/10">
                     <td className="p-2 px-4">{i + 1}</td>
                     <td className="p-2">
-                      <div className="flex justify-center">
+                      <div className="flex justify-center flex-col items-center">
                         <img
                           src={item.image}
                           alt={item.name}
                           className="w-16 h-16 rounded-full object-cover"
                         />
+                       <p className="lg:hidden text-sm"> {item.itemName}</p>
+                        <p className="lg:hidden text-xs mb-1">{item.sellerEmail}</p>
+                        <div className="lg:hidden">
+                        {item?.bannerStatus === "Approved" ? (
+                        <span className="bg-primary rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50 text-white/70">
+                          {item?.bannerStatus}
+                        </span>
+                      ) : item?.bannerStatus === "Requested" ? (
+                        <span className="bg-gray-500/50 rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50 text-white/80">
+                          {item?.bannerStatus}
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                        </div>
                       </div>
                     </td>
-                    <td className="p-2 text-left">{item.itemName}</td>
-                    <td className="p-2 text-left text-sm">
-                      {item.description.slice(0, 90)}...
+
+                    <td className="p-2 text-left pr-4  hidden lg:block">
+                      {item.itemName}
+                      <div>{item.sellerEmail}</div>
                     </td>
-                    <td className="p-2 text-left pr-4">{item.sellerEmail}</td>
-                    <td className="p-2 pr-4 ">
-                      {item.bannerStatus === "Approved" ? (
-                        <span className="bg-primary rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50 text">
-                          {item.bannerStatus}
+                    <td className="p-2 text-left lg:text-justify text-xs md:text-sm pr-4">
+                      {item.description.slice(0, 150)}...
+                    </td>
+                    <td className="p-2 pr-4 hidden lg:block">
+                      {item?.bannerStatus === "Approved" ? (
+                        <span className="bg-primary rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50 text-white/70">
+                          {item?.bannerStatus}
                         </span>
-                      ) : item.bannerStatus === "Requested" ? (
-                        <span className="bg-green-500/70 rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50">
-                        {item.bannerStatus}
-                      </span>
-                      ) :""}
+                      ) : item?.bannerStatus === "Requested" ? (
+                        <span className="bg-gray-500/50 rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50 text-white/80">
+                          {item?.bannerStatus}
+                        </span>
+                      ) : (
+                        ""
+                      )}
                     </td>
 
                     <td className="border-l border-white/30 p-2">
                       <div className="rounded-full text-sm px-x py-1">
-                        {item.bannerStatus === "Approved" ? (
+                        {item?.bannerStatus === "Approved" ? (
                           <button
-                            onClick={() => handleAccept(item)}
+                            onClick={() => handleUpdate(item, "Remove")}
                             className="alert-button-error btn btn-sm border-none"
                           >
                             Remove
                           </button>
-                        ) : item.bannerStatus === "Requested" ? (
-                          <button className="alert-button-success btn btn-sm border-none">
-                            Accepted
+                        ) : item?.bannerStatus === "Requested" ? (
+                          <button
+                            onClick={() => handleUpdate(item, "Approve")}
+                            className="alert-button-success btn btn-sm border-none"
+                          >
+                            Approve
                           </button>
                         ) : (
-                          <button className="alert-button-success btn btn-sm border-none">
-                            <span className="px-2">Select</span>
+                          <button
+                            onClick={() => handleUpdate(item, "Add")}
+                            className="alert-button-success btn btn-sm border-none"
+                          >
+                            <span className="px-2 text-white/80">Select</span>
                           </button>
                         )}
                       </div>

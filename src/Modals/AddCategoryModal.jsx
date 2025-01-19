@@ -51,7 +51,7 @@ const AddCategoryModal = ({ item, refetch }) => {
         onClick={() => setIsOpen(true)}
         className={`${item ? "alert-button-success " : ""}`}
       >
-        {`${item ? "Update" : "Add Now"}`}
+        {`${item ? "Update" : "Add New"}`}
       </button>
 
       <Dialog

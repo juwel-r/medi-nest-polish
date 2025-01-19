@@ -63,10 +63,10 @@ const ManageCategory = () => {
   return (
     <div className="container mx-auto py-4 mt-4">
       <div className="flex items-center justify-between px-4 mb-4">
-        <h2 className="text-2xl font-semibold  text-white">
+        <h2 className="text-lg md:text-2xl font-semibold  text-white">
           Category Management
         </h2>
-        <div onClick={handleAddCategory} className="green-button text-md">
+        <div onClick={handleAddCategory} className="green-button">
           <AddCategoryModal refetch={refetch}></AddCategoryModal>
         </div>
       </div>
@@ -99,16 +99,18 @@ const ManageCategory = () => {
                     </td>
                     <td className="p-2 w-1/2">{item.name}</td>
                     <td className="p-2">
-                      <AddCategoryModal
+                     <div className="flex flex-col md:flex-row gap-2">
+                     <AddCategoryModal
                         item={item}
                         refetch={refetch}
                       ></AddCategoryModal>
                       <button
                         onClick={() => handleDelete(item)}
-                        className="alert-button-error ml-4"
+                        className="alert-button-error md:ml-4"
                       >
                         Delete
                       </button>
+                     </div>
                     </td>
                   </tr>
                 ))}

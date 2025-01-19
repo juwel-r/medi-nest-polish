@@ -92,6 +92,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     path: "/dashboard",
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       //===========admin route===========//
       {

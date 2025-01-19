@@ -71,8 +71,8 @@ const Navbar = () => {
     <nav className="px-4 sm:px6 h-[48px] md:h-[64px] flex lg:justify-between items-center relative border-b">
       {/* Right section */}
       <div
-        tabIndex={0}
-        onBlur={() => setMenuClose(false)}
+        tabIndex={0} role="button"
+        // onBlur={() => setMenuClose(false)}
         onClick={() => setMenuClose(!menuClose)}
         className="block lg:hidden z-50 relative h-5 w-5 text-2xl text-black pr-4"
       >
