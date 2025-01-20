@@ -17,7 +17,8 @@ const CheckOutForm = () => {
   const { userInfo } = useAuth();
   const [cart, refetch] = useCart();
   const navigate = useNavigate();
-  const totalPrice = cart.reduce((a, c) => a + c.price, 0);
+  const totalPrice = cart.reduce((a, c) => a + (c.price*c.quantity), 0);
+  console.log(cart)
   console.log(totalPrice);
   useEffect(() => {
     if (totalPrice > 0) {
@@ -79,12 +80,11 @@ const CheckOutForm = () => {
         setTransaction(paymentIntent.id);
         const paymentInfo = {
           name: userInfo.displayName,
-          email: userInfo.email,
+          buyerEmail: userInfo.email,
           amount: totalPrice,
           transactionId: paymentIntent.id,
           cartIds: cart.map((item) => item._id),
           itemIds: cart.map((item) => item.itemId),
-          date: new Date(),
           status: "Pending",
         };
         axiosSecure.post("/payment", paymentInfo).then((res) => {

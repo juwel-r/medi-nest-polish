@@ -102,6 +102,7 @@ const router = createBrowserRouter([
             <AdminDashboard></AdminDashboard>
           </AdminRoute>
         ),
+        path:'admin'
       },
       {
         element: (

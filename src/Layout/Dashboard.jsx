@@ -24,7 +24,6 @@ const Dashboard = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  console.log(menuClose)
   return (
     <div className=" min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-6">
       <div className="max-w-[1440px] mx-auto">
@@ -56,12 +55,12 @@ const Dashboard = () => {
             {/* sidebar menu */}
             <nav onClick={()=>setMenuClose(false)} className="text-white ">
               <ul className="dashboard-NavLink flex flex-col gap-2 ">
-                <Link
-                  to="/dashboard"
+                <NavLink
+                  to="/dashboard/admin"
                   className="font-medium hover:text-white/80 cursor-pointer"
                 >
                   Overview
-                </Link>
+                </NavLink>
                 <NavLink
                   to="manage-user"
                   className="font-medium hover:text-white/80 cursor-pointer"

@@ -77,7 +77,7 @@ const Invoice = () => {
           <div className="mt-6">
             <h3 className="text-lg font-bold">Billing Details:</h3>
             <p>{paymentInfo?.name}</p>
-            <p>Email: {paymentInfo?.email}</p>
+            <p>Email: {paymentInfo?.buyerEmail}</p>
           </div>
 
           {/* Invoice Header */}

@@ -12,7 +12,7 @@ const SalesReport = () => {
   const [loading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
 
-  // Fetch sales data from backend
+  // Fetch sales data from server
   useEffect(() => {
     const fetchSalesData = async () => {
       setLoading(true);
@@ -91,6 +91,52 @@ const SalesReport = () => {
     },
   ];
 
+  // const customStyles = {
+  //   header: {
+  //     style: {
+  //       backgroundColor: 'none)', // Transparent white
+  //       backdropFilter: 'blur(10px)', // Blurring effect
+  //       WebkitBackdropFilter: 'blur(10px)', // For Safari
+  //       borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+  //       // color: '#ffffff',
+  //       fontWeight: 'bold',
+  //     },
+  //   },
+  //   headCells: {
+  //     style: {
+  //       backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  //       backdropFilter: 'blur(10px)',
+  //       WebkitBackdropFilter: 'blur(10px)',
+  //       color: '#ffffff',
+  //       textTransform: 'uppercase',
+  //       fontWeight: '600',
+  //       fontSize: '14px',
+  //       borderRight: '1px solid rgba(255, 255, 255, 0.2)',
+  //     },
+  //   },
+  //   rows: {
+  //     style: {
+  //       backgroundColor: 'no',
+  //       backdropFilter: 'blur(8px)',
+  //       WebkitBackdropFilter: 'blur(8px)',
+  //       borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+  //       '&:hover': {
+  //         backgroundColor: 'rgba(255, 255, 255, 0.15)',
+  //       },
+  //     },
+  //   },
+  //   cells: {
+  //     style: {
+  //       color: '#ffffff',
+  //       padding: '10px',
+  //       borderRight: '1px solid rgba(255, 255, 255, 0.2)',
+  //     },
+  //   },
+  // };
+  
+  
+
+
   return (
     <div className="md:p-6 p-2 py-6 space-y-6 text-white">
 <h2 className="text-2xl font-bold">Sales Report</h2>
@@ -101,7 +147,7 @@ const SalesReport = () => {
           <label className="block text-sm">Start Date:</label>
           <input
             type="date"
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 bg-white/30"
             onChange={(e) =>
               setDateRange({ ...dateRange, startDate: e.target.value })
             }
@@ -111,7 +157,7 @@ const SalesReport = () => {
           <label className="block text-sm">End Date:</label>
           <input
             type="date"
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 bg-white/30"
             onChange={(e) =>
               setDateRange({ ...dateRange, endDate: e.target.value })
             }
@@ -136,7 +182,7 @@ const SalesReport = () => {
         <CSVLink
           data={filteredData}
           filename={"sales-report.csv"}
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          className="bg-green-500/80 text-white px-4 py-2 rounded"
         >
           Export to CSV
         </CSVLink>
@@ -155,6 +201,7 @@ const SalesReport = () => {
         <DataTable
           columns={columns}
           data={filteredData}
+          // customStyles={customStyles}
           pagination
           highlightOnHover
           className="border rounded shadow "

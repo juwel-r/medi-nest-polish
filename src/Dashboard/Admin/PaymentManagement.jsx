@@ -29,13 +29,12 @@ const PaymentManagement = () => {
       }
     },
   });
-
   const handleAccept = (item) => {
     showAlert({
       title: "Are you sure",
-      icon: "warning",
-      text: "You can't recover this category ",
-      confirmButtonText: "Delete",
+      icon: "info",
+      text: `You are trying to accept ${item.name}'s $${item.amount} payment!`,
+      confirmButtonText: "Accept",
       showCancelButton: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
@@ -87,7 +86,7 @@ const PaymentManagement = () => {
                 paymentData.map((item) => (
                   <tr key={item._id} className="even:bg-white/10">
                     <td className="p-2">{item.name}</td>
-                    <td className="p-2">{item.email}</td>
+                    <td className="p-2">{item.buyerEmail}</td>
                     <td className="p-2 text-right pr-4">
                       ${item?.amount.toFixed(2)}
                     </td>
