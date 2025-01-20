@@ -30,7 +30,7 @@ const Navbar = () => {
       </NavLink>
       {/* Dashboard  */}
       {userInfo?.email && (
-        <NavLink to={`${role === "admin"?"/dashboard":role === "seller" ? "/dashboard/seller":"/dashboard/user"}`} className="px-2">
+        <NavLink to={`/dashboard/${role}`} className="px-2">
           Dashboard
         </NavLink>
       )}
@@ -228,7 +228,7 @@ const Navbar = () => {
                   Update Profile
                 </button>
               </Link>
-              <Link to="/" className="green-button btn btn-sm">
+              <Link to={`/dashboard/${role}`} className="green-button btn btn-sm">
                 Dashboard
               </Link>
               <button className="red-button btn btn-sm" onClick={handleLogOut}>

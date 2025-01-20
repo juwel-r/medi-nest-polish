@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   const axiosSecure = useAxiosSecure();
 
   const { data = [], isLoading } = useQuery({
-    queryKey: ["overview"],
+    queryKey: ["overviewAdmin"],
     queryFn: async () => {
       try {
         const res = await axiosSecure("/payment?value=paid-pending");

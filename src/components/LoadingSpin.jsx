@@ -8,7 +8,7 @@ const LoadingSpin = () => {
         cssOverride={{ borderWidth: "5px" }}
         loading
         size={80}
-        speedMultiplier={1.5}
+        speedMultiplier={1}
       />
       <p className="text-3xl font-semibold mt-5 text-primary animate-spin">
         Loading . . .

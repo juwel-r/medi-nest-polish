@@ -9,7 +9,7 @@ const SellerDashboard = () => {
   const {userInfo}= useAuth()
 
   const { data = [], isLoading } = useQuery({
-    queryKey: ["overview"],
+    queryKey: ["overviewSeller"],
     queryFn: async () => {
       try {
         const res = await axiosSecure(`/payment?value=seller-sales-status&email=${userInfo.email}`);
@@ -32,29 +32,30 @@ const SellerDashboard = () => {
           <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
             <h2 className="text-base md:text-lg font-semibold">Total Orders</h2>
             <p className="text-lg md:text-xl font-bold">
-              {data?.totalOrders.toString().padStart(2, "0")}
+              {/* {data?.totalOrders.toString().padStart(2, "0")} */}
             </p>
           </div>
           <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
             <h2 className="text-base md:text-lg font-semibold">
-              Total {data?.statuses[0].status}
+              {/* Total {data?.statuses[0].status} */}
             </h2>
             <p className="text-lg md:text-xl font-bold">
-              ${data?.statuses[0].totalAmount.toFixed(2)}
+              {/* ${data?.statuses[0].totalAmount.toFixed(2)} */}
             </p>
           </div>
           <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
             <h2 className="text-base md:text-lg font-semibold">
-              Total {data?.statuses[1]?.status}
+              {/* Total {data?.statuses[1]?.status} */}
             </h2>
             <p className="text-lg md:text-xl font-bold">
-              ${data?.statuses[1]?.totalAmount.toFixed(2)}
+              {/* ${data?.totalAmount.toFixed(2)} */}
             </p>
           </div>
           <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
             <h2 className="text-base md:text-lg font-semibold">Available Items</h2>
             <p className="text-lg md:text-xl font-bold">
-              {data?.totalAvailable.toString().padStart(2, "0")}
+              {/* {data?.totalAvailable.toString().padStart(2, "0")} */}
+              {data?.totalItem}
             </p>
           </div>
         </section>
