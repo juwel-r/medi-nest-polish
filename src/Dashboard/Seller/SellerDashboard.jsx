@@ -14,7 +14,7 @@ const SellerDashboard = () => {
     queryFn: async () => {
       try {
         const res = await axiosSecure(
-          `/payment?value=seller-sales-status&email=${userInfo.email}`
+          `/payment?value=seller-dashboard&email=${userInfo.email}`
         );
         return res.data;
       } catch (error) {
@@ -22,7 +22,7 @@ const SellerDashboard = () => {
       }
     },
   });
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="mt-6">
@@ -37,15 +37,18 @@ const SellerDashboard = () => {
                 Total Orders
               </h2>
               <p className="text-lg md:text-xl font-bold">
-                {(data?.paid?.orders * 1 ||0 + data?.pending?.orders * 1 ||0).toString().padStart(2, "0")
-                  
-          }
+                {(
+                  parseInt(data?.paid?.orders || 0) +
+                  parseInt(data?.pending?.orders || 0)
+                )
+                  .toString()
+                  .padStart(2, "0")}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
               <h2 className="text-base md:text-lg font-semibold">Total Paid</h2>
               <p className="text-lg md:text-xl font-bold">
-                ${data?.paid?.amount.toFixed(2)||0}
+                ${data?.paid?.revenue || "00"}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
@@ -53,7 +56,7 @@ const SellerDashboard = () => {
                 Total Pending
               </h2>
               <p className="text-lg md:text-xl font-bold">
-                ${data?.pending?.amount.toFixed(2)||0}
+                ${data?.pending?.revenue || "00"}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
@@ -61,7 +64,7 @@ const SellerDashboard = () => {
                 Available Items
               </h2>
               <p className="text-lg md:text-xl font-bold">
-                {data?.totalCount.toString().padStart(2, "0")}
+                {data?.totalItem.toString().padStart(2, "0") || "00"}
               </p>
             </div>
           </section>
