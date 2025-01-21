@@ -5,18 +5,23 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import "../dashboard.css";
 import LoadingSpin from "../../components/LoadingSpin";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
+import useAuth from "../../Hooks/useAuth";
+import { IoReloadCircleSharp } from "react-icons/io5";
 
 const PaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
+  const { userInfo } = useAuth();
   const {
     data: paymentData = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["managePayment"],
+    queryKey: ["seller-payment-history-report"],
     queryFn: async () => {
       try {
-        const res = await axiosSecure("/payment?value=payment-management");
+        const res = await axiosSecure(
+          `/payment?value=seller-payment-history&email=${userInfo.email}`
+        );
         return res.data;
       } catch (error) {
         showAlert({
@@ -61,11 +66,11 @@ const PaymentHistory = () => {
       }
     });
   };
-
+  console.log(paymentData);
   return (
     <div className="container mx-auto py-4 mt-4">
       <h2 className="text-2xl font-semibold mb-4 text-white">
-        Payment Management
+        Payment History
       </h2>
       {isLoading ? (
         <LoadingSpin></LoadingSpin>
@@ -74,39 +79,44 @@ const PaymentHistory = () => {
           <table className="table-auto w-full border-collapse">
             <thead className="bg-white/10">
               <tr>
-                <th className="p-2">Name</th>
-                <th className="p-2">Email</th>
-                <th className="p-2 text-right">Payment Amount</th>
-                <th className="p-2 text-right">Payment Status</th>
-                <th className="border-l border-white/30 p-2">Accept Payment</th>
+                <th className="p-2">SL</th>
+                <th className="p-2">Medicine Name</th>
+                <th className="p-2">Quantity</th>
+                <th className="p-2 text-right">Amount</th>
+                <th className="p-2">Buyer Email</th>
+                <th className="p-2">Payment Status</th>
               </tr>
             </thead>
             <tbody>
               {paymentData &&
-                paymentData.map((item) => (
-                  <tr key={item._id} className="even:bg-white/10">
-                    <td className="p-2">{item.name}</td>
-                    <td className="p-2">{item.buyerEmail}</td>
+                paymentData.map((item,i) => (
+                  <tr key={i} className="even:bg-white/10">
+                    <td className="p-2 border-r">{i + 1}</td>
+                    <td className="p-2 text-left  md:pl-6">{item.itemName}</td>
+                    <td className="p-2">{item.orderDetails.quantity}</td>
                     <td className="p-2 text-right pr-4">
-                      ${item?.amount.toFixed(2)}
+                      ${(item.orderDetails.price*item.orderDetails.quantity)}
                     </td>
-                    <td className="p-2 text-right pr-4">{item.status}</td>
+                    <td className="p-2 text-right md:pr-8">
+                      {item.buyerEmail}
+                    </td>
+ 
                     <td className="border-l border-white/30 p-2">
-                      <div className="rounded-full text-sm py-1 flex justify-center items-center flex-nowrap">
+                      <div className="rounded-full text-sm py-1 flex justify-center items-center ">
                         {item?.status === "Pending" ? (
-                          <button
-                            onClick={() => handleAccept(item)}
-                            className="alert-button-success btn btn-sm border-none"
-                          >
-                            <span className="px-2.5 ">Accept</span>
-                          </button>
-                        ) : (
-                          <button className="bg-primary/40 shadow-inner shadow-black/30 btn btn-sm rounded-full border-none text-white/60 hover:bg-primary/40 text-[10px] h-fit ">
-                            <span>Accepted</span>
-                            <span className="text-white text-lg">
-                              <RiVerifiedBadgeFill />
+                          <button className="bg-orange-600/80 shadow-inner shadow-black/30 w-fit rounded-full border-none text-white/80  text-xs h-fit flex flex-nowrap items-center gap-1 py-1.5 px-3 font-bold">
+                            <span>Pending</span>
+                            <span className="text-xl">
+                              <IoReloadCircleSharp />
                             </span>
                           </button>
+                        ) : (
+                          <div className="bg-primary/80 shadow-inner shadow-black/30 w-fit rounded-full border-none text-white/80  text-xs h-fit flex flex-nowrap items-center gap-1 py-1.5 px-2 font-bold">
+                            <span>Accepted</span>
+                            <span className="text-xl ">
+                              <RiVerifiedBadgeFill />
+                            </span>
+                          </div>
                         )}
                       </div>
                     </td>
