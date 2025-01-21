@@ -5,6 +5,7 @@ import useRole from "../Hooks/useRoll";
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosList } from "react-icons/io";
+import LogOut from "../components/LogOut";
 
 const Dashboard = () => {
   const { userInfo } = useAuth();
@@ -14,7 +15,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if ( !dropdownRef.current.contains(event.target)) {
+      if (!dropdownRef.current.contains(event.target)) {
         setMenuClose(false); // Close dropdown only on outside clicks
       }
     };
@@ -30,10 +31,10 @@ const Dashboard = () => {
         <div className="lg:grid grid-cols-12 gap-4 relative">
           {/* sidebar */}
           <div
-           ref={dropdownRef}
-           className={`absolute lg:static z-20 col-span-3 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 h-fit transform transition-all duration-300 ease-in-out ${
-            menuClose ? " top-0 left-0" : "top-0  -left-96"
-          }`}
+            ref={dropdownRef}
+            className={`absolute lg:static z-20 col-span-3 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 min-h-[calc(100vh-50px)] transform transition-all duration-300 ease-in-out ${
+              menuClose ? " top-0 left-0" : "top-0  -left-96"
+            }`}
           >
             <div className="flex  items-center mb-6">
               <img
@@ -53,49 +54,85 @@ const Dashboard = () => {
             </div>
 
             {/* sidebar menu */}
-            <nav onClick={()=>setMenuClose(false)} className="text-white ">
-              <ul className="dashboard-NavLink flex flex-col gap-2 ">
-                <NavLink
-                  to="/dashboard/admin"
-                  className="font-medium hover:text-white/80 cursor-pointer"
-                >
-                  Overview
-                </NavLink>
-                <NavLink
-                  to="manage-user"
-                  className="font-medium hover:text-white/80 cursor-pointer"
-                >
-                  Manage Users
-                </NavLink>
-                <NavLink
-                  to="manage-category"
-                  className="font-medium hover:text-white/80 cursor-pointer"
-                >
-                  Manage Category
-                </NavLink>
-                <NavLink
-                  to="payment-management"
-                  className="font-medium hover:text-white/80 cursor-pointer"
-                >
-                  Payment Management
-                  {/* <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
+            <nav
+              onClick={() => setMenuClose(false)}
+              className="text-white flex flex-col "
+            >
+              {/* Admin Menu */}
+              {role === "admin" && (
+                <ul className="dashboard-NavLink flex flex-col gap-2 ">
+                  <NavLink
+                    to="/dashboard/admin"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Overview
+                  </NavLink>
+                  <NavLink
+                    to="manage-user"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Manage Users
+                  </NavLink>
+                  <NavLink
+                    to="manage-category"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Manage Category
+                  </NavLink>
+                  <NavLink
+                    to="payment-management"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Payment Management
+                    {/* <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
                     7
                   </span> */}
-                </NavLink>
-                <NavLink
-                  to="sales-report"
-                  className="font-medium hover:text-white/80 cursor-pointer"
-                >
-                  Sales Report
-                </NavLink>
-                <NavLink
-                  to="manage-banner-advertise"
-                  className="font-medium hover:text-white/80 cursor-pointer"
-                >
-                  Manage Banner Advertise
-                </NavLink>
-              </ul>
-              <div className="mt-6 border-t border-white/20 pt-4 ">
+                  </NavLink>
+                  <NavLink
+                    to="sales-report"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Sales Report
+                  </NavLink>
+                  <NavLink
+                    to="manage-banner-advertise"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Manage Banner Advertise
+                  </NavLink>
+                </ul>
+              )}
+              {/* Seller Menu */}
+              {role === "seller" && (
+                <ul className="dashboard-NavLink flex flex-col gap-2 ">
+                  <NavLink
+                    to="/dashboard/seller"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Overview
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/manage-medicines"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Manage Medicines
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/seller-payment-history"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Payment History
+                  </NavLink>
+                  <NavLink
+                    to="/profile"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Update Profile
+                  </NavLink>
+                </ul>
+              )}
+
+              <div className="mt-6 border-t border-white/20 pt-4 items-end h-full">
                 <ul className="flex flex-col gap-4">
                   <NavLink
                     to="/"
@@ -107,37 +144,32 @@ const Dashboard = () => {
                     to="/"
                     className="font-medium hover:text-white/80 cursor-pointer"
                   >
-                    Employee Reviews
+                    Social Media
                     {/* <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
                       1
                     </span> */}
                   </NavLink>
-                  <NavLink
-                    to="/"
-                    className="font-medium hover:text-white/80 cursor-pointer"
-                  >
-                    Social Media
-                  </NavLink>
+                  <div className="font-medium hover:text-white/80 cursor-pointer text-left">
+                    <LogOut />
+                  </div>
                 </ul>
               </div>
             </nav>
           </div>
           <div className="lg:col-span-9">
             {/*  top section */}
-            <div className="bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 flex items-center justify-between">
+            <div className="bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 flex gap-x-2 items-center justify-between">
               <h1 className="text-white text-lg md:text-xl font-semibold">
                 Dashboard of {role?.toUpperCase()} - Medi Nest
               </h1>
-              {/* <button className="green-button">
-                Upgrade
-                todo: need to conditional
-              </button> */}
+
               <div
-              ref={dropdownRef}
+                ref={dropdownRef}
                 tabIndex={0}
-                // onBlur={() => setMenuClose(false)}
-                onClick={() => {setMenuClose((prev) => !prev);}} 
-                className="block lg:hidden z-50 relative h-5 w-5 text-3xl text-white pr-4"
+                onClick={() => {
+                  setMenuClose((prev) => !prev);
+                }}
+                className="block lg:hidden z-50 relative h-5 w-5 text-3xl text-white px-"
               >
                 <span
                   className={`absolute inset-0 transition-opacity duration-300 ${

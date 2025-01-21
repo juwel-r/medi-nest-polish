@@ -11,6 +11,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../Hooks/useCart";
 import { showAlert, showToast } from "../Utils/alerts";
 import useRole from "../Hooks/useRoll";
+import LogOut from "../components/LogOut";
 
 const Navbar = () => {
   const { userInfo, logOut } = useAuth();
@@ -43,35 +44,36 @@ const Navbar = () => {
   //Log Out
   const handleLogOut = () => {
     setProfileMenu(false);
-    showAlert({
-      title: "Are you sure to Log Out!",
-      icon: "warning",
-      cancelButton: true,
-      confirmButtonText: "Yes, Log Out",
-      showCancelButton:true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        logOut()
-          .then(() => {
-            navigate("/");
-            showToast("Log out Successful!", "success");
-          })
-          .catch((error) => {
-            Swal.fire({
-              title: "Failed To Register!",
-              text: error.code,
-              icon: "error",
-              confirmButtonText: "Try Again",
-            });
-          });
-      }
-    });
+    // showAlert({
+    //   title: "Are you sure to Log Out!",
+    //   icon: "warning",
+    //   cancelButton: true,
+    //   confirmButtonText: "Yes, Log Out",
+    //   showCancelButton:true
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     logOut()
+    //       .then(() => {
+    //         navigate("/");
+    //         showToast("Log out Successful!", "success");
+    //       })
+    //       .catch((error) => {
+    //         Swal.fire({
+    //           title: "Failed To Register!",
+    //           text: error.code,
+    //           icon: "error",
+    //           confirmButtonText: "Try Again",
+    //         });
+    //       });
+    //   }
+    // });
   };
   return (
     <nav className="px-4 sm:px6 h-[48px] md:h-[64px] flex lg:justify-between items-center relative border-b">
       {/* Right section */}
       <div
-        tabIndex={0} role="button"
+        tabIndex={0}
+        role="button"
         // onBlur={() => setMenuClose(false)}
         onClick={() => setMenuClose(!menuClose)}
         className="block lg:hidden z-50 relative h-5 w-5 text-2xl text-black pr-4"
@@ -110,9 +112,7 @@ const Navbar = () => {
           {menus}
           <div className="flex flex-col lg:hidden">
             {userInfo ? (
-              <button onClick={handleLogOut} className="text-left px-2">
-                Logout
-              </button>
+              <div><LogOut></LogOut></div>
             ) : (
               <>
                 <Link to="/login" className="px-2">
@@ -165,7 +165,7 @@ const Navbar = () => {
               className="hidden px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
               onClick={handleLogOut}
             >
-              Logout
+              <LogOut></LogOut>
             </button>
           ) : (
             <>
@@ -228,12 +228,15 @@ const Navbar = () => {
                   Update Profile
                 </button>
               </Link>
-              <Link to={`/dashboard/${role}`} className="green-button btn btn-sm">
+              <Link
+                to={`/dashboard/${role}`}
+                className="green-button btn btn-sm"
+              >
                 Dashboard
               </Link>
-              <button className="red-button btn btn-sm" onClick={handleLogOut}>
-                Logout
-              </button>
+              <div className="red-button btn btn-sm" onClick={handleLogOut}>
+                <LogOut></LogOut>
+              </div>
             </>
           ) : (
             ""

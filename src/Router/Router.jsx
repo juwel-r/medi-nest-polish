@@ -22,6 +22,8 @@ import ManageCategory from "../Dashboard/Admin/ManageCategory";
 import PaymentManagement from "../Dashboard/Admin/PaymentManagement";
 import SalesReport from "../Dashboard/Admin/SalesReport";
 import ManageBannerAdvertise from "../Dashboard/Admin/ManageBannerAdvertise";
+import PaymentHistory from "../Dashboard/Seller/PaymentHistory";
+import ManageMedicines from "./ManageMedicines";
 
 const router = createBrowserRouter([
   {
@@ -153,6 +155,23 @@ const router = createBrowserRouter([
         ),
         path: "seller",
       },
+      {
+        element: (
+          <SellerRoute>
+            <PaymentHistory></PaymentHistory>
+          </SellerRoute>
+        ),
+        path: "seller-payment-history",
+      },
+      {
+        element: (
+          <SellerRoute>
+            <ManageMedicines></ManageMedicines>
+          </SellerRoute>
+        ),
+        path: "manage-medicines",
+      },
+      // user route
       {
         element:<UserDashboard></UserDashboard>,
         path:"user"

@@ -79,7 +79,7 @@ const Cart = () => {
   //   delete all cartItems
   const handleDeleteAll = () => {
     showAlert({
-      title: "Delete All!",
+      title: "Clear cart list!",
       text: "Are you sure to delete all cart items!",
       icon: "warning",
       confirmButtonText: "Yes, Delete",
