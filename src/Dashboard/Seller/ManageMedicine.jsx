@@ -4,18 +4,21 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { showAlert, showToast } from "../../Utils/alerts";
 import { useQuery } from "@tanstack/react-query";
 import AddCategoryModal from "../../Modals/AddCategoryModal";
+import useAuth from "../../Hooks/useAuth";
+import AddMedicineModal from "../../Modals/AddMedicine";
 
 const ManageMedicine = () => {
   const axiosSecure = useAxiosSecure();
+  const {userInfo}=useAuth()
   const {
-    data: category = [],
+    data: medicine = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["manageCategory"],
+    queryKey: ["manage-seller-medicine"],
     queryFn: async () => {
       try {
-        const res = await axiosSecure("/category");
+        const res = await axiosSecure(`/items?email=${userInfo.email}`);
         return res.data;
       } catch (error) {
         showAlert({
@@ -28,8 +31,6 @@ const ManageMedicine = () => {
     },
   });
 
-  // add category
-  const handleAddCategory = () => {};
 
   //delete
   const handleDelete = (item) => {
@@ -59,58 +60,73 @@ const ManageMedicine = () => {
       }
     });
   };
-
+console.log(medicine);
   return (
     <div className="container mx-auto py-4 mt-4">
       <div className="flex items-center justify-between px-4 mb-4">
         <h2 className="text-lg md:text-2xl font-semibold  text-white">
-          Category Management
+          All Medicine Management
         </h2>
-        <div onClick={handleAddCategory} className="green-button">
-          <AddCategoryModal refetch={refetch}></AddCategoryModal>
+        <div className="green-button">
+          <AddMedicineModal refetch={refetch}></AddMedicineModal>
         </div>
       </div>
       {isLoading ? (
         <LoadingSpin></LoadingSpin>
       ) : (
-        <div className="manage-category overflow-auto bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg text-white text-center ">
+        <div className="manage-users overflow-auto bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
           <table className="table-auto w-full border-collapse">
-            <thead className="bg-white/10">
+            <thead className="bg-white/30 text-xs md:text-base">
               <tr>
                 <th className="p-2">SL</th>
-                <th className="p-2">Category Photo</th>
-                <th className="p-2">Category Name</th>
-                <th className="p-2">Action</th>
+                <th className="p-2">Photo</th>
+                <th className="p-2 hidden lg:block">
+                 Medicine Name
+                </th>
+                <th className="p-2">Description</th>
+                <th className="p-2 hidden lg:block">Status</th>
               </tr>
             </thead>
             <tbody>
-              {category &&
-                category.map((item, index) => (
-                  <tr key={item._id} className="even:bg-white/10">
-                    <td className="p-2">{index + 1}</td>
-                    <td className="p-2 ">
-                      <div className="flex justify-center">
+              {medicine &&
+                medicine.map((item, i) => (
+                  <tr key={i} className="even:bg-white/10">
+                    <td className="p-2 px-4">{i + 1}</td>
+                    {/* image */}
+                    <td className="p-2">
+                      <div className="flex justify-center flex-col items-center">
                         <img
-                          src={item.categoryImage}
+                          src={item.image}
                           alt={item.name}
-                          className="w-16 h-16 rounded-full object-cover"
+                          className="h-28 h-20 rounded-full object-cover"
                         />
+                        <p className="lg:hidden text-sm"> {item.itemName}</p>
+                        <div className="lg:hidden">
+                        
+                        </div>
                       </div>
                     </td>
-                    <td className="p-2 w-1/2">{item.name}</td>
-                    <td className="p-2">
-                     <div className="flex flex-col md:flex-row gap-2">
-                     <AddCategoryModal
-                        item={item}
-                        refetch={refetch}
-                      ></AddCategoryModal>
-                      <button
-                        onClick={() => handleDelete(item)}
-                        className="alert-button-error md:ml-4"
-                      >
-                        Delete
-                      </button>
-                     </div>
+
+                    <td className="p-2 text-left pr-4  hidden lg:block">
+                      <p>{item.itemName} <span className="text-xs text-nowrap">{item.massUnit} &nbsp; {item.category}</span></p>
+                      <span className="text-xs italic">{item.genericName}</span>
+                      <p className="text-sm">{item.company}</p>
+
+                    </td>
+                    <td className="p-2 text-left lg:text-justify text-xs md:text-sm pr-4">
+                      {item.description.slice(0, 190)}...
+                    </td>
+
+                    {/* banner status */}
+                    <td className="p-2 pr-4 hidden lg:inline">
+
+                    </td>
+
+                    <td className="border-l border-white/30 p-2">
+                      <div className="rounded-full text-sm px-x py-1">
+
+                        <label htmlFor="cheese-status"></label>
+                      </div>
                     </td>
                   </tr>
                 ))}

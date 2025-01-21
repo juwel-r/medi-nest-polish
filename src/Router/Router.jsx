@@ -23,7 +23,7 @@ import PaymentManagement from "../Dashboard/Admin/PaymentManagement";
 import SalesReport from "../Dashboard/Admin/SalesReport";
 import ManageBannerAdvertise from "../Dashboard/Admin/ManageBannerAdvertise";
 import PaymentHistory from "../Dashboard/Seller/PaymentHistory";
-import ManageMedicines from "./ManageMedicines";
+import ManageMedicine from "../Dashboard/Seller/ManageMedicine";
 
 const router = createBrowserRouter([
   {
@@ -166,7 +166,7 @@ const router = createBrowserRouter([
       {
         element: (
           <SellerRoute>
-            <ManageMedicines></ManageMedicines>
+            <ManageMedicine></ManageMedicine>n
           </SellerRoute>
         ),
         path: "manage-medicines",
