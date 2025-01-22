@@ -24,6 +24,7 @@ import SalesReport from "../Dashboard/Admin/SalesReport";
 import ManageBannerAdvertise from "../Dashboard/Admin/ManageBannerAdvertise";
 import PaymentHistory from "../Dashboard/Seller/PaymentHistory";
 import ManageMedicine from "../Dashboard/Seller/ManageMedicine";
+import ManageAdvertisement from "../Dashboard/Seller/ManageAdvertisement";
 
 const router = createBrowserRouter([
   {
@@ -166,10 +167,18 @@ const router = createBrowserRouter([
       {
         element: (
           <SellerRoute>
-            <ManageMedicine></ManageMedicine>n
+            <ManageMedicine></ManageMedicine>
           </SellerRoute>
         ),
         path: "manage-medicines",
+      },
+      {
+        element: (
+          <SellerRoute>
+           <ManageAdvertisement/>
+          </SellerRoute>
+        ),
+        path: "manage-advertisement",
       },
       // user route
       {

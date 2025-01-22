@@ -91,7 +91,7 @@ const PaymentHistory = () => {
               {paymentData &&
                 paymentData.map((item,i) => (
                   <tr key={i} className="even:bg-white/10">
-                    <td className="p-2 border-r">{i + 1}</td>
+                    <td className="p-2 border-r border-white/30">{i + 1}</td>
                     <td className="p-2 text-left  md:pl-6">{item.itemName}</td>
                     <td className="p-2">{item.orderDetails.quantity}</td>
                     <td className="p-2 text-right pr-4">
@@ -106,14 +106,14 @@ const PaymentHistory = () => {
                         {item?.status === "Pending" ? (
                           <button className="bg-orange-600/80 shadow-inner shadow-black/30 w-fit rounded-full border-none text-white/80  text-xs h-fit flex flex-nowrap items-center gap-1 py-1.5 px-3 font-bold">
                             <span>Pending</span>
-                            <span className="text-xl">
+                            <span className="text-xl text-white">
                               <IoReloadCircleSharp />
                             </span>
                           </button>
                         ) : (
                           <div className="bg-primary/80 shadow-inner shadow-black/30 w-fit rounded-full border-none text-white/80  text-xs h-fit flex flex-nowrap items-center gap-1 py-1.5 px-2 font-bold">
                             <span>Accepted</span>
-                            <span className="text-xl ">
+                            <span className="text-xl text-white">
                               <RiVerifiedBadgeFill />
                             </span>
                           </div>

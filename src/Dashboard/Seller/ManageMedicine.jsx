@@ -9,7 +9,7 @@ import AddMedicineModal from "../../Modals/AddMedicine";
 
 const ManageMedicine = () => {
   const axiosSecure = useAxiosSecure();
-  const {userInfo}=useAuth()
+  const { userInfo } = useAuth();
   const {
     data: medicine = [],
     isLoading,
@@ -31,7 +31,6 @@ const ManageMedicine = () => {
     },
   });
 
-
   //delete
   const handleDelete = (item) => {
     showAlert({
@@ -39,7 +38,7 @@ const ManageMedicine = () => {
       icon: "warning",
       text: "You can't recover this category ",
       confirmButtonText: "Delete",
-      showCancelButton:true
+      showCancelButton: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -55,12 +54,12 @@ const ManageMedicine = () => {
             icon: "error",
             confirmButtonText: "Try Again",
           });
-          console.log(error)
+          console.log(error);
         }
       }
     });
   };
-console.log(medicine);
+  console.log(medicine);
   return (
     <div className="container mx-auto py-4 mt-4">
       <div className="flex items-center justify-between px-4 mb-4">
@@ -80,11 +79,8 @@ console.log(medicine);
               <tr>
                 <th className="p-2">SL</th>
                 <th className="p-2">Photo</th>
-                <th className="p-2 hidden lg:block">
-                 Medicine Name
-                </th>
+                <th className="p-2 hidden lg:block text">Medicine Details</th>
                 <th className="p-2">Description</th>
-                <th className="p-2 hidden lg:block">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -93,40 +89,38 @@ console.log(medicine);
                   <tr key={i} className="even:bg-white/10">
                     <td className="p-2 px-4">{i + 1}</td>
                     {/* image */}
-                    <td className="p-2">
+                    <td className="p-2 min-w-[105px]">
                       <div className="flex justify-center flex-col items-center">
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="h-28 h-20 rounded-full object-cover"
+                          className="h-24 w-24 rounded-full object-cover"
                         />
+                        {/* small device */}
                         <p className="lg:hidden text-sm"> {item.itemName}</p>
                         <div className="lg:hidden">
-                        
+                          <p className="text-xs text-nowrap">
+                            {item.massUnit} &nbsp; {item.category}
+                          </p>
+                          <p className="text-xs italic">{item.genericName}</p>
+                          <p className="text-sm">{item.company}</p>
                         </div>
                       </div>
                     </td>
-
-                    <td className="p-2 text-left pr-4  hidden lg:block">
-                      <p>{item.itemName} <span className="text-xs text-nowrap">{item.massUnit} &nbsp; {item.category}</span></p>
+                    {/* large device */}
+                    <td className="p-2 text-left pl-4  hidden lg:block">
+                      <p>
+                        {item.itemName}
+                        <span className="text-xs text-nowrap">
+                          {item.massUnit} &nbsp; {item.category}
+                        </span>
+                      </p>
                       <span className="text-xs italic">{item.genericName}</span>
                       <p className="text-sm">{item.company}</p>
-
                     </td>
+
                     <td className="p-2 text-left lg:text-justify text-xs md:text-sm pr-4">
-                      {item.description.slice(0, 190)}...
-                    </td>
-
-                    {/* banner status */}
-                    <td className="p-2 pr-4 hidden lg:inline">
-
-                    </td>
-
-                    <td className="border-l border-white/30 p-2">
-                      <div className="rounded-full text-sm px-x py-1">
-
-                        <label htmlFor="cheese-status"></label>
-                      </div>
+                      {item.description.slice(0, 200)}...
                     </td>
                   </tr>
                 ))}

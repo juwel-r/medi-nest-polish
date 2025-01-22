@@ -4,14 +4,18 @@ import { jsPDF } from "jspdf";
 import { CSVLink } from "react-csv";
 import * as XLSX from "xlsx";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import LoadingSpin from "../../components/LoadingSpin";
 
 const SalesReport = () => {
   const [salesData, setSalesData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [dateRange, setDateRange] = useState({ startDate: "", endDate: "" });
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(new Date().setDate(new Date().getDate() - 7)).toLocaleDateString(),
+    endDate: new Date().toLocaleDateString(),
+  });
   const [loading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
-
+  console.log(dateRange);
   // Fetch sales data from server
   useEffect(() => {
     const fetchSalesData = async () => {
@@ -79,67 +83,27 @@ const SalesReport = () => {
   const columns = [
     { name: "Medicine Name", selector: (row) => row.name, sortable: true },
     {
-      name: "Seller Email",selector: (row) => row.sellerEmail,sortable: true,
+      name: "Seller Email",
+      selector: (row) => row.sellerEmail,
+      sortable: true,
     },
     { name: "Buyer Email", selector: (row) => row.buyerEmail, sortable: true },
     {
-      name: "Amount",selector: (row) => `$${row.amount.toFixed(2)}`,sortable: true,
+      name: "Amount",
+      selector: (row) => `$${row.amount.toFixed(2)}`,
+      sortable: true,
     },
     // { name: "Transaction ID", selector: (row) => row.transactionId },
     {
-      name: "Date",selector: (row) => new Date(row.date).toLocaleDateString("en-gb"),sortable: true,
+      name: "Date",
+      selector: (row) => new Date(row.date).toLocaleDateString(),
+      sortable: true,
     },
   ];
 
-  // const customStyles = {
-  //   header: {
-  //     style: {
-  //       backgroundColor: 'none)', // Transparent white
-  //       backdropFilter: 'blur(10px)', // Blurring effect
-  //       WebkitBackdropFilter: 'blur(10px)', // For Safari
-  //       borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
-  //       // color: '#ffffff',
-  //       fontWeight: 'bold',
-  //     },
-  //   },
-  //   headCells: {
-  //     style: {
-  //       backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  //       backdropFilter: 'blur(10px)',
-  //       WebkitBackdropFilter: 'blur(10px)',
-  //       color: '#ffffff',
-  //       textTransform: 'uppercase',
-  //       fontWeight: '600',
-  //       fontSize: '14px',
-  //       borderRight: '1px solid rgba(255, 255, 255, 0.2)',
-  //     },
-  //   },
-  //   rows: {
-  //     style: {
-  //       backgroundColor: 'no',
-  //       backdropFilter: 'blur(8px)',
-  //       WebkitBackdropFilter: 'blur(8px)',
-  //       borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
-  //       '&:hover': {
-  //         backgroundColor: 'rgba(255, 255, 255, 0.15)',
-  //       },
-  //     },
-  //   },
-  //   cells: {
-  //     style: {
-  //       color: '#ffffff',
-  //       padding: '10px',
-  //       borderRight: '1px solid rgba(255, 255, 255, 0.2)',
-  //     },
-  //   },
-  // };
-  
-  
-
-
   return (
     <div className="md:p-6 p-2 py-6 space-y-6 text-white">
-<h2 className="text-2xl font-bold">Sales Report</h2>
+      <h2 className="text-2xl font-bold">Sales Report</h2>
 
       {/* Date Range Filter */}
       <div className="flex items-center gap-4">
@@ -196,16 +160,23 @@ const SalesReport = () => {
 
       {/* Data Table */}
       {loading ? (
-        <p>Loading...</p>
+        <LoadingSpin />
       ) : (
-        <DataTable
-          columns={columns}
-          data={filteredData}
-          // customStyles={customStyles}
-          pagination
-          highlightOnHover
-          className="border rounded shadow "
-        />
+        <>
+          <p className="text-center border border-white/50 p-2 w-fit mx-auto rounded-md">
+            Sales Report Between: &nbsp;  
+            {dateRange?.startDate} to{" "}
+            {dateRange?.endDate}
+          </p>
+          <DataTable
+            columns={columns}
+            data={filteredData}
+            // customStyles={customStyles}
+            pagination
+            highlightOnHover
+            className="border rounded shadow "
+          />
+        </>
       )}
     </div>
   );

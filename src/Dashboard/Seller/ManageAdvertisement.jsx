@@ -1,12 +1,17 @@
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { showAlert, showToast } from "../../Utils/alerts";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
 import LoadingSpin from "../../components/LoadingSpin";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { VscVerifiedFilled } from "react-icons/vsc";
 import Toggle from "react-toggle";
 import "react-toggle/style.css";
+import useAuth from "../../Hooks/useAuth";
 
-const ManageBannerAdvertise = () => {
+const ManageAdvertisement = () => {
   const axiosSecure = useAxiosSecure();
+  const { userInfo } = useAuth();
   const {
     data: sliderData = [],
     isLoading,
@@ -15,7 +20,9 @@ const ManageBannerAdvertise = () => {
     queryKey: ["manageBannerAdvertise"],
     queryFn: async () => {
       try {
-        const res = await axiosSecure("/items/slider/manage");
+        const res = await axiosSecure(
+          `/items/slider/manage?email=${userInfo.email}`
+        );
         return res.data;
       } catch (error) {
         showAlert({
@@ -160,9 +167,7 @@ const ManageBannerAdvertise = () => {
                       <div className="rounded-full text-sm px-x py-1">
                         <Toggle
                           id="cheese-status"
-                          checked={
-                            item?.bannerStatus === "Approved" && true
-                          }
+                          checked={item?.bannerStatus === "Approved" && true}
                           onChange={() => {
                             const action =
                               item?.bannerStatus === "Approved"
@@ -170,11 +175,33 @@ const ManageBannerAdvertise = () => {
                                 : item?.bannerStatus === "Requested"
                                 ? "Approve"
                                 : "Add";
-                        
+
                             handleUpdate(item, action);
                           }}
                         />
                         <label htmlFor="cheese-status"></label>
+                        {/* {item?.bannerStatus === "Approved" ? (
+                          <button
+                            onClick={() => handleUpdate(item, "Remove")}
+                            className="alert-button-error btn btn-sm border-none"
+                          >
+                            Remove
+                          </button>
+                        ) : item?.bannerStatus === "Requested" ? (
+                          <button
+                            onClick={() => handleUpdate(item, "Approve")}
+                            className="alert-button-success btn btn-sm border-none"
+                          >
+                            Approve
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => handleUpdate(item, "Add")}
+                            className="alert-button-success btn btn-sm border-none"
+                          >
+                            <span className="px-2 text-white/80">Select</span>
+                          </button>
+                        )} */}
                       </div>
                     </td>
                   </tr>
@@ -187,4 +214,4 @@ const ManageBannerAdvertise = () => {
   );
 };
 
-export default ManageBannerAdvertise;
+export default ManageAdvertisement;

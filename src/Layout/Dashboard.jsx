@@ -102,7 +102,7 @@ const Dashboard = () => {
                   </NavLink>
                 </ul>
               )}
-              {/* Seller Menu */}
+              {/* Seller sidebar Menu */}
               {role === "seller" && (
                 <ul className="dashboard-NavLink flex flex-col gap-2 ">
                   <NavLink
@@ -129,9 +129,15 @@ const Dashboard = () => {
                   >
                     Update Profile
                   </NavLink>
+                  <NavLink
+                    to="manage-advertisement"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Manage Advertisement
+                  </NavLink>
                 </ul>
               )}
-
+{/* common sidebar menu */}
               <div className="mt-6 border-t border-white/20 pt-4 items-end h-full">
                 <ul className="flex flex-col gap-4">
                   <NavLink
