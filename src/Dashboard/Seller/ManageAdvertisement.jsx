@@ -1,17 +1,15 @@
-import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { showAlert, showToast } from "../../Utils/alerts";
-import { RiVerifiedBadgeFill } from "react-icons/ri";
 import LoadingSpin from "../../components/LoadingSpin";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { VscVerifiedFilled } from "react-icons/vsc";
-import Toggle from "react-toggle";
 import "react-toggle/style.css";
 import useAuth from "../../Hooks/useAuth";
+import AdvertisementRequestModal from "../../Modals/AdvertisementRequestModal";
 
 const ManageAdvertisement = () => {
   const axiosSecure = useAxiosSecure();
   const { userInfo } = useAuth();
+
   const {
     data: sliderData = [],
     isLoading,
@@ -39,35 +37,27 @@ const ManageAdvertisement = () => {
   const handleUpdate = async (item, action) => {
     showAlert({
       title: "Are you sure",
-      icon: `${action === "Approve" || "Add" ? "info" : "warning"}`,
-      text: `You are going to ${action} ${item.itemName}!`,
-      confirmButtonText: action,
+      icon: "warning",
+      text: `Sure ${item.itemName} ${
+        action === "Remove" ? "to Remove from" : "Cancel Request of"
+      } Banner Advertise?`,
+      confirmButtonText: `${
+        action === "Request"
+          ? "Send Request"
+          : action === "Cancel"
+          ? "Cancel Request"
+          : "Remove"
+      }`,
       showCancelButton: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          if (action === "Remove") {
-            const res = await axiosSecure.patch(`/items/slider/${item._id}`, {
-              status: "",
-            });
-            if (res.data.modifiedCount > 0) {
-              showToast(
-                `${item.itemName} successfully $${item.amount}!`,
-                "success"
-              );
-              refetch();
-            }
-          } else {
-            const res = await axiosSecure.patch(`/items/slider/${item._id}`, {
-              status: "Approved",
-            });
-            if (res.data.modifiedCount > 0) {
-              showToast(
-                `${item.itemName} successfully $${item.amount}!`,
-                "success"
-              );
-              refetch();
-            }
+          const res = await axiosSecure.patch(`/items/slider/${item._id}`, {
+            status: "",
+          });
+          if (res.data.modifiedCount > 0) {
+            showToast(`${item.itemName} successfully removed!`, "info");
+            refetch();
           }
         } catch (error) {
           console.log(error);
@@ -94,7 +84,7 @@ const ManageAdvertisement = () => {
           <table className="table-auto w-full border-collapse">
             <thead className="bg-white/30 text-xs md:text-base">
               <tr>
-                <th className="p-2">SL</th>
+                <th className="hidden lg:block p-2">SL</th>
                 <th className="p-2">Photo</th>
                 <th className="p-2 hidden lg:block">
                   Item Name & Seller Email
@@ -107,15 +97,15 @@ const ManageAdvertisement = () => {
             <tbody>
               {sliderData &&
                 sliderData.map((item, i) => (
-                  <tr key={item._id} className="even:bg-white/10">
-                    <td className="p-2 px-4">{i + 1}</td>
+                  <tr key={item._id} className="even:bg-white/10 group ">
+                    <td className="hidden lg:block p-2 px-4">{i + 1}</td>
                     {/* image */}
                     <td className="p-2">
                       <div className="flex justify-center flex-col items-center">
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="w-16 h-16 rounded-full object-cover"
+                          className="w-28 h-16 rounded-lg shadow-md object-cover group-hover:scale-110 transition-all duration-300"
                         />
                         <p className="lg:hidden text-sm"> {item.itemName}</p>
                         <p className="lg:hidden text-xs mb-1">
@@ -142,19 +132,25 @@ const ManageAdvertisement = () => {
                       <div>{item.sellerEmail}</div>
                     </td>
                     <td className="p-2 text-left lg:text-justify text-xs md:text-sm pr-4">
-                      {item.description.slice(0, 150)}...
+                      <span className="hidden md:block">
+                        {" "}
+                        {item.description.slice(0, 150)}...
+                      </span>
+                      <span className="md:hidden">
+                        {" "}
+                        {item.description.slice(0, 90)}...
+                      </span>
                     </td>
 
                     {/* banner status */}
                     <td className="p-2 pr-4 hidden lg:inline">
                       <div className="hidden lg:flex justify-center items-center h-full w-full mr-4">
-                        {" "}
                         {item?.bannerStatus === "Approved" ? (
-                          <span className="bg-primary rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50 text-white/70">
+                          <span className="bg-primary rounded-full py-1.5 px-2 text-[10px] font-semibold shadow-inner shadow-black/50 text-white/70">
                             {item?.bannerStatus}
                           </span>
                         ) : item?.bannerStatus === "Requested" ? (
-                          <span className="bg-gray-500/50 rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50 text-white/80">
+                          <span className="bg-gray-500/50 rounded-full py-1.5 px-2 text-[10px] font-semibold shadow-inner shadow-black/50 text-white/80">
                             {item?.bannerStatus}
                           </span>
                         ) : (
@@ -163,45 +159,38 @@ const ManageAdvertisement = () => {
                       </div>
                     </td>
 
+                    {/* Action */}
                     <td className="border-l border-white/30 p-2">
                       <div className="rounded-full text-sm px-x py-1">
-                        <Toggle
-                          id="cheese-status"
-                          checked={item?.bannerStatus === "Approved" && true}
-                          onChange={() => {
-                            const action =
-                              item?.bannerStatus === "Approved"
-                                ? "Remove"
-                                : item?.bannerStatus === "Requested"
-                                ? "Approve"
-                                : "Add";
-
-                            handleUpdate(item, action);
-                          }}
-                        />
-                        <label htmlFor="cheese-status"></label>
-                        {/* {item?.bannerStatus === "Approved" ? (
+                        {item?.bannerStatus === "Approved" ? (
                           <button
                             onClick={() => handleUpdate(item, "Remove")}
                             className="alert-button-error btn btn-sm border-none"
+                            data-tooltip-id="my-tooltip"
+                            data-tooltip-content="Remove From Advertisement"
                           >
                             Remove
                           </button>
                         ) : item?.bannerStatus === "Requested" ? (
                           <button
-                            onClick={() => handleUpdate(item, "Approve")}
-                            className="alert-button-success btn btn-sm border-none"
+                            onClick={() => handleUpdate(item, "Cancel")}
+                            className=" bg-orange-500/70 shadow-lg font-bold rounded-full text-white text-xs px-4 btn-sm border-none "
+                            data-tooltip-id="my-tooltip"
+                            data-tooltip-content="Cancel Request"
                           >
-                            Approve
+                            Cancel
                           </button>
                         ) : (
-                          <button
-                            onClick={() => handleUpdate(item, "Add")}
+                          <div
                             className="alert-button-success btn btn-sm border-none"
+                            data-tooltip-id="my-tooltip"
+                            data-tooltip-content="Sent Request to Add"
                           >
-                            <span className="px-2 text-white/80">Select</span>
-                          </button>
-                        )} */}
+                            <span className="px-2 text-white">
+                              <AdvertisementRequestModal item={item} refetch={refetch} />
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </td>
                   </tr>

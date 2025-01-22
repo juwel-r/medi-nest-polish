@@ -86,7 +86,7 @@ const ManageMedicine = () => {
             <tbody>
               {medicine &&
                 medicine.map((item, i) => (
-                  <tr key={i} className="even:bg-white/10">
+                  <tr key={i} className="even:bg-white/10 group">
                     <td className="p-2 px-4">{i + 1}</td>
                     {/* image */}
                     <td className="p-2 min-w-[105px]">
@@ -94,7 +94,7 @@ const ManageMedicine = () => {
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="h-24 w-24 rounded-full object-cover"
+                          className="h-20 w-28 rounded-lg object-cover group-hover:scale-110 transition duration-300"
                         />
                         {/* small device */}
                         <p className="lg:hidden text-sm"> {item.itemName}</p>

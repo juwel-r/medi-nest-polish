@@ -8,19 +8,19 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import useAuth from "../../Hooks/useAuth";
 import { IoReloadCircleSharp } from "react-icons/io5";
 
-const PaymentHistory = () => {
+const UserPaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
   const { userInfo } = useAuth();
   const {
-    data: paymentData = [],
+    data: paymentHistory = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["seller-payment-history-report"],
+    queryKey: ["user-payment-history"],
     queryFn: async () => {
       try {
         const res = await axiosSecure(
-          `/payment?value=seller-payment-history&email=${userInfo.email}`
+          `/payment?value=user-payment-history&email=${userInfo.email}`
         );
         return res.data;
       } catch (error) {
@@ -35,7 +35,7 @@ const PaymentHistory = () => {
     },
   });
 
-  console.log(paymentData);
+  console.log(paymentHistory);
   return (
     <div className="container mx-auto py-4 mt-4">
       <h2 className="text-2xl font-semibold mb-4 text-white">
@@ -48,44 +48,37 @@ const PaymentHistory = () => {
           <table className="table-auto w-full border-collapse">
             <thead className="bg-white/10">
               <tr>
-                <th className="p-2">SL</th>
-                <th className="p-2">Medicine Name</th>
-                <th className="p-2">Quantity</th>
-                <th className="p-2 text-right">Amount</th>
-                <th className="p-2">Buyer Email</th>
-                <th className="p-2">Payment Status</th>
+                <th className="p-2 border-r border-white/30 ">SL</th>
+                <th className="p-2">Date</th>
+                <th className="p-2 md:pl-6 text-left">Transaction ID</th>
+                <th className="p-2">Amount</th>
+                <th className="p-2 ">Payment Status</th>
               </tr>
             </thead>
             <tbody>
-              {paymentData &&
-                paymentData.map((item,i) => (
+              {paymentHistory &&
+                paymentHistory.map((item, i) => (
                   <tr key={i} className="even:bg-white/10">
                     <td className="p-2 border-r border-white/30">{i + 1}</td>
-                    <td className="p-2 text-left  md:pl-6">{item.itemName}</td>
-                    <td className="p-2">{item.orderDetails.quantity}</td>
-                    <td className="p-2 text-right pr-4">
-                      ${(item.orderDetails.price*item.orderDetails.quantity)}
-                    </td>
-                    <td className="p-2 text-right md:pr-8">
-                      {item.buyerEmail}
-                    </td>
- 
-                    <td className="border-l border-white/30 p-2">
+                    <td className="p-2">{new Date(item.date).toLocaleString("en-gb")}</td>
+                    <td className="p-2 text-left  md:pl-6">{item.transactionId}</td>
+                    <td className="p-2">${item.amount.toFixed(2)}</td>
+                    <td className=" p-2">
                       <div className="rounded-full text-sm py-1 flex justify-center items-center ">
-                        {item?.status === "Pending" ? (
-                          <button className="bg-orange-600/80 shadow-inner shadow-black/30 w-fit rounded-full border-none text-white/80  text-xs h-fit flex flex-nowrap items-center gap-1 py-1.5 px-3 font-bold">
-                            <span>Pending</span>
-                            <span className="text-xl text-white">
-                              <IoReloadCircleSharp />
-                            </span>
-                          </button>
-                        ) : (
+                        {item?.status === "Paid" ? (
                           <div className="bg-primary/80 shadow-inner shadow-black/30 w-fit rounded-full border-none text-white/80  text-xs h-fit flex flex-nowrap items-center gap-1 py-1.5 px-2 font-bold">
                             <span>Accepted</span>
                             <span className="text-xl text-white">
                               <RiVerifiedBadgeFill />
                             </span>
                           </div>
+                        ) : (
+                          <button className="bg-orange-600/80 shadow-inner shadow-black/30 w-fit rounded-full border-none text-white/80  text-xs h-fit flex flex-nowrap items-center gap-1 py-1.5 px-3 font-bold">
+                            <span>Pending</span>
+                            <span className="text-xl text-white">
+                              <IoReloadCircleSharp />
+                            </span>
+                          </button>
                         )}
                       </div>
                     </td>
@@ -99,4 +92,4 @@ const PaymentHistory = () => {
   );
 };
 
-export default PaymentHistory;
+export default UserPaymentHistory;

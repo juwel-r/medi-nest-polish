@@ -25,6 +25,7 @@ import ManageBannerAdvertise from "../Dashboard/Admin/ManageBannerAdvertise";
 import PaymentHistory from "../Dashboard/Seller/PaymentHistory";
 import ManageMedicine from "../Dashboard/Seller/ManageMedicine";
 import ManageAdvertisement from "../Dashboard/Seller/ManageAdvertisement";
+import UserPaymentHistory from "../Dashboard/User/UserPaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -76,14 +77,6 @@ const router = createBrowserRouter([
         ),
         path: "/invoice",
       },
-      {
-        element: (
-          <PrivateRoute>
-            <UserProfile></UserProfile>
-          </PrivateRoute>
-        ),
-        path: "/profile",
-      },
     ],
   },
 
@@ -99,13 +92,13 @@ const router = createBrowserRouter([
     children: [
       //===========admin route===========//
       {
-        index:true,
+        index: true,
         element: (
           <AdminRoute>
             <AdminDashboard></AdminDashboard>
           </AdminRoute>
         ),
-        path:'admin'
+        path: "admin",
       },
       {
         element: (
@@ -126,7 +119,7 @@ const router = createBrowserRouter([
       {
         element: (
           <AdminRoute>
-           <PaymentManagement></PaymentManagement>
+            <PaymentManagement></PaymentManagement>
           </AdminRoute>
         ),
         path: "payment-management",
@@ -134,7 +127,7 @@ const router = createBrowserRouter([
       {
         element: (
           <AdminRoute>
-          <SalesReport/>
+            <SalesReport />
           </AdminRoute>
         ),
         path: "sales-report",
@@ -142,7 +135,7 @@ const router = createBrowserRouter([
       {
         element: (
           <AdminRoute>
-          <ManageBannerAdvertise/>
+            <ManageBannerAdvertise />
           </AdminRoute>
         ),
         path: "manage-banner-advertise",
@@ -175,16 +168,24 @@ const router = createBrowserRouter([
       {
         element: (
           <SellerRoute>
-           <ManageAdvertisement/>
+            <ManageAdvertisement />
           </SellerRoute>
         ),
         path: "manage-advertisement",
       },
       // user route
       {
-        element:<UserDashboard></UserDashboard>,
-        path:"user"
-      }
+        element: <UserDashboard></UserDashboard>,
+        path: "user",
+      },
+      {
+        element: <UserPaymentHistory/>,
+        path: "user-payment-history",
+      },
+      {
+        element: <UserProfile></UserProfile>,
+        path: "profile",
+      },
     ],
   },
 ]);

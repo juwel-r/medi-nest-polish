@@ -33,7 +33,7 @@ const LogOut = () => {
     });
   };
 
-  return <button onClick={handleLogOut}>Logout</button>;
+  return <div onClick={handleLogOut}>Logout</div>;
 };
 
 export default LogOut;

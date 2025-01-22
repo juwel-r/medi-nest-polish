@@ -15,16 +15,21 @@ const AddCategoryModal = ({ item, refetch }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, 
+    reset
   } = useForm();
 
-  //submit
+  //add a new medicine handler
   const onSubmit = async (data) => {
     const { image, ...formData } = data;
     const photoURL = await photoUpload(data.image[0]);
+
+    formData.price = parseFloat(data.price);
+    formData.discount = parseFloat(data.discount);
+
     formData.sellerEmail = userInfo.email;
-    formData.image = photoURL;
     console.log(formData);
+    formData.image = photoURL;
 
     if (photoURL) {
       axiosSecure
@@ -32,6 +37,8 @@ const AddCategoryModal = ({ item, refetch }) => {
         .then((res) => {
           if (res.data.insertedId) {
             showToast(`${formData.itemName} has been added successfully!`);
+            setIsOpen(false);
+            reset()
           }
         })
         .catch((error) => {
@@ -41,6 +48,7 @@ const AddCategoryModal = ({ item, refetch }) => {
             icon: "error",
             confirmButtonText: "Try Again",
           });
+          setIsOpen(false);
         });
     } else {
       showAlert({

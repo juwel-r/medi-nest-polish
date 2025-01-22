@@ -45,7 +45,7 @@ const ManageBannerAdvertise = () => {
             });
             if (res.data.modifiedCount > 0) {
               showToast(
-                `${item.itemName} successfully $${item.amount}!`,
+                `${item.itemName} successfully ${action}!`,
                 "success"
               );
               refetch();
@@ -56,7 +56,7 @@ const ManageBannerAdvertise = () => {
             });
             if (res.data.modifiedCount > 0) {
               showToast(
-                `${item.itemName} successfully $${item.amount}!`,
+                `${item.itemName} successfully ${action}!`,
                 "success"
               );
               refetch();

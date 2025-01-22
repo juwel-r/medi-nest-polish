@@ -26,7 +26,7 @@ const Dashboard = () => {
     };
   }, []);
   return (
-    <div className=" min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-6">
+    <div className=" min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-400 p-6">
       <div className="max-w-[1440px] mx-auto">
         <div className="lg:grid grid-cols-12 gap-4 relative">
           {/* sidebar */}
@@ -56,11 +56,11 @@ const Dashboard = () => {
             {/* sidebar menu */}
             <nav
               onClick={() => setMenuClose(false)}
-              className="text-white flex flex-col "
+              className="text-white flex flex-col dashboard-NavLink "
             >
               {/* Admin Menu */}
               {role === "admin" && (
-                <ul className="dashboard-NavLink flex flex-col gap-2 ">
+                <ul className="flex flex-col gap-2 ">
                   <NavLink
                     to="/dashboard/admin"
                     className="font-medium hover:text-white/80 cursor-pointer"
@@ -104,7 +104,7 @@ const Dashboard = () => {
               )}
               {/* Seller sidebar Menu */}
               {role === "seller" && (
-                <ul className="dashboard-NavLink flex flex-col gap-2 ">
+                <ul className="flex flex-col gap-2">
                   <NavLink
                     to="/dashboard/seller"
                     className="font-medium hover:text-white/80 cursor-pointer"
@@ -124,12 +124,6 @@ const Dashboard = () => {
                     Payment History
                   </NavLink>
                   <NavLink
-                    to="/profile"
-                    className="font-medium hover:text-white/80 cursor-pointer"
-                  >
-                    Update Profile
-                  </NavLink>
-                  <NavLink
                     to="manage-advertisement"
                     className="font-medium hover:text-white/80 cursor-pointer"
                   >
@@ -137,9 +131,26 @@ const Dashboard = () => {
                   </NavLink>
                 </ul>
               )}
-{/* common sidebar menu */}
+              {role === "user" && (
+                <ul className="flex flex-col gap-2 ">
+                  <NavLink
+                    to="/dashboard/user-payment-history"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Payment History
+                  </NavLink>
+
+                </ul>
+              )}
+              {/* common sidebar menu */}
               <div className="mt-6 border-t border-white/20 pt-4 items-end h-full">
                 <ul className="flex flex-col gap-4">
+                  <NavLink
+                    to="profile"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Update Profile
+                  </NavLink>
                   <NavLink
                     to="/"
                     className="font-medium hover:text-white/80 cursor-pointer"
@@ -155,7 +166,7 @@ const Dashboard = () => {
                       1
                     </span> */}
                   </NavLink>
-                  <div className="font-medium hover:text-white/80 cursor-pointer text-left">
+                  <div className="font-medium hover:text-white/80 cursor-pointer text-left pl-3">
                     <LogOut />
                   </div>
                 </ul>

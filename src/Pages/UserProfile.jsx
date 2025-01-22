@@ -23,7 +23,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="w-[95%] sm:max-w-lg mx-auto p-6 my-6  rounded-lg shadow-md border border-gray-200">
+    <div className="w-[95%] sm:max-w-lg mx-auto p-6 my-6 rounded-lg shadow-md bg-white/20 border border-white/50">
       <div className="flex flex-col items-center pt-4 mx-6">
         <img
           src={formData.photoURL || "https://via.placeholder.com/150"}
@@ -33,7 +33,7 @@ const UserProfile = () => {
         {!editMode ? (
           <>
             <h1 className="text-2xl font-semibold">{formData.displayName}</h1>
-            <p className="text-gray-500">{formData.email}</p>
+            <p className="">{formData.email}</p>
             <button
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary green-button"
               onClick={() => setEditMode(true)}
@@ -44,7 +44,7 @@ const UserProfile = () => {
         ) : (
           <form className="w-full mt-4 space-y-4" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-gray-500 font-medium">Name</label>
+              <label className="block  font-medium">Name</label>
               <input
                 type="text"
                 name="displayName"
@@ -55,7 +55,7 @@ const UserProfile = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-500 font-medium">
+              <label className="block  font-medium">
                 Photo URL
               </label>
               <input
@@ -68,7 +68,7 @@ const UserProfile = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-500 font-medium">Email</label>
+              <label className="block  font-medium">Email</label>
               <input
                 type="email"
                 name="email"

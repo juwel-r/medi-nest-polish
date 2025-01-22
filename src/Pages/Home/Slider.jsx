@@ -27,7 +27,7 @@ axiosPublic('/items/slider').then((res) => setSlider(res.data));
   //   description,
   //   image,
   // } = slider;
-
+console.log(slider)
   return (
     <>
       <Swiper
@@ -46,7 +46,7 @@ axiosPublic('/items/slider').then((res) => setSlider(res.data));
             <SwiperSlide key={index}>
               <div
                 className="w-full bg-cover object-cover bg-center md:py-8 lg:py-16 "
-                style={{ backgroundImage: `url(${slide.image})` }}
+                style={{ backgroundImage: `url(${slide.bannerImage || slide.image})` }}
               >
                 <div className="absolute inset-0 bg-black bg-opacity-30"></div>
                 <SlideContent
@@ -56,7 +56,7 @@ axiosPublic('/items/slider').then((res) => setSlider(res.data));
                   company={slide.company}
                   massUnit={slide.massUnit}
                   discount={slide.discount}
-                  description={slide.description}
+                  description={slide.bannerDescription || slide.description}
                 ></SlideContent>
                 <div className="flex justify-start items-center h-full"></div>
               </div>
