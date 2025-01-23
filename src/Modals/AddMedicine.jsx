@@ -7,7 +7,7 @@ import { showAlert, showToast } from "../Utils/alerts";
 import photoUpload from "../Utils/photoUpload";
 import useAuth from "../Hooks/useAuth";
 
-const AddCategoryModal = ({ item, refetch }) => {
+const AddCategoryModal = ({ refetch, categories, company }) => {
   let [isOpen, setIsOpen] = useState(false);
   const { userInfo } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -15,8 +15,8 @@ const AddCategoryModal = ({ item, refetch }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }, 
-    reset
+    formState: { errors },
+    reset,
   } = useForm();
 
   //add a new medicine handler
@@ -38,7 +38,8 @@ const AddCategoryModal = ({ item, refetch }) => {
           if (res.data.insertedId) {
             showToast(`${formData.itemName} has been added successfully!`);
             setIsOpen(false);
-            reset()
+            reset();
+            refetch();
           }
         })
         .catch((error) => {
@@ -63,11 +64,8 @@ const AddCategoryModal = ({ item, refetch }) => {
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className={`${item ? "alert-button-success " : ""}`}
-      >
-        {`${item ? "Update" : "Add New"}`}
+      <button onClick={() => setIsOpen(true)} className="py-1 md:text-xl">
+        Add New Medicine
       </button>
 
       <Dialog
@@ -91,9 +89,7 @@ const AddCategoryModal = ({ item, refetch }) => {
               </button>
               {/* content */}
               <div className="text-white">
-                <h1 className="font-bold text-xl mb-6">
-                  {`${item ? "Update Category Details" : "Add New Category"}`}
-                </h1>
+                <h1 className="font-bold text-xl mb-6">Add New Medicine</h1>
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   className="grid grid-cols-1 lg:grid-cols-2 gap-4"
@@ -133,13 +129,13 @@ const AddCategoryModal = ({ item, refetch }) => {
                     ></textarea>
                     {errors.shortDescription && (
                       <p className="text-sm text-warning" role="alert">
-                        Short Description is required!
+                        Description is required!
                       </p>
                     )}
                   </div>
 
                   <div>
-                    <label className="text-xs">Image Upload</label>
+                    <label className="text-xs">Upload an Image</label>
                     <input
                       type="file"
                       accept="image/*"
@@ -157,12 +153,16 @@ const AddCategoryModal = ({ item, refetch }) => {
                     <label className="text-xs">Category</label>
                     <select
                       {...register("category", { required: true })}
-                      className="w-full bg-white/10 rounded-lg px-4 py-2 border border-white/20 focus:outline outline-white/50"
+                      className="w-full bg-white/10 rounded-lg px-4 py-2 border border-white/20 focus:outline outline-white/50 custom-select"
                     >
                       <option value="">Select a category</option>
-                      <option value="Category1">Category1</option>
-                      <option value="Category2">Category2</option>
-                      {/* Add more categories dynamically if needed */}
+                      {categories &&
+                        categories.length > 0 &&
+                        categories.map((category) => (
+                          <option key={category._id} value={`${category.name}`}>
+                            {category.name}
+                          </option>
+                        ))}
                     </select>
                     {errors.category && (
                       <p className="text-sm text-warning" role="alert">
@@ -175,12 +175,16 @@ const AddCategoryModal = ({ item, refetch }) => {
                     <label className="text-xs">Company</label>
                     <select
                       {...register("company", { required: true })}
-                      className="w-full bg-white/10 rounded-lg px-4 py-2 border border-white/20 focus:outline outline-white/50"
+                      className="w-full bg-white/10 rounded-lg px-4 py-2 border border-white/20 focus:outline outline-white/50 custom-select"
                     >
                       <option value="">Select a company</option>
-                      <option value="Company1">Company1</option>
-                      <option value="Company2">Company2</option>
-                      {/* Add more companies dynamically if needed */}
+                      {company &&
+                        company.length > 0 &&
+                        company.map((com) => (
+                          <option key={com._id} value={`${com.name}`}>
+                            {com.name}
+                          </option>
+                        ))}
                     </select>
                     {errors.company && (
                       <p className="text-sm text-warning" role="alert">
@@ -232,7 +236,7 @@ const AddCategoryModal = ({ item, refetch }) => {
                   <div className="col-span-1 lg:col-span-2">
                     <input
                       type="submit"
-                      value={`${item ? "Update" : "Add Now"}`}
+                      value="Add Now"
                       className="green-button mt-6"
                     />
                   </div>
@@ -255,4 +259,3 @@ const AddCategoryModal = ({ item, refetch }) => {
 };
 
 export default AddCategoryModal;
-// ======

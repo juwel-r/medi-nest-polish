@@ -11,7 +11,7 @@ const ManageMedicine = () => {
   const axiosSecure = useAxiosSecure();
   const { userInfo } = useAuth();
   const {
-    data: medicine = [],
+    data = [],
     isLoading,
     refetch,
   } = useQuery({
@@ -31,7 +31,7 @@ const ManageMedicine = () => {
     },
   });
 
-  console.log(medicine);
+  console.log(data );
   return (
     <div className="container mx-auto py-4 mt-4">
       <div className="flex items-center justify-between px-4 mb-4">
@@ -39,7 +39,7 @@ const ManageMedicine = () => {
           All Medicine Management
         </h2>
         <div className="green-button">
-          <AddMedicineModal refetch={refetch}></AddMedicineModal>
+          <AddMedicineModal refetch={refetch} categories={data.categories} company={data.company}></AddMedicineModal>
         </div>
       </div>
       {isLoading ? (
@@ -56,8 +56,8 @@ const ManageMedicine = () => {
               </tr>
             </thead>
             <tbody>
-              {medicine &&
-                medicine.map((item, i) => (
+              {data.medicine.length>0 && 
+                data.medicine.map((item, i) => (
                   <tr key={i} className="even:bg-white/10 group">
                     <td className="p-2 px-4">{i + 1}</td>
                     {/* image */}
