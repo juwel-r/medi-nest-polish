@@ -30,9 +30,14 @@ const SlideContent = ({
 
           <Link
             to="/"
-            className="md:text-xl font-semibold border-2 md:py-2 md:px-8 mt-6 green-button  transition-colors btn btn-ghost rounded-none btn-sm md:btn-md mb-8"
+            className="green-button text-base md:text-xl font-semibold border-2 border-white/70 md:py-2 md:px-8 mt-6 mb-8 transition-all duration-300"
           >
+            <span className="">
+
             Explore More
+            </span>
+              
+
           </Link>
         </div>
       </Fade>
@@ -50,7 +55,7 @@ const SlideContent = ({
             <Fade
               direction="up"
               delay={300}
-              className=" w-28 h-28 font-bold text-lg shadow-md shadow-primary rounded-full flex items-center text-center px-4 bg-white/70 text-green-600"
+              className=" w-28 h-28 font-bold text-lg shadow-md shadow-primary rounded-full flex items-center text-center px-4 bg-white/90 text-green-600"
             >
               <p>{discount}% Discount</p>
             </Fade>

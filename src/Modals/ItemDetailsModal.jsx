@@ -22,7 +22,7 @@ const ItemDetailsModal = ({ item }) => {
     image,
   } = item || {};
   const { userInfo } = useAuth();
-  const [addToCart, data, isLoading, refetch] = useAddToCart();
+  const [addToCart, isLoading, refetch] = useAddToCart();
   const navigate = useNavigate();
 
   const handleAddToCart = async (item) => {
@@ -31,10 +31,6 @@ const ItemDetailsModal = ({ item }) => {
     }
     addToCart(item);
   };
-  useEffect(() => {
-    if (data?.insertedId) setIsOpen(false);
-    console.log(data);
-  }, [data]);
 
   return (
     <>
@@ -54,7 +50,7 @@ const ItemDetailsModal = ({ item }) => {
           <div className="flex min-h-screen items-center justify-center p-4 my-10">
             <DialogPanel
               transition
-              className="w-full max-w-md rounded-xl p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              className="w-full max-w-md rounded-xl p-6 border-2 backdrop-blur-md duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
             >
               <div className=" inset-0  flex justify-center items-center">
                 <div className=" rounded-lg">
@@ -67,7 +63,7 @@ const ItemDetailsModal = ({ item }) => {
                   </button>
 
                   {/* Product Image */}
-                  <div className="w-full h-64 bg-gray-100 overflow-hidden">
+                  <div className="w-full h-64 bg-gray-100 overflow-hidden rounded-md">
                     <img
                       src={image}
                       alt={itemName}
@@ -110,7 +106,7 @@ const ItemDetailsModal = ({ item }) => {
                           <span>$ {price.toFixed(2)}</span>
                         )}
                       </p>
-                      <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-semibold">
+                      <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-semibold"> Save &nbsp;$
                         {discount > 0 &&
                           (price - (price - (price * discount) / 100)).toFixed(2)}
                       </span>

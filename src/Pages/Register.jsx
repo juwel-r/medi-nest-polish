@@ -10,13 +10,13 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import LoginWithGoogle from "../components/LoginWithGoogle";
 
 const Register = () => {
-  const { register, updateUserProfile, authLoading, setAuthLoading } = useAuth();
+  const { register, updateUserProfile, authLoading,setAuthLoading ,logOut } = useAuth();
   const [showPass, setShowPass] = useState(false);
   const [name, setName] = useState("");
   const [photo, setPhoto] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user");
+  const [role, setRole] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -44,9 +44,7 @@ const Register = () => {
     const errors = validateSignup();
     if (errors.length) {
       setErrorMessage(errors.join(", "));
-      setAuthLoading(false)
     } else {
-      setAuthLoading(true)
       const photoURL = await photoUpload(photo);
       if (photoURL) {
         setErrorMessage("");
@@ -67,7 +65,9 @@ const Register = () => {
                 .then((res) => {
                   if (res.data.insertedId) {
                     showToast("Registration Successful");
-                    navigate("/");
+                    logOut(); 
+                    //todo: if not logOut... role get undefined // need to solve this
+                    navigate("/login");
                   }
                 })
                 .catch((err) => console.log(err.response.data));
@@ -181,7 +181,7 @@ const Register = () => {
                 value={role}
                 className="select select-bordered w-full "
               >
-                <option value="user">Select Role</option>
+                <option value="">Select Role</option>
                 <option value="user">User</option>
                 <option value="seller">Seller</option>
               </select>

@@ -134,7 +134,7 @@ const Dashboard = () => {
               {role === "user" && (
                 <ul className="flex flex-col gap-2 ">
                   <NavLink
-                    to="/dashboard/user-payment-history"
+                    to="/dashboard/user"
                     className="font-medium hover:text-white/80 cursor-pointer"
                   >
                     Payment History
@@ -145,18 +145,19 @@ const Dashboard = () => {
               {/* common sidebar menu */}
               <div className="mt-6 border-t border-white/20 pt-4 items-end h-full">
                 <ul className="flex flex-col gap-4">
+                <NavLink
+                    to="/"
+                    className="font-medium hover:text-white/80 cursor-pointer"
+                  >
+                    Home
+                  </NavLink>
                   <NavLink
                     to="profile"
                     className="font-medium hover:text-white/80 cursor-pointer"
                   >
                     Update Profile
                   </NavLink>
-                  <NavLink
-                    to="/"
-                    className="font-medium hover:text-white/80 cursor-pointer"
-                  >
-                    Client Satisfaction
-                  </NavLink>
+
                   <NavLink
                     to="/"
                     className="font-medium hover:text-white/80 cursor-pointer"

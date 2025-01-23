@@ -174,13 +174,13 @@ const router = createBrowserRouter([
         path: "manage-advertisement",
       },
       // user route
-      {
-        element: <UserDashboard></UserDashboard>,
-        path: "user",
-      },
+      // {
+      //   element: <UserDashboard></UserDashboard>,
+      //   path: "user",
+      // },
       {
         element: <UserPaymentHistory/>,
-        path: "user-payment-history",
+        path: "user",
       },
       {
         element: <UserProfile></UserProfile>,

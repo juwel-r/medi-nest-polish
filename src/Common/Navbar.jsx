@@ -15,12 +15,10 @@ import LogOut from "../components/LogOut";
 
 const Navbar = () => {
   const { userInfo, logOut } = useAuth();
-  const navigate = useNavigate();
   const [menuClose, setMenuClose] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
   const [cart] = useCart();
   const [role] = useRole();
-  console.log("role", role);
   const menus = (
     <>
       <NavLink to="/" className="px-2">
@@ -41,32 +39,8 @@ const Navbar = () => {
     </>
   );
 
-  //Log Out
   const handleLogOut = () => {
     setProfileMenu(false);
-    // showAlert({
-    //   title: "Are you sure to Log Out!",
-    //   icon: "warning",
-    //   cancelButton: true,
-    //   confirmButtonText: "Yes, Log Out",
-    //   showCancelButton:true
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     logOut()
-    //       .then(() => {
-    //         navigate("/");
-    //         showToast("Log out Successful!", "success");
-    //       })
-    //       .catch((error) => {
-    //         Swal.fire({
-    //           title: "Failed To Register!",
-    //           text: error.code,
-    //           icon: "error",
-    //           confirmButtonText: "Try Again",
-    //         });
-    //       });
-    //   }
-    // });
   };
   return (
     <nav className="px-4 sm:px6 h-[48px] md:h-[64px] flex lg:justify-between items-center relative border-b">
