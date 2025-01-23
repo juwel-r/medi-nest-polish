@@ -31,34 +31,6 @@ const ManageMedicine = () => {
     },
   });
 
-  //delete
-  const handleDelete = (item) => {
-    showAlert({
-      title: "Are you sure",
-      icon: "warning",
-      text: "You can't recover this category ",
-      confirmButtonText: "Delete",
-      showCancelButton: true,
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const res = await axiosSecure.delete(`/category/${item._id}`);
-          if (res.data.deletedCount > 0) {
-            showToast(`${item.name} is Deleted!`, "success");
-            refetch();
-          }
-        } catch (error) {
-          showAlert({
-            title: "Something went wrong!",
-            text: error.message,
-            icon: "error",
-            confirmButtonText: "Try Again",
-          });
-          console.log(error);
-        }
-      }
-    });
-  };
   console.log(medicine);
   return (
     <div className="container mx-auto py-4 mt-4">
@@ -112,7 +84,7 @@ const ManageMedicine = () => {
                       <p>
                         {item.itemName}
                         <span className="text-xs text-nowrap">
-                          {item.massUnit} &nbsp; {item.category}
+                        &nbsp; {item.massUnit} &nbsp; {item.category}
                         </span>
                       </p>
                       <span className="text-xs italic">{item.genericName}</span>

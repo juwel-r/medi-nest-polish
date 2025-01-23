@@ -86,14 +86,14 @@ const ManageCategory = () => {
             <tbody>
               {category &&
                 category.map((item, index) => (
-                  <tr key={item._id} className="even:bg-white/10">
+                  <tr key={item._id} className="even:bg-white/10 group ">
                     <td className="p-2">{index + 1}</td>
                     <td className="p-2 ">
                       <div className="flex justify-center">
                         <img
                           src={item.categoryImage}
                           alt={item.name}
-                          className="w-16 h-16 rounded-full object-cover"
+                          className="w-36 h-28 rounded-xl object-cover group-hover:scale-110 shadow-md my-2 transition-all ease-out duration-300"
                         />
                       </div>
                     </td>

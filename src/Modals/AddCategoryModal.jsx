@@ -4,6 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { showAlert, showToast } from "../Utils/alerts";
+import photoUpload from "../Utils/photoUpload";
 
 const AddCategoryModal = ({ item, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -13,8 +14,13 @@ const AddCategoryModal = ({ item, refetch }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const onSubmit = async (data) => {
+    console.log(data.categoryImage[0]);
+    const photoURL = await photoUpload(data.categoryImage[0]);
+    data.categoryImage = photoURL;
+    console.log(data);
     try {
       if (item) {
         const res = await axiosSecure.patch(`/category/${item._id}`, data);
@@ -29,6 +35,7 @@ const AddCategoryModal = ({ item, refetch }) => {
           showToast(`${data.name} is added successfully!`, "success");
           setIsOpen(false);
           refetch();
+          reset();
         }
       }
     } catch (error) {
@@ -82,6 +89,18 @@ const AddCategoryModal = ({ item, refetch }) => {
                   onSubmit={handleSubmit(onSubmit)}
                   className="flex flex-col gap-2"
                 >
+                  <label className="text-xs mt-2">Upload Category Photo</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    {...register("categoryImage", { required: true })}
+                    className="w-full bg-white/10 rounded-lg px-4 py-2 border border-white/20 focus:outline outline-white/50"
+                  />
+                  {errors.categoryImage && (
+                    <p className="text-sm text-warning" role="alert">
+                      Category Image is required!
+                    </p>
+                  )}
                   <label className="text-xs">Category Name</label>
                   <input
                     defaultValue={item?.name}
@@ -91,18 +110,6 @@ const AddCategoryModal = ({ item, refetch }) => {
                   {errors.name && (
                     <p className="text-sm text-warning" role="alert">
                       Category Name is required!
-                    </p>
-                  )}
-                  <label className="text-xs mt-2">Image URL</label>
-                  <input
-                    defaultValue={item?.categoryImage}
-                    type="url"
-                    {...register("categoryImage", { required: true })}
-                    className="w-full bg-white/10 rounded-lg px-4 py-2 border border-white/20 focus:outline outline-white/50"
-                  />
-                  {errors.categoryImage && (
-                    <p className="text-sm text-warning" role="alert">
-                      Category Image URL is required!
                     </p>
                   )}
                   <input
