@@ -7,6 +7,7 @@ import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import useAddToCart from "../Hooks/useAddToCart";
+import { Helmet } from "react-helmet-async";
 
 const ItemDetailsModal = ({ item }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -26,6 +27,7 @@ const ItemDetailsModal = ({ item }) => {
   const navigate = useNavigate();
 
   const handleAddToCart = async (item) => {
+    console.log(item);
     if (!userInfo?.email) {
       navigate("/login");
     }
@@ -34,6 +36,9 @@ const ItemDetailsModal = ({ item }) => {
 
   return (
     <>
+      <Helmet>
+        <title>{itemName} Details | Medi Nest</title>
+      </Helmet>
       <button
         onClick={() => setIsOpen(true)}
         className="text-primary px-2 h-5 flex items-center rounded-xl text-xl cursor-pointer hover:text-black transition-colors duration-300"
@@ -106,9 +111,13 @@ const ItemDetailsModal = ({ item }) => {
                           <span>$ {price.toFixed(2)}</span>
                         )}
                       </p>
-                      <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-semibold"> Save &nbsp;$
+                      <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-semibold">
+                        {" "}
+                        Save &nbsp;$
                         {discount > 0 &&
-                          (price - (price - (price * discount) / 100)).toFixed(2)}
+                          (price - (price - (price * discount) / 100)).toFixed(
+                            2
+                          )}
                       </span>
                     </div>
 
@@ -122,7 +131,7 @@ const ItemDetailsModal = ({ item }) => {
               </div>
 
               <div className="mt-4">
-                <button className="green-button" onClick={handleAddToCart}>
+                <button className="green-button" onClick={()=>handleAddToCart(item)}>
                   Add To Cart
                 </button>
               </div>

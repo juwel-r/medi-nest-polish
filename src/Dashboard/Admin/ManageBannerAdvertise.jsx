@@ -4,6 +4,7 @@ import LoadingSpin from "../../components/LoadingSpin";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Toggle from "react-toggle";
 import "react-toggle/style.css";
+import { Helmet } from "react-helmet-async";
 
 const ManageBannerAdvertise = () => {
   const axiosSecure = useAxiosSecure();
@@ -44,10 +45,7 @@ const ManageBannerAdvertise = () => {
               status: "",
             });
             if (res.data.modifiedCount > 0) {
-              showToast(
-                `${item.itemName} successfully ${action}!`,
-                "success"
-              );
+              showToast(`${item.itemName} successfully ${action}!`, "success");
               refetch();
             }
           } else {
@@ -55,10 +53,7 @@ const ManageBannerAdvertise = () => {
               status: "Approved",
             });
             if (res.data.modifiedCount > 0) {
-              showToast(
-                `${item.itemName} successfully ${action}!`,
-                "success"
-              );
+              showToast(`${item.itemName} successfully ${action}!`, "success");
               refetch();
             }
           }
@@ -77,6 +72,9 @@ const ManageBannerAdvertise = () => {
 
   return (
     <div className="container mx-auto py-4 mt-4">
+      <Helmet>
+        <title>Advertisement Management | Medi Nest</title>
+      </Helmet>
       <h2 className="text-lg md:text-2xl font-semibold mb-4 text-white">
         Banner Slider Management
       </h2>
@@ -160,9 +158,7 @@ const ManageBannerAdvertise = () => {
                       <div className="rounded-full text-sm px-x py-1">
                         <Toggle
                           id="cheese-status"
-                          checked={
-                            item?.bannerStatus === "Approved" && true
-                          }
+                          checked={item?.bannerStatus === "Approved" && true}
                           onChange={() => {
                             const action =
                               item?.bannerStatus === "Approved"
@@ -170,7 +166,7 @@ const ManageBannerAdvertise = () => {
                                 : item?.bannerStatus === "Requested"
                                 ? "Approve"
                                 : "Add";
-                        
+
                             handleUpdate(item, action);
                           }}
                         />

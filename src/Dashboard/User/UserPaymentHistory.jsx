@@ -7,6 +7,7 @@ import LoadingSpin from "../../components/LoadingSpin";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import useAuth from "../../Hooks/useAuth";
 import { IoReloadCircleSharp } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const UserPaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
@@ -38,6 +39,9 @@ const UserPaymentHistory = () => {
   console.log(paymentHistory);
   return (
     <div className="container mx-auto py-4 mt-4">
+      <Helmet>
+        <title>Payment History | Medi Nest</title>
+      </Helmet>
       <h2 className="text-2xl font-semibold mb-4 text-white">
         Payment History
       </h2>
@@ -60,8 +64,12 @@ const UserPaymentHistory = () => {
                 paymentHistory.map((item, i) => (
                   <tr key={i} className="even:bg-white/10">
                     <td className="p-2 border-r border-white/30">{i + 1}</td>
-                    <td className="p-2">{new Date(item.date).toLocaleString("en-gb")}</td>
-                    <td className="p-2 text-left  md:pl-6">{item.transactionId}</td>
+                    <td className="p-2">
+                      {new Date(item.date).toLocaleString("en-gb")}
+                    </td>
+                    <td className="p-2 text-left  md:pl-6">
+                      {item.transactionId}
+                    </td>
                     <td className="p-2">${item.amount.toFixed(2)}</td>
                     <td className=" p-2">
                       <div className="rounded-full text-sm py-1 flex justify-center items-center ">

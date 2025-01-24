@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import BestSelling from "../Pages/Home/BestSelling ";
 import Category from "../Pages/Home/Category";
 import DiscountSlide from "../Pages/Home/DiscountSlide";
@@ -8,13 +9,18 @@ import WhyChooseMediNest from "../Pages/Home/WhyChooseMediNest ";
 const HomeLayout = () => {
   return (
     <div className="">
+      <Helmet>
+        <title>
+          Medi Nest | Your Trusted Multi-Vendor Medicine Marketplace
+        </title>
+      </Helmet>
       <Slider></Slider>
       <div className="md:w-11/12 mx-auto">
         <Category></Category>
         <DiscountSlide></DiscountSlide>
-        <TrustedSellers/>
-        <BestSelling/>
-        <WhyChooseMediNest/>
+        <TrustedSellers />
+        <BestSelling />
+        <WhyChooseMediNest />
       </div>
     </div>
   );

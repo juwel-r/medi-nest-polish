@@ -7,6 +7,7 @@ import LoadingSpin from "../../components/LoadingSpin";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import useAuth from "../../Hooks/useAuth";
 import { IoReloadCircleSharp } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
@@ -38,6 +39,9 @@ const PaymentHistory = () => {
   console.log(paymentData);
   return (
     <div className="container mx-auto py-4 mt-4">
+      <Helmet>
+        <title>Payment History | Medi Nest</title>
+      </Helmet>
       <h2 className="text-2xl font-semibold mb-4 text-white">
         Payment History
       </h2>
@@ -58,18 +62,18 @@ const PaymentHistory = () => {
             </thead>
             <tbody>
               {paymentData &&
-                paymentData.map((item,i) => (
+                paymentData.map((item, i) => (
                   <tr key={i} className="even:bg-white/10">
                     <td className="p-2 border-r border-white/30">{i + 1}</td>
                     <td className="p-2 text-left  md:pl-6">{item.itemName}</td>
                     <td className="p-2">{item.orderDetails.quantity}</td>
                     <td className="p-2 text-right pr-4">
-                      ${(item.orderDetails.price*item.orderDetails.quantity)}
+                      ${item.orderDetails.price * item.orderDetails.quantity}
                     </td>
                     <td className="p-2 text-right md:pr-8">
                       {item.buyerEmail}
                     </td>
- 
+
                     <td className="border-l border-white/30 p-2">
                       <div className="rounded-full text-sm py-1 flex justify-center items-center ">
                         {item?.status === "Pending" ? (

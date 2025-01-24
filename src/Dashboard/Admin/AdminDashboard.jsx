@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpin from "../../components/LoadingSpin";
+import { Helmet } from "react-helmet-async";
 
 const AdminDashboard = () => {
   const axiosSecure = useAxiosSecure();
@@ -17,12 +18,14 @@ const AdminDashboard = () => {
       }
     },
   });
-  console.log(data.length>0);
 
   return (
     <div className="mt-6">
-      {isLoading? (
-         (<LoadingSpin></LoadingSpin>)
+      <Helmet>
+        <title>Dashboard Overview | Medi Nest</title>
+      </Helmet>
+      {isLoading ? (
+        <LoadingSpin></LoadingSpin>
       ) : (
         <>
           {/* top section */}
@@ -32,7 +35,7 @@ const AdminDashboard = () => {
                 Total Orders
               </h2>
               <p className="text-lg md:text-xl font-bold">
-                { data?.totalOrders.toString().padStart(2, "0") ||"00"}
+                {data?.totalOrders.toString().padStart(2, "0") || "00"}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
@@ -40,7 +43,7 @@ const AdminDashboard = () => {
                 Total {data?.statuses[0].status}
               </h2>
               <p className="text-lg md:text-xl font-bold">
-                ${data?.statuses[0].totalAmount.toFixed(2) ||"00"}
+                ${data?.statuses[0].totalAmount.toFixed(2) || "00"}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
@@ -48,15 +51,15 @@ const AdminDashboard = () => {
                 Total {data?.statuses[1]?.status}
               </h2>
               <p className="text-lg md:text-xl font-bold">
-                ${data?.statuses[1]?.totalAmount.toFixed(2) ||"00"}
+                ${data?.statuses[1]?.totalAmount.toFixed(2) || "00"}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
               <h2 className="text-base md:text-lg font-semibold">
-                Available Items
+                Available Medicines
               </h2>
               <p className="text-lg md:text-xl font-bold">
-                {data?.totalAvailable.toString().padStart(2, "0")||"00"}
+                {data?.totalAvailable.toString().padStart(2, "0") || "00"}
               </p>
             </div>
           </section>

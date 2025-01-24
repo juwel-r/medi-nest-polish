@@ -9,7 +9,6 @@ const Category = () => {
   useEffect(() => {
     axiosPublic("/categories").then((res) => setCategories(res.data));
   }, []);
-console.log(categories)
   return (
     <div>
       <SectionHeader

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { showAlert, showToast } from "../../Utils/alerts";
 import { useQuery } from "@tanstack/react-query";
 import AddCategoryModal from "../../Modals/AddCategoryModal";
+import { Helmet } from "react-helmet-async";
 
 const ManageCategory = () => {
   const axiosSecure = useAxiosSecure();
@@ -62,6 +63,9 @@ const ManageCategory = () => {
 
   return (
     <div className="container mx-auto py-4 mt-4">
+                  <Helmet>
+                    <title>Category Management | Medi Nest</title>
+                  </Helmet>
       <div className="flex items-center justify-between px-4 mb-4">
         <h2 className="text-lg md:text-2xl font-semibold  text-white">
           Category Management

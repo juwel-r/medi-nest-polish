@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import AddCategoryModal from "../../Modals/AddCategoryModal";
 import useAuth from "../../Hooks/useAuth";
 import AddMedicineModal from "../../Modals/AddMedicine";
+import { Helmet } from "react-helmet-async";
 
 const ManageMedicine = () => {
   const axiosSecure = useAxiosSecure();
@@ -31,15 +32,22 @@ const ManageMedicine = () => {
     },
   });
 
-  console.log(data );
+  console.log(data);
   return (
     <div className="container mx-auto py-4 mt-4">
+      <Helmet>
+        <title>Medicines Management | Medi Nest</title>
+      </Helmet>
       <div className="flex items-center justify-between px-4 mb-4">
         <h2 className="text-lg md:text-2xl font-semibold  text-white">
           All Medicine Management
         </h2>
         <div className="green-button">
-          <AddMedicineModal refetch={refetch} categories={data.categories} company={data.company}></AddMedicineModal>
+          <AddMedicineModal
+            refetch={refetch}
+            categories={data.categories}
+            company={data.company}
+          ></AddMedicineModal>
         </div>
       </div>
       {isLoading ? (
@@ -56,7 +64,7 @@ const ManageMedicine = () => {
               </tr>
             </thead>
             <tbody>
-              {data.medicine.length>0 && 
+              {data.medicine.length > 0 &&
                 data.medicine.map((item, i) => (
                   <tr key={i} className="even:bg-white/10 group">
                     <td className="p-2 px-4">{i + 1}</td>
@@ -84,7 +92,7 @@ const ManageMedicine = () => {
                       <p>
                         {item.itemName}
                         <span className="text-xs text-nowrap">
-                        &nbsp; {item.massUnit} &nbsp; {item.category}
+                          &nbsp; {item.massUnit} &nbsp; {item.category}
                         </span>
                       </p>
                       <span className="text-xs italic">{item.genericName}</span>

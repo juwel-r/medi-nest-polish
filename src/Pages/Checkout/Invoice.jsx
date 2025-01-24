@@ -3,6 +3,7 @@ import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { showAlert } from "../../Utils/alerts";
+import { Helmet } from "react-helmet-async";
 
 const Invoice = () => {
   const location = useLocation();
@@ -55,13 +56,15 @@ const Invoice = () => {
     }
   };
 
-
   if (!location.state?.paymentInfo?.amount) {
-    return <Navigate to="/"></Navigate>
+    return <Navigate to="/"></Navigate>;
   }
 
   return (
     <div className="max-w-4xl mx-auto p-6">
+      <Helmet>
+        <title>Payment Invoice | Medi Nest</title>
+      </Helmet>
       <div ref={invoiceRef} className="bg-white border rounded-lg p-6 px-10">
         {/* Logo */}
         <div className="flex flex-col justify-start">
@@ -108,18 +111,19 @@ const Invoice = () => {
               </tr>
             </thead>
             <tbody>
-              {cart && cart.map((item) => (
-                <tr key={item._id}>
-                  <td className="px-4 py-2">{item.name}</td>
-                  <td className="px-4 py-2 text-right">{item.quantity}</td>
-                  <td className="px-4 py-2 text-right">
-                    ${item.price.toFixed(2)}
-                  </td>
-                  <td className="px-4 py-2 text-right">
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </td>
-                </tr>
-              ))}
+              {cart &&
+                cart.map((item) => (
+                  <tr key={item._id}>
+                    <td className="px-4 py-2">{item.name}</td>
+                    <td className="px-4 py-2 text-right">{item.quantity}</td>
+                    <td className="px-4 py-2 text-right">
+                      ${item.price.toFixed(2)}
+                    </td>
+                    <td className="px-4 py-2 text-right">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

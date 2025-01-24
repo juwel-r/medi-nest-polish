@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import "react-toggle/style.css";
 import useAuth from "../../Hooks/useAuth";
 import AdvertisementRequestModal from "../../Modals/AdvertisementRequestModal";
+import { Helmet } from "react-helmet-async";
 
 const ManageAdvertisement = () => {
   const axiosSecure = useAxiosSecure();
@@ -74,6 +75,9 @@ const ManageAdvertisement = () => {
 
   return (
     <div className="container mx-auto py-4 mt-4">
+      <Helmet>
+        <title>Advertisement Management | Medi Nest</title>
+      </Helmet>
       <h2 className="text-lg md:text-2xl font-semibold mb-4 text-white">
         Banner Slider Management
       </h2>
@@ -187,7 +191,10 @@ const ManageAdvertisement = () => {
                             data-tooltip-content="Sent Request to Add"
                           >
                             <span className="px-2 text-white">
-                              <AdvertisementRequestModal item={item} refetch={refetch} />
+                              <AdvertisementRequestModal
+                                item={item}
+                                refetch={refetch}
+                              />
                             </span>
                           </div>
                         )}

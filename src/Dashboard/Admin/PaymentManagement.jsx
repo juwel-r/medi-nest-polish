@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import "../dashboard.css";
 import LoadingSpin from "../../components/LoadingSpin";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { Helmet } from "react-helmet-async";
 
 const PaymentManagement = () => {
   const axiosSecure = useAxiosSecure();
@@ -64,6 +65,9 @@ const PaymentManagement = () => {
 
   return (
     <div className="container mx-auto py-4 mt-4">
+      <Helmet>
+        <title>Payment Management | Medi Nest</title>
+      </Helmet>
       <h2 className="text-2xl font-semibold mb-4 text-white">
         Payment Management
       </h2>

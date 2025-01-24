@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpin from "../../components/LoadingSpin";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const SellerDashboard = () => {
   const axiosSecure = useAxiosSecure();
@@ -26,6 +27,9 @@ const SellerDashboard = () => {
 
   return (
     <div className="mt-6">
+      <Helmet>
+        <title>Dashboard Overview | Medi Nest</title>
+      </Helmet>
       {isLoading ? (
         <LoadingSpin></LoadingSpin>
       ) : (

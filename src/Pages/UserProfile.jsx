@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../customHooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const UserProfile = () => {
   const { userInfo } = useAuth();
@@ -24,6 +25,9 @@ const UserProfile = () => {
 
   return (
     <div className="w-[95%] sm:max-w-lg mx-auto p-6 my-6 rounded-lg shadow-md bg-white/20 border border-white/50">
+      <Helmet>
+        <title>Profile of {userInfo?.displayName} | Medi Nest</title>
+      </Helmet>
       <div className="flex flex-col items-center pt-4 mx-6">
         <img
           src={formData.photoURL || "https://via.placeholder.com/150"}
@@ -32,8 +36,8 @@ const UserProfile = () => {
         />
         {!editMode ? (
           <>
-            <h1 className="text-2xl font-semibold">{formData.displayName}</h1>
-            <p className="">{formData.email}</p>
+            <h1 className="text-2xl font-semibold">{formData?.displayName}</h1>
+            <p className="">{formData?.email}</p>
             <button
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary green-button"
               onClick={() => setEditMode(true)}
@@ -48,20 +52,18 @@ const UserProfile = () => {
               <input
                 type="text"
                 name="displayName"
-                value={formData.displayName}
+                value={formData?.displayName}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
                 required
               />
             </div>
             <div>
-              <label className="block  font-medium">
-                Photo URL
-              </label>
+              <label className="block  font-medium">Photo URL</label>
               <input
                 type="url"
                 name="photoURL"
-                value={formData.photoURL}
+                value={formData?.photoURL}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
                 required
@@ -73,7 +75,7 @@ const UserProfile = () => {
                 type="email"
                 name="email"
                 readOnly
-                value={formData.email}
+                value={formData?.email}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
                 required

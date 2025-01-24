@@ -3,12 +3,16 @@ import SectionHeader from "../components/SectionHeader";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import Table from "../components/Table";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const ItemsByCategory = () => {
   const { categoryName } = useParams();
 
   return (
     <div className="md:w-11/12 mx-auto">
+      <Helmet>
+        <title>{categoryName} Medicines | Medi Nest</title>
+      </Helmet>
       <SectionHeader
         title={`All Medicine of ${categoryName} `}
         subTitle={

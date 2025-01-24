@@ -6,6 +6,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { showAlert, showToast } from "../Utils/alerts";
 import photoUpload from "../Utils/photoUpload";
 import useAuth from "../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const AdvertisementRequestModal = ({ item, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -70,6 +71,9 @@ const AdvertisementRequestModal = ({ item, refetch }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Advertisement Request Info | Medi Nest</title>
+      </Helmet>
       <button onClick={() => setIsOpen(true)}>Add</button>
 
       <Dialog

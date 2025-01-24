@@ -7,6 +7,7 @@ import Lottie from "lottie-react";
 import loginAnimation from "../assets/animation/login-animation.json";
 import LoginWithGoogle from "../components/LoginWithGoogle";
 import { showAlert, showToast } from "../Utils/alerts";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { authLoading, setAuthLoading, login } = useContext(AuthContext);
@@ -58,6 +59,9 @@ const Login = () => {
 
   return (
     <section className=" py-12">
+            <Helmet>
+        <title>Login | Medi Nest</title>
+      </Helmet>
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-primary">Welcome Back!</h1>

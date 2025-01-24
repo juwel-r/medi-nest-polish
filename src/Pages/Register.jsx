@@ -8,6 +8,7 @@ import { showAlert, showToast } from "../Utils/alerts";
 import photoUpload from "../Utils/photoUpload";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import LoginWithGoogle from "../components/LoginWithGoogle";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { register, updateUserProfile, authLoading,setAuthLoading ,logOut } = useAuth();
@@ -96,6 +97,9 @@ const Register = () => {
 
   return (
     <section className="py-12">
+            <Helmet>
+        <title>Register | Medi Nest</title>
+      </Helmet>
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-primary">

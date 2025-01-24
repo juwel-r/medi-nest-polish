@@ -5,6 +5,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { showAlert, showToast } from "../Utils/alerts";
 import useAuth from "../Hooks/useAuth";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Cart = () => {
   const [cartItems, refetch] = useCart();
@@ -113,6 +114,10 @@ const Cart = () => {
 
   return (
     <div className="">
+      {" "}
+      <Helmet>
+        <title>{userInfo.displayName}'s Cart | Medi Nest</title>
+      </Helmet>
       {/* Header */}
       <div className="text-center mb-8">
         <SectionHeader
@@ -120,7 +125,6 @@ const Cart = () => {
           subTitle={"Review your selected items and manage your cart."}
         ></SectionHeader>
       </div>
-
       {/* Cart Items */}
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6">
         {cartItems.length > 0 ? (
@@ -150,8 +154,11 @@ const Cart = () => {
                       {item.price.toFixed(2)} per unit
                     </p>
                     <p className="text-gray-700 ">
-                      <span className="font-semibold ">Total:</span> 
-                      <span className="text-primary"> ${(item.price * item.quantity).toFixed(2)}</span>
+                      <span className="font-semibold ">Total:</span>
+                      <span className="text-primary">
+                        {" "}
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </span>
                     </p>
                   </div>
 
@@ -162,7 +169,9 @@ const Cart = () => {
                       onClick={() => handleQuantity(item._id, -1)}
                       data-tooltip-id="my-tooltip"
                       data-tooltip-content={`${
-                        item.quantity === 1 ? "Minimum Quantity Limit Reached!":""
+                        item.quantity === 1
+                          ? "Minimum Quantity Limit Reached!"
+                          : ""
                       }`}
                       className="px-3 py-1 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300"
                     >
@@ -203,11 +212,14 @@ const Cart = () => {
               {/* Total Cost */}
               <div className="flex items-center gap-4">
                 <p className="text-xl font-bold">
-                  Subtotal: <span className="text-blue-600">${totalCost.toFixed(2)}</span>
+                  Subtotal:{" "}
+                  <span className="text-blue-600">${totalCost.toFixed(2)}</span>
                 </p>
-                <Link to="/checkout"><button className="green-button">
-                  Checkout ({cartItems.length})
-                </button></Link>
+                <Link to="/checkout">
+                  <button className="green-button">
+                    Checkout ({cartItems.length})
+                  </button>
+                </Link>
               </div>
             </div>
           </>

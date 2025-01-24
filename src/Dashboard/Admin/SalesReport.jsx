@@ -5,6 +5,7 @@ import { CSVLink } from "react-csv";
 import * as XLSX from "xlsx";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import LoadingSpin from "../../components/LoadingSpin";
+import { Helmet } from "react-helmet-async";
 
 const SalesReport = () => {
   const [salesData, setSalesData] = useState([]);
@@ -103,6 +104,9 @@ const SalesReport = () => {
 
   return (
     <div className="md:p-6 p-2 py-6 space-y-6 text-white">
+                  <Helmet>
+                    <title>Sales Report | Medi Nest</title>
+                  </Helmet>
       <h2 className="text-2xl font-bold">Sales Report</h2>
 
       {/* Date Range Filter */}

@@ -6,6 +6,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
 import { showAlert } from "../../Utils/alerts";
+import { Helmet } from "react-helmet-async";
 
 const CheckOutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
@@ -108,6 +109,9 @@ const CheckOutForm = () => {
 
   return (
     <div className="max-w-lg mx-auto bg-gray-100 p-6 rounded-lg shadow-lg mt-10">
+      <Helmet>
+        <title>Payment Gateway | Medi Nest</title>
+      </Helmet>
       {/* Header Section */}
       <h2 className="text-2xl font-bold text-center mb-4">
         Complete Your Payment

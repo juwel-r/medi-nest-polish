@@ -6,6 +6,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { showAlert, showToast } from "../Utils/alerts";
 import photoUpload from "../Utils/photoUpload";
 import useAuth from "../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const AddCategoryModal = ({ refetch, categories, company }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -64,6 +65,9 @@ const AddCategoryModal = ({ refetch, categories, company }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Add Medicine | Medi Nest</title>
+      </Helmet>
       <button onClick={() => setIsOpen(true)} className="py-1 md:text-xl">
         Add Medicine
       </button>

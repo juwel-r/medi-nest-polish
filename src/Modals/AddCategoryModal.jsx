@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { showAlert, showToast } from "../Utils/alerts";
 import photoUpload from "../Utils/photoUpload";
+import { Helmet } from "react-helmet-async";
 
 const AddCategoryModal = ({ item, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -54,6 +55,9 @@ const AddCategoryModal = ({ item, refetch }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Add Category | Medi Nest</title>
+      </Helmet>
       <button
         onClick={() => setIsOpen(true)}
         className={`${item ? "alert-button-success " : ""}`}

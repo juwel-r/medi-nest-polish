@@ -16,18 +16,6 @@ const Slider = () => {
 axiosPublic('/items/slider').then((res) => setSlider(res.data));
   }, []);
 
-  // const {
-  //   itemName,
-  //   genericName,
-  //   category,
-  //   company,
-  //   massUnit,
-  //   discount,
-  //   price,
-  //   description,
-  //   image,
-  // } = slider;
-console.log(slider)
   return (
     <>
       <Swiper

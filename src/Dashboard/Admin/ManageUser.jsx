@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import "../dashboard.css";
 import LoadingSpin from "../../components/LoadingSpin";
+import { Helmet } from "react-helmet-async";
 
 const ManageUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -51,6 +52,9 @@ const ManageUser = () => {
 
   return (
     <div className="container mx-auto py-4 mt-4">
+                  <Helmet>
+                    <title>User Management | Medi Nest</title>
+                  </Helmet>
       <h2 className="text-2xl font-semibold mb-4 text-white">
         User Management
       </h2>
