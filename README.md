@@ -16,7 +16,7 @@
   </ul>
 
   <h2>Live Site</h2>
-  <p><a href="https://your-live-site-url.com" target="_blank">Visit Medi Nest</a></p>
+  <p><a href="https://medi-nest-r6.web.app/" target="_blank">Visit Medi Nest</a></p>
 
   <hr>
 

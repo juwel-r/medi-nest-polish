@@ -5,14 +5,7 @@ import Table from "../components/Table";
 import { useParams } from "react-router-dom";
 
 const ItemsByCategory = () => {
-  const [items, setItems] = useState([]);
-  const axiosPublic = useAxiosPublic();
   const { categoryName } = useParams();
-  useEffect(() => {
-    axiosPublic(`/items/category/${categoryName}`).then((result) =>
-      setItems(result.data)
-    );
-  }, []);
 
   return (
     <div className="md:w-11/12 mx-auto">
@@ -24,7 +17,7 @@ const ItemsByCategory = () => {
       ></SectionHeader>
       <section>
         <div className="overflow-x-auto">
-          <Table items={items}></Table>
+          <Table apiEndPoint={`/items/category/${categoryName}`}></Table>
         </div>
       </section>
     </div>

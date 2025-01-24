@@ -134,7 +134,7 @@ const Invoice = () => {
       {/* Download Button */}
       <div className="mt-6">
         <button onClick={handleDownload} className="green-button">
-          Download Invoice
+          Print Invoice
         </button>
       </div>
     </div>

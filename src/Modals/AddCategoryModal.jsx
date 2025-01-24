@@ -104,6 +104,7 @@ const AddCategoryModal = ({ item, refetch }) => {
                   <label className="text-xs">Category Name</label>
                   <input
                     defaultValue={item?.name}
+                    readOnly={item ? true : false}
                     {...register("name", { required: true })}
                     className="w-full bg-white/10 rounded-lg px-4 py-2 border border-white/20 focus:outline outline-white/50"
                   />

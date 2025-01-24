@@ -19,13 +19,13 @@ const CategoryCard = ({ category, index }) => {
         }}
         className="p-4 rounded-xl  shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 group "
       >
-        <div className="grid grid-cols-[1fr_2fr] gap-6">
+        <div className="min-h-28 grid lg:grid-cols-[1.5fr_2fr] sm:grid-cols-1 gap-6">
           {/* Photo */}
-          <div className="w-32 h-24 bg-gray-100 rounded-lg flex items-center justify-center p-0.5 group-hover:scale-105 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-primary transition-all duration-300 shadow-md">
+          <div className="  bg-gray-100 rounded-lg flex items-center justify-center p-0.5 group-hover:scale-105 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-primary transition-all duration-300 shadow-md">
             <img
               src={categoryImage}
               alt={name}
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-full object-cover rounded-lg object-center"
             />
           </div>
           {/* content */}

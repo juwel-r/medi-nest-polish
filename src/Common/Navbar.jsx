@@ -5,11 +5,9 @@ import ThemeController from "../components/ThemeController";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosList } from "react-icons/io";
 import logo from "/logo.png";
-import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../Hooks/useCart";
-import { showAlert, showToast } from "../Utils/alerts";
 import useRole from "../Hooks/useRoll";
 import LogOut from "../components/LogOut";
 
@@ -70,7 +68,7 @@ const Navbar = () => {
       {/* Logo */}
       <Link to="/" className="ml-3 min-w-fit">
         <img
-          className="h-9 w-full md:h-10 lg:scale-150 "
+          className="h-12 lg:scale-150 "
           src={logo}
           alt="edu-mate-logo"
         />

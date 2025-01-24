@@ -65,7 +65,7 @@ const AddCategoryModal = ({ refetch, categories, company }) => {
   return (
     <>
       <button onClick={() => setIsOpen(true)} className="py-1 md:text-xl">
-        Add New Medicine
+        Add Medicine
       </button>
 
       <Dialog

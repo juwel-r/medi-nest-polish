@@ -16,7 +16,6 @@ import AdminDashboard from "../Dashboard/Admin/AdminDashboard";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
 import SellerDashboard from "../Dashboard/Seller/SellerDashboard";
-import UserDashboard from "../Dashboard/User/UserDashboard";
 import ManageUser from "../Dashboard/Admin/ManageUser";
 import ManageCategory from "../Dashboard/Admin/ManageCategory";
 import PaymentManagement from "../Dashboard/Admin/PaymentManagement";

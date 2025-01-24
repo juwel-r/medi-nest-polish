@@ -36,7 +36,7 @@ const ManageCategory = () => {
     showAlert({
       title: "Are you sure",
       icon: "warning",
-      text: "You can't recover this category ",
+      text: "All medicine of this category will be uncatogorized! ",
       confirmButtonText: "Delete",
       showCancelButton:true
     }).then(async (result) => {

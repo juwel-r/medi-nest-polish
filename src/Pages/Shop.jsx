@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
-import useAxiosPublic from "../Hooks/useAxiosPublic";
 import Table from "../components/Table";
 
 const Shop = () => {
-  const [items, setItems] = useState([]);
-  const axiosPublic = useAxiosPublic();
-
-  useEffect(() => {
-    axiosPublic("/items").then((result) => setItems(result.data));
-  }, []);
-
+  const apiEndPoint = "/items"
   return (
     <div  className="md:w-11/12 mx-auto">
       <SectionHeader
@@ -21,7 +14,7 @@ const Shop = () => {
       ></SectionHeader>
       <section>
         <div className="overflow-x-auto">
-          <Table items={items}></Table>
+          <Table apiEndPoint="/items"></Table>
         </div>
       </section>
     </div>

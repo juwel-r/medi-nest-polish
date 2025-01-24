@@ -16,7 +16,7 @@ console.log(categories)
         title="Shop by Category"
         subTitle="Find exactly what you need from our carefully curated categories."
       />
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8 p-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8 p-4">
         {categories.slice(0, 6).map((category, index) => (
           <Link key={index} to={`/items/${category.name}`}>
             <CategoryCard category={category} index={index}></CategoryCard>
