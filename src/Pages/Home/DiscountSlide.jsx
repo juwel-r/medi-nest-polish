@@ -53,7 +53,7 @@ const DiscountSlide = () => {
         className="mySwiper"
       >
         {categories.map((category, index) => (
-          <SwiperSlide className="my-12" key={index}>
+          <SwiperSlide className="md:my-12 mt-6 mb-12" key={index}>
             <DiscountCard key={category._id} category={category}></DiscountCard>
           </SwiperSlide>
         ))}

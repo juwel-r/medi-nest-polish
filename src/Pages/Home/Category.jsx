@@ -14,7 +14,7 @@ const Category = () => {
     return <LoadingSpin></LoadingSpin>
   }
     return (
-      <div>
+      <div className="my-8">
         <SectionHeader
           title="Shop by Category"
           subTitle="Find exactly what you need from our carefully curated categories."

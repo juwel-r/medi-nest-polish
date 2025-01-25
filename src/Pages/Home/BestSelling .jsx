@@ -17,7 +17,7 @@ const BestSelling = () => {
     return <LoadingSpin />;
   }
   return (
-<section className="py-14">
+<section className="py-10 mt-8 bg-[#F8FAFF]">
   <div className="container mx-auto px-6 md:px-10 lg:px-16">
     <SectionHeader
       title="Best-Selling Medicines"

@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 const Shop = () => {
   const apiEndPoint = "/items";
   return (
-    <div className="md:w-11/12 mx-auto">
+    <div className="md:w-11/12 mx-auto my-8">
       <Helmet>
         <title>All Medicines | Medi Nest</title>
       </Helmet>

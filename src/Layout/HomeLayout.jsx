@@ -18,8 +18,8 @@ const HomeLayout = () => {
       <div className="md:w-11/12 mx-auto">
         <Category></Category>
         <DiscountSlide></DiscountSlide>
-        <TrustedSellers />
         <BestSelling />
+        <TrustedSellers />
         <WhyChooseMediNest />
       </div>
     </div>
