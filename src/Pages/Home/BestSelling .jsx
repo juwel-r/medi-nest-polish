@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import LoadingSpin from "../../components/LoadingSpin";
 import { Link } from "react-router-dom";
+import SectionHeader from "../../components/SectionHeader";
 
 const BestSelling = () => {
   const [products, setProducts] = useState([]);
@@ -16,55 +17,67 @@ const BestSelling = () => {
     return <LoadingSpin />;
   }
   return (
-    <section className="bg-gray-50 py-10">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
-          Best Selling Medicines
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow relative"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 object-cover"
-              />
-              <span className="px-2 py-1 bg-primary rounded-md text-white font-semibold text-sm absolute top-2 right-2">
-                Sold: {product.sold}
+<section className="py-14">
+  <div className="container mx-auto px-6 md:px-10 lg:px-16">
+    <SectionHeader
+      title="Best-Selling Medicines"
+      subTitle="Discover our best-selling medicines trusted by thousands of customers for their quality and effectiveness."
+    ></SectionHeader>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
+      {products.map((product, index) => (
+        <div
+          key={index}
+          className="relative group bg-white shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105"
+        >
+          {/* Image */}
+          <div className="relative w-full h-56">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
+            <span className="absolute top-4 right-4 bg-primary text-white text-xs px-3 py-1 rounded-md">
+              Sold: {product.sold}
+            </span>
+          </div>
+          {/* Content */}
+          <div className="p-6">
+            <h3 className="text-lg font-semibold text-gray-800 truncate">
+              {product.name}
+              <span className="text-sm font-light text-gray-500">
+                &nbsp;({product.mssUnit})
               </span>
-              <div className="p-4">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  {product.name} &nbsp;{" "}
-                  <span className="text-base font-normal">
-                    {product.mssUnit}
+            </h3>
+            <p className="mt-2 text-sm text-gray-600 italic">{product.generic}</p>
+            <p className="text-sm text-gray-700 font-medium">{product.company}</p>
+            <div className="flex justify-between items-center mt-4">
+              <div>
+                <span className="text-lg font-bold text-blue-600">
+                  ${product.price.toFixed(2)}
+                </span>
+                {product.discount && (
+                  <span className="ml-2 text-xs  bg-primary/80 text-white px-3 py-1 rounded-[4px]">
+                   Save ${product.discount}
                   </span>
-                </h3>
-                <p>
-                  <i className="text-gray-500">{product.generic}</i> &nbsp;
-                </p>
-                <p> {product.company}</p>
-                <div className="flex justify-start gap-4 items-center mb-4">
-                  <span className="text-lg font-bold text-blue-500">
-                    ${product.price.toFixed(2)}
-                  </span>
-                  <span className="text-base text-gray-500 line-through">
-                    ${product.discount}
-                  </span>
-                </div>
-                <Link to="/shop">
-                  <button className="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">
-                    Shop Now
-                  </button>
-                </Link>
+                )}
               </div>
             </div>
-          ))}
+          </div>
+          {/* Button */}
+          <div className="absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100 transition-opacity">
+            <Link to="/shop">
+              <button className="w-full bg-primary text-white py-3 text-center font-medium hover:bg-blue-700 transition-colors">
+                Shop Now
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+
   );
 };
 

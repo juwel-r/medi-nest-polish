@@ -19,7 +19,7 @@
   <p><a href="https://medi-nest-r6.web.app/" target="_blank">Visit Medi Nest</a></p>
 
   <hr>
-
+  
   <h2>Features</h2>
   <h3>Multi-Vendor Platform</h3>
   <p>Connect buyers with multiple sellers offering a wide variety of medicines.</p>

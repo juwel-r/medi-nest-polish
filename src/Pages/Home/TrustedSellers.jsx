@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LoadingSpin from "../../components/LoadingSpin";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SectionHeader from "../../components/SectionHeader";
 
 const TrustedSellers = () => {
   const [sellers, setSellers] = useState([]);
@@ -15,52 +16,49 @@ const TrustedSellers = () => {
   return (
     <section className="bg-gray-50 py-10">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
-          Our Trusted Top Sellers
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {sellers.map((seller, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
-            >
-              <img
-                src={seller.image}
-                alt={seller.name}
-                className="w-24 h-24 rounded-full mx-auto border p-1 shadow-md mb-4"
-              />
-              <h3 className="text-lg font-bold text-gray-800 text-center">
-                {seller.name}
-              </h3>
-              <p className="text-sm text-gray-600 text-center">
-                {seller.medicinesCount} Medicines Available
-              </p>
-              <div className="flex items-center justify-center mt-3">
-                <div className="flex items-center gap-1 text-yellow-500">
-                  {Array.from({ length: seller.rating }).map((_, idx) => (
-                    <span key={idx}>★</span>
-                  ))}
-                  {Array.from({ length: 5 - seller.rating }).map((_, idx) => (
-                    <span key={idx} className="text-gray-300">
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <span className="text-sm text-gray-500 ml-2">
-                  ({seller.count} Medicines Sold)
-                </span>
-              </div>
-              <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600 transition-colors">
-                View Seller
-              </button>
-            </div>
-          ))}
+      <SectionHeader title={"Top Pharmaceutical Partner"} subTitle={"Recognizing excellence in healthcare, this section highlights the top-selling pharmaceutical company based on sales performance."}></SectionHeader>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-6 md:mt-12">
+  {sellers.map((seller, index) => (
+    <div
+      key={index}
+      className="relative group bg-gradient-to-br from-gray-50 to-white shadow-xl rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300"
+    >
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+      <img
+        src={seller.image}
+        alt={seller.name}
+        className="w-full h-40 object-cover group-hover:opacity-75 transition-opacity"
+      />
+      <div className="p-5 relative z-10">
+        <h3 className="text-lg font-bold text-gray-100 group-hover:text-white text-center">
+          {seller.name}
+        </h3>
+        <p className="text-sm text-gray-300 text-center mt-1">
+          {seller.medicinesCount} Medicines Available
+        </p>
+        <div className="flex items-center justify-center mt-3">
+          <div className="flex items-center gap-1 text-yellow-400">
+            {Array.from({ length: seller.rating }).map((_, idx) => (
+              <span key={idx}>★</span>
+            ))}
+            {Array.from({ length: 5 - seller.rating }).map((_, idx) => (
+              <span key={idx} className="text-gray-500">
+                ★
+              </span>
+            ))}
+          </div>
+          <span className="text-sm text-gray-300 ml-2">
+            {seller.count} Medicines Sold
+          </span>
         </div>
-        {/* <div className="text-center mt-8">
-          <button className="green-button">
-            <span className="p-4 text-xl"> View All Sellers</span>
-          </button>
-        </div> */}
+        <button className="mt-4 bg-blue-600 text-white py-2 px-6 rounded-lg w-full hover:bg-blue-700 transition-colors">
+          View Seller
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
       </div>
     </section>
   );

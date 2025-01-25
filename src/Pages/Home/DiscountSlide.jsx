@@ -7,6 +7,7 @@ import { Pagination } from "swiper/modules";
 import DiscountCard from "../../components/DiscountCard";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SectionHeader from "../../components/SectionHeader";
+import LoadingSpin from "../../components/LoadingSpin";
 
 const DiscountSlide = () => {
   const [categories, setCategories] = useState([]);
@@ -33,6 +34,9 @@ const DiscountSlide = () => {
       window.removeEventListener("resize", updateSlidesPerView);
     };
   }, []);
+  if(!categories || !categories.length>0){
+   return <LoadingSpin/>
+  }
   return (
     <div>
       <SectionHeader
