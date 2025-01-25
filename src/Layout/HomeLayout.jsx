@@ -3,8 +3,8 @@ import BestSelling from "../Pages/Home/BestSelling ";
 import Category from "../Pages/Home/Category";
 import DiscountSlide from "../Pages/Home/DiscountSlide";
 import Slider from "../Pages/Home/Slider";
-import TrustedSellers from "../Pages/Home/TrustedSellers";
 import WhyChooseMediNest from "../Pages/Home/WhyChooseMediNest ";
+import PartnerWithUs from "../Pages/Home/PartnerWithUs";
 
 const HomeLayout = () => {
   return (
@@ -15,12 +15,12 @@ const HomeLayout = () => {
         </title>
       </Helmet>
       <Slider></Slider>
-      <div className="md:w-11/12 mx-auto">
+      <div className="mx-auto">
         <Category></Category>
         <DiscountSlide></DiscountSlide>
         <BestSelling />
-        <TrustedSellers />
         <WhyChooseMediNest />
+        <PartnerWithUs></PartnerWithUs>
       </div>
     </div>
   );

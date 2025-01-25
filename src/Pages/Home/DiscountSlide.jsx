@@ -26,6 +26,7 @@ const DiscountSlide = () => {
         setSlidesPerView(3); // Desktop
       }
     };
+    console.log(window.innerWidth);
 
     updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
@@ -34,11 +35,12 @@ const DiscountSlide = () => {
       window.removeEventListener("resize", updateSlidesPerView);
     };
   }, []);
+  console.log(slidesPerView);
   if(!categories || !categories.length>0){
    return <LoadingSpin/>
   }
   return (
-    <div>
+    <div className="md:pt-8">
       <SectionHeader
         title="Discounts on Essentials"
         subTitle="Grab unbeatable deals on top-quality medicines. Save more while staying healthy!"
@@ -54,7 +56,7 @@ const DiscountSlide = () => {
       >
         {categories.map((category, index) => (
           <SwiperSlide className="md:my-12 mt-6 mb-12" key={index}>
-            <DiscountCard key={category._id} category={category}></DiscountCard>
+            <DiscountCard key={category._id} category={category} index={index}></DiscountCard>
           </SwiperSlide>
         ))}
       </Swiper>

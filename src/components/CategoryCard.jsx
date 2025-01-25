@@ -1,4 +1,5 @@
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 
 const CategoryCard = ({ category, index }) => {
   const { categoryImage, name, count } = category;
@@ -12,7 +13,7 @@ const CategoryCard = ({ category, index }) => {
   ];
 
   return (
-    <div className="">
+    <Fade direction="up" delay={index*200} className="">
       <div
         style={{
           backgroundColor: categoryColors[index % categoryColors.length],
@@ -38,7 +39,7 @@ const CategoryCard = ({ category, index }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Fade>
   );
 };
 

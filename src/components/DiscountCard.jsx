@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import useAddToCart from "../Hooks/useAddToCart";
 import useAuth from "../Hooks/useAuth";
 import { showToast } from "../Utils/alerts";
+import { Fade } from "react-awesome-reveal";
 
-const DiscountCard = ({ category }) => {
+const DiscountCard = ({ category, index }) => {
   const {
     itemName,
     genericName,
@@ -25,43 +26,58 @@ const DiscountCard = ({ category }) => {
     }
     addToCart(category);
   };
- 
-  return (
-    <div className="p-4 rounded-xl shadow-lg border border-gray-200 group hover:shadow-xl hover:bg-primary/5 transition-all duration-300 max-w-sm">
-      <div className="relative overflow-hidden rounded-lg">
-        <img
-          src={image}
-          alt="Product Image"
-          className="w-full h-40 object-cover transform transition-transform duration-300 group-hover:scale-105"
-        />
-        <span className="absolute top-2 left-2 bg-blue-600 text-white text-xs font-semibold px-4 py-1 rounded-full">
-          {discount}% Off
-        </span>
-      </div>
 
-      <div className="mt-4">
-        <h3 className="text-lg font-bold text-gray-800 truncate">{itemName}</h3>
-        <p className="text-sm text-gray-500 italic">Generic: {genericName}</p>
-        <p className="text-sm text-gray-500 mt-1">
-          Mass Unit: {massUnit} | {company}
-        </p>
-        <p className="text-xs text-blue-600 font-medium mt-1">
-          Category: {categoryName}
-        </p>
-        <p className="text-sm text-gray-700 mt-2 line-clamp-2">{description}</p>
+  return (
+    <div className="p-4 rounded-xl shadow-lg border border-gray-100 group hover:shadow-xl hover:bg-primary/5 transition-all duration-300 max-w-sm">
+      <Fade delay={200}>
+        <div className="relative overflow-hidden rounded-lg">
+          <img
+            src={image}
+            alt="Product Image"
+            className="w-full h-40 object-cover transform transition-transform duration-300 group-hover:scale-105"
+          />
+          <span className="absolute top-2 left-2 bg-blue-600 text-white text-xs font-semibold px-4 py-1 rounded-full">
+            {discount}% Off
+          </span>
+        </div>
+      </Fade>
+
+      <div className="mt-4 p-4">
+        <Fade direction="up" delay={300}>
+          <h3 className="text-lg font-bold text-gray-800 truncate">
+            {itemName}
+          </h3>
+        </Fade>
+        <Fade delay={index * 200}>
+          <p className="text-sm text-gray-500 italic">Generic: {genericName}</p>
+          <p className="text-sm text-gray-500 mt-1">
+            Mass Unit: {massUnit} | {company}
+          </p>
+          <p className="text-xs text-blue-600 font-medium mt-1">
+            Category: {categoryName}
+          </p>
+          <p className="text-sm text-gray-700 mt-2 line-clamp-2">
+            {description}
+          </p>
+        </Fade>
 
         <div className="flex items-center justify-between mt-4">
-          <div>
-            <p className="text-sm text-gray-400 line-through">
-              ${price.toFixed(2)}
-            </p>
-            <p className="text-lg font-bold text-blue-600">
-              ${(price - (price * discount) / 100).toFixed(2)}
-            </p>
-          </div>
+          <Fade direction="left" delay={200}>
+            <div>
+              <p className="text-sm text-gray-400 line-through">
+                ${price.toFixed(2)}
+              </p>
+              <p className="text-lg font-bold text-blue-600">
+                ${(price - (price * discount) / 100).toFixed(2)}
+              </p>
+            </div>
+          </Fade>
+          <Fade delay={350}>                                                            
           <button onClick={handleAddToCart} className="green-button">
             Add to Cart
           </button>
+          </Fade>
+
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import SectionHeader from "../../components/SectionHeader";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import LoadingSpin from "../../components/LoadingSpin";
+import { Fade } from "react-awesome-reveal";
 const Category = () => {
   const [categories, setCategories] = useState([]);
   const axiosPublic = useAxiosPublic();
@@ -15,6 +16,9 @@ const Category = () => {
   }
     return (
       <div className="my-8">
+        <Fade>
+          
+        </Fade>
         <SectionHeader
           title="Shop by Category"
           subTitle="Find exactly what you need from our carefully curated categories."

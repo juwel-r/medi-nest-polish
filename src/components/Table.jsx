@@ -8,6 +8,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { BsSortNumericUpAlt } from "react-icons/bs";
+import { Fade } from "react-awesome-reveal";
 //todo: need to change font
 const Table = ({ apiEndPoint }) => {
   const { userInfo } = useAuth();
@@ -107,11 +108,11 @@ const Table = ({ apiEndPoint }) => {
             medicines.result.length > 0 &&
             medicines.result.map((item, index) => (
               <tr key={item._id}>
-                <th>{index + 1}</th>
-                <td>{item.itemName}</td>
-                <td>{item.genericName}</td>
-                <td>{item.category}</td>
-                <td>{item.company}</td>
+                <th><Fade direction="down" delay={index*100}>{index + 1}</Fade></th>
+                <td><Fade direction="down" delay={index*100}>{item.itemName}</Fade></td>
+                <td><Fade direction="down" delay={index*100}>{item.genericName}</Fade></td>
+                <td><Fade direction="down" delay={index*100}>{item.category}</Fade></td>
+                <td><Fade direction="down" delay={index*100}>{item.company}</Fade></td>
                 <td className="text-right">
                   {item.discount > 0 ? (
                     <p>

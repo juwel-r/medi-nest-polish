@@ -25,6 +25,7 @@ import PaymentHistory from "../Dashboard/Seller/PaymentHistory";
 import ManageMedicine from "../Dashboard/Seller/ManageMedicine";
 import ManageAdvertisement from "../Dashboard/Seller/ManageAdvertisement";
 import UserPaymentHistory from "../Dashboard/User/UserPaymentHistory";
+import BlogAndArticles from "../Pages/BlogAndArticle";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         element: <Shop></Shop>,
         path: "/shop",
+      },
+      {
+        element: <BlogAndArticles></BlogAndArticles>,
+        path: "/blog",
       },
       {
         element: <ItemsByCategory></ItemsByCategory>,

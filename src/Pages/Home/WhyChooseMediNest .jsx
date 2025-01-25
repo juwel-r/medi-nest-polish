@@ -23,7 +23,7 @@ const WhyChooseMediNest = () => {
   return (
     <section className="relative bg-[#F8FAFF] sm:py-16 py-8  px-6 sm:px-12">
       <div className="text-center">
-        <SectionHeader title={"We Believe in Numbers"} subTitle={""}></SectionHeader>
+        <SectionHeader title={"Why Medi Nest?"} subTitle={""}></SectionHeader>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-14 relative mt-20">
