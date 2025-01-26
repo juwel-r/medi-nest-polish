@@ -1,9 +1,12 @@
+// http://localhost:5000
+// https://medi-nest-server.vercel.app
+
 import axios from "axios";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-  baseURL: "https://medi-nest-jr6.vercel.app/",
+  baseURL: "https://medi-nest-server.vercel.app",
 });
 
 const useAxiosSecure = () => {
@@ -34,9 +37,10 @@ const useAxiosSecure = () => {
       const status = err.response.status;
       if (status === 401 || status === 403) {
         await logOut();
-        navigate("/login");
+        // navigate("/login");
       }
       console.log("response error code is: ", err.response.status);
+      console.log(err);
       return Promise.reject(err);
     }
   );

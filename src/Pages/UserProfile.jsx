@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAuth from "../customHooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import { Fade } from "react-awesome-reveal";
 
 const UserProfile = () => {
   const { userInfo } = useAuth();
@@ -19,12 +20,13 @@ const UserProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission, e.g., updating the user profile in the database.
-    console.log("Updated Profile Data:", formData);
     setEditMode(false);
   };
 
   return (
-    <div className="w-[95%] sm:max-w-lg mx-auto p-6 my-6 rounded-lg shadow-md bg-white/20 border border-white/50">
+    <Fade delay={200}>
+
+    <div className="w-[95%] sm:max-w-lg mx-auto p-6 my-6 rounded-lg shadow-md bg-white/20 border border-white/50 text-white">
       <Helmet>
         <title>Profile of {userInfo?.displayName} | Medi Nest</title>
       </Helmet>
@@ -32,11 +34,11 @@ const UserProfile = () => {
         <img
           src={formData.photoURL || "https://via.placeholder.com/150"}
           alt="User Avatar"
-          className="w-24 h-24 rounded-full shadow-md mb-4 object-cover"
+          className="w-44 h-44 rounded-full shadow-md object-cover"
         />
         {!editMode ? (
           <>
-            <h1 className="text-2xl font-semibold">{formData?.displayName}</h1>
+            <h1 className="text-2xl font-semibold mt-4">{formData?.displayName}</h1>
             <p className="">{formData?.email}</p>
             <button
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary green-button"
@@ -54,7 +56,7 @@ const UserProfile = () => {
                 name="displayName"
                 value={formData?.displayName}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
+                className="w-full px-3 py-2 border border-white/50 rounded-md focus:ring-1 focus:ring-primary focus:outline-none bg-white/20 shadow-md"
                 required
               />
             </div>
@@ -65,7 +67,7 @@ const UserProfile = () => {
                 name="photoURL"
                 value={formData?.photoURL}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
+                className="w-full px-3 py-2 border border-white/50 rounded-md focus:ring-1 focus:ring-primary focus:outline-none bg-white/20 shadow-md"
                 required
               />
             </div>
@@ -77,7 +79,7 @@ const UserProfile = () => {
                 readOnly
                 value={formData?.email}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
+                className="w-full px-3 py-2 border border-white/50 rounded-md focus:ring-1 focus:ring-primary focus:outline-none bg-white/20 shadow-md"
                 required
               />
             </div>
@@ -97,6 +99,7 @@ const UserProfile = () => {
         )}
       </div>
     </div>
+    </Fade>
   );
 };
 

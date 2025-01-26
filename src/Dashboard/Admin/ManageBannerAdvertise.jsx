@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Toggle from "react-toggle";
 import "react-toggle/style.css";
 import { Helmet } from "react-helmet-async";
+import { Fade } from "react-awesome-reveal";
 
 const ManageBannerAdvertise = () => {
   const axiosSecure = useAxiosSecure();
@@ -99,10 +100,10 @@ const ManageBannerAdvertise = () => {
               {sliderData &&
                 sliderData.map((item, i) => (
                   <tr key={item._id} className="even:bg-white/10">
-                    <td className="p-2 px-4">{i + 1}</td>
+                    <td className="p-2 px-4"><Fade delay={i * 50}>{i + 1}</Fade></td>
                     {/* image */}
                     <td className="p-2">
-                      <div className="flex justify-center flex-col items-center">
+                      <Fade delay={i * 100}><div className="flex justify-center flex-col items-center">
                         <img
                           src={item.image}
                           alt={item.name}
@@ -125,20 +126,20 @@ const ManageBannerAdvertise = () => {
                             ""
                           )}
                         </div>
-                      </div>
+                      </div></Fade>
                     </td>
 
                     <td className="p-2 text-left pr-4  hidden lg:block">
-                      {item.itemName}
-                      <div>{item.sellerEmail}</div>
+                      <Fade delay={i * 100}>{item.itemName}
+                      <div>{item.sellerEmail}</div></Fade>
                     </td>
                     <td className="p-2 text-left lg:text-justify text-xs md:text-sm pr-4">
-                      {item.description.slice(0, 150)}...
+                     <Fade delay={i * 100}> {item.description.slice(0, 150)}...</Fade>
                     </td>
 
                     {/* banner status */}
                     <td className="p-2 pr-4 hidden lg:inline">
-                      <div className="hidden lg:flex justify-center items-center h-full w-full mr-4">
+                      <Fade delay={i * 100}><div className="hidden lg:flex justify-center items-center h-full w-full mr-4">
                         {" "}
                         {item?.bannerStatus === "Approved" ? (
                           <span className="bg-primary rounded-full py-1.5 px-2 text-xs font-bold shadow-inner shadow-black/50 text-white/70">
@@ -151,11 +152,11 @@ const ManageBannerAdvertise = () => {
                         ) : (
                           ""
                         )}
-                      </div>
+                      </div></Fade>
                     </td>
 
                     <td className="border-l border-white/30 p-2">
-                      <div className="rounded-full text-sm px-x py-1">
+                      <Fade delay={i * 100}><div className="rounded-full text-sm px-x py-1">
                         <Toggle
                           id="cheese-status"
                           checked={item?.bannerStatus === "Approved" && true}
@@ -171,7 +172,7 @@ const ManageBannerAdvertise = () => {
                           }}
                         />
                         <label htmlFor="cheese-status"></label>
-                      </div>
+                      </div></Fade>
                     </td>
                   </tr>
                 ))}

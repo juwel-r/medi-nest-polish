@@ -26,7 +26,6 @@ const DiscountSlide = () => {
         setSlidesPerView(3); // Desktop
       }
     };
-    console.log(window.innerWidth);
 
     updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
@@ -35,7 +34,6 @@ const DiscountSlide = () => {
       window.removeEventListener("resize", updateSlidesPerView);
     };
   }, []);
-  console.log(slidesPerView);
   if(!categories || !categories.length>0){
    return <LoadingSpin/>
   }

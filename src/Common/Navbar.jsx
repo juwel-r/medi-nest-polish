@@ -67,11 +67,7 @@ const Navbar = () => {
       </div>
       {/* Logo */}
       <Link to="/" className="ml-3 min-w-fit">
-        <img
-          className="h-12 lg:scale-150 "
-          src={logo}
-          alt="edu-mate-logo"
-        />
+        <img className="h-12 lg:scale-150 " src={logo} alt="edu-mate-logo" />
       </Link>
 
       {/* Menu */}
@@ -84,7 +80,9 @@ const Navbar = () => {
           {menus}
           <div className="flex flex-col lg:hidden">
             {userInfo ? (
-              <div><LogOut></LogOut></div>
+              <div>
+                <LogOut></LogOut>
+              </div>
             ) : (
               <>
                 <Link to="/login" className="px-2">
@@ -123,8 +121,9 @@ const Navbar = () => {
                   onClick={() => setProfileMenu(!profileMenu)}
                   src={userInfo.photoURL}
                   alt={userInfo.displayName}
-                  data-tooltip-id="my-tooltip"
-                  data-tooltip-content={userInfo.displayName}
+                  // data-tooltip-id="my-tooltip"
+                  // data-tooltip-content={userInfo.displayName}
+                  className="cursor-pointer"
                 />
               )}
             </div>
@@ -143,23 +142,21 @@ const Navbar = () => {
             <>
               <Link
                 to="/register"
-                className="myBtn mr-2 btn btn-outline btn-sm rounded-none green-button"
+                className="mr-2 green-button hover:border-none"
               >
-                Join Us
+                <span className="text-nowrap">Join Us</span>
               </Link>
               <Link
                 to="/login"
-                className="myBtn mr-2 btn btn-outline btn-sm rounded-none green-button"
+                className="mr-2 green-button hover:border-none"
               >
-                Login
+                <span>Login</span>
               </Link>
             </>
           )}
           <div className="border rounded-lg p-2">
-            <select name="language" id="" className="">
-              <option disabled selected value="">
-                Languages
-              </option>
+            <select name="language" defaultValue="English" className="">
+              <option value="">Languages</option>
               <option value="English">English</option>
               <option value="Bangla">Bangla</option>
             </select>
@@ -182,7 +179,7 @@ const Navbar = () => {
         >
           <div className="w-24 h-24 p-1 border border-primary rounded-full">
             <img
-              className=" rounded-full h-full w-full object-cover"
+              className=" rounded-full h-full w-full object-cover "
               src={userInfo.photoURL}
               alt={userInfo.displayName}
             />

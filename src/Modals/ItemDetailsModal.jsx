@@ -27,7 +27,6 @@ const ItemDetailsModal = ({ item }) => {
   const navigate = useNavigate();
 
   const handleAddToCart = async (item) => {
-    console.log(item);
     if (!userInfo?.email) {
       navigate("/login");
     }

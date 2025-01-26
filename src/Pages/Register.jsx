@@ -11,7 +11,8 @@ import LoginWithGoogle from "../components/LoginWithGoogle";
 import { Helmet } from "react-helmet-async";
 
 const Register = () => {
-  const { register, updateUserProfile, authLoading,setAuthLoading ,logOut } = useAuth();
+  const { register, updateUserProfile, authLoading, setAuthLoading, logOut } =
+    useAuth();
   const [showPass, setShowPass] = useState(false);
   const [name, setName] = useState("");
   const [photo, setPhoto] = useState(null);
@@ -66,9 +67,7 @@ const Register = () => {
                 .then((res) => {
                   if (res.data.insertedId) {
                     showToast("Registration Successful");
-                    logOut(); 
-                    //todo: if not logOut... role get undefined // need to solve this
-                    navigate("/login");
+                    navigate("/");
                   }
                 })
                 .catch((err) => console.log(err.response.data));
@@ -81,7 +80,7 @@ const Register = () => {
               icon: "error",
               confirmButtonText: "Try Again",
             });
-            setAuthLoading(false)
+            setAuthLoading(false);
           });
       } else {
         showAlert({
@@ -90,14 +89,14 @@ const Register = () => {
           icon: "error",
           confirmButtonText: "Try Again",
         });
-        setAuthLoading(false)
+        setAuthLoading(false);
       }
     }
   };
 
   return (
     <section className="py-12">
-            <Helmet>
+      <Helmet>
         <title>Register | Medi Nest</title>
       </Helmet>
       <div className="container mx-auto px-4">

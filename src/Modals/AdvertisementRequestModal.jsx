@@ -43,7 +43,6 @@ const AdvertisementRequestModal = ({ item, refetch }) => {
           `/items/slider/${item._id}?type=request`,
           formData
         );
-        console.log(res.data);
         if (res.data.modifiedCount > 0) {
           showToast(
             `${item.itemName} successfully Requested to add!`,

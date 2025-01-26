@@ -13,7 +13,7 @@ const CategoryCard = ({ category, index }) => {
   ];
 
   return (
-    <Fade direction="up" delay={index*200} className="">
+    <Fade direction="up" delay={index*100} className="">
       <div
         style={{
           backgroundColor: categoryColors[index % categoryColors.length],

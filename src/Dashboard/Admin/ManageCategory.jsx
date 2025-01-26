@@ -5,6 +5,7 @@ import { showAlert, showToast } from "../../Utils/alerts";
 import { useQuery } from "@tanstack/react-query";
 import AddCategoryModal from "../../Modals/AddCategoryModal";
 import { Helmet } from "react-helmet-async";
+import { Fade } from "react-awesome-reveal";
 
 const ManageCategory = () => {
   const axiosSecure = useAxiosSecure();
@@ -39,7 +40,7 @@ const ManageCategory = () => {
       icon: "warning",
       text: "All medicine of this category will be uncatogorized! ",
       confirmButtonText: "Delete",
-      showCancelButton:true
+      showCancelButton: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -55,7 +56,7 @@ const ManageCategory = () => {
             icon: "error",
             confirmButtonText: "Try Again",
           });
-          console.log(error)
+          console.log(error);
         }
       }
     });
@@ -63,15 +64,19 @@ const ManageCategory = () => {
 
   return (
     <div className="container mx-auto py-4 mt-4">
-                  <Helmet>
-                    <title>Category Management | Medi Nest</title>
-                  </Helmet>
+      <Helmet>
+        <title>Category Management | Medi Nest</title>
+      </Helmet>
       <div className="flex items-center justify-between px-4 mb-4">
-        <h2 className="text-lg md:text-2xl font-semibold  text-white">
-          Category Management
-        </h2>
+        <Fade>
+          <h2 className="text-lg md:text-2xl font-semibold  text-white">
+            Category Management
+          </h2>
+        </Fade>
         <div onClick={handleAddCategory} className="green-button">
-          <AddCategoryModal refetch={refetch}></AddCategoryModal>
+          <Fade>
+            <AddCategoryModal refetch={refetch}></AddCategoryModal>
+          </Fade>
         </div>
       </div>
       {isLoading ? (
@@ -91,30 +96,40 @@ const ManageCategory = () => {
               {category &&
                 category.map((item, index) => (
                   <tr key={item._id} className="even:bg-white/10 group ">
-                    <td className="p-2">{index + 1}</td>
-                    <td className="p-2 ">
-                      <div className="flex justify-center">
-                        <img
-                          src={item.categoryImage}
-                          alt={item.name}
-                          className="w-36 h-28 rounded-xl object-cover group-hover:scale-110 shadow-md my-2 transition-all ease-out duration-300"
-                        />
-                      </div>
-                    </td>
-                    <td className="p-2 w-1/2">{item.name}</td>
                     <td className="p-2">
-                     <div className="flex flex-col md:flex-row gap-2">
-                     <AddCategoryModal
-                        item={item}
-                        refetch={refetch}
-                      ></AddCategoryModal>
-                      <button
-                        onClick={() => handleDelete(item)}
-                        className="alert-button-error md:ml-4"
-                      >
-                        Delete
-                      </button>
-                     </div>
+                      <Fade delay={index * 150}>{index + 1}</Fade>
+                    </td>
+                    <td className="p-2 ">
+                      <Fade delay={index * 150}>
+                        <div className="flex justify-center">
+                          <img
+                            src={item.categoryImage}
+                            alt={item.name}
+                            className="w-36 h-28 rounded-xl object-cover group-hover:scale-110 shadow-md my-2 transition-all ease-out duration-300"
+                          />
+                        </div>
+                      </Fade>
+                    </td>
+                    <td className="p-2 w-1/2">
+                      <Fade direction="up" delay={index * 150}>
+                        {item.name}
+                      </Fade>
+                    </td>
+                    <td className="p-2">
+                      <Fade delay={index * 150}>
+                        <div className="flex flex-col md:flex-row gap-2">
+                          <AddCategoryModal
+                            item={item}
+                            refetch={refetch}
+                          ></AddCategoryModal>
+                          <button
+                            onClick={() => handleDelete(item)}
+                            className="alert-button-error md:ml-4"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </Fade>
                     </td>
                   </tr>
                 ))}

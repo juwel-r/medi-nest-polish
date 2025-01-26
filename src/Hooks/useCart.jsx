@@ -8,7 +8,8 @@ const useCart = () => {
   const axiosSecure = useAxiosSecure();
   const { data: cart = [], refetch } = useQuery({
     queryKey: ["cart", userInfo?.email],
-    queryFn: async () => {
+    enabled: !!localStorage.getItem("access-token"),
+        queryFn: async () => {
       if (userInfo.email) {
         try {
           const res = await axiosSecure(`/cart?email=${userInfo.email}`);

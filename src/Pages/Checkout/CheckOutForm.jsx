@@ -19,8 +19,6 @@ const CheckOutForm = () => {
   const [cart, refetch] = useCart();
   const navigate = useNavigate();
   const totalPrice = cart.reduce((a, c) => a + c.price * c.quantity, 0);
-  console.log(cart);
-  console.log(totalPrice);
   useEffect(() => {
     if (totalPrice > 0) {
       axiosSecure
@@ -30,7 +28,6 @@ const CheckOutForm = () => {
         });
     }
   }, [axiosSecure, totalPrice]);
-  // console.log(clientSecret);
 
   const handleSubmit = async (e) => {
     setTransaction("");
@@ -53,7 +50,6 @@ const CheckOutForm = () => {
         confirmButtonText: "Try Again",
       });
     } else {
-      console.log("Payment method info is", paymentMethod);
       setError("");
     }
 
@@ -76,7 +72,6 @@ const CheckOutForm = () => {
         confirmButtonText: "Try Again",
       });
     } else {
-      console.log("paymentIntent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
         setTransaction(paymentIntent.id);
         const paymentInfo = {
@@ -94,7 +89,6 @@ const CheckOutForm = () => {
           status: "Pending",
         };
         axiosSecure.post("/payment", paymentInfo).then((res) => {
-          // console.log(res.data);
           refetch();
           showAlert({
             title: `Payment successful $${totalPrice.toFixed(2)}`,

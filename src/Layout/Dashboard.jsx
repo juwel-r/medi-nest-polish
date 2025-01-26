@@ -6,6 +6,7 @@ import { VscVerifiedFilled } from "react-icons/vsc";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosList } from "react-icons/io";
 import LogOut from "../components/LogOut";
+import { Fade } from "react-awesome-reveal";
 
 const Dashboard = () => {
   const { userInfo } = useAuth();
@@ -28,6 +29,7 @@ const Dashboard = () => {
   return (
     <div className=" min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-400 p-6">
       <div className="max-w-[1440px] mx-auto">
+        <Fade delay={300}>
         <div className="lg:grid grid-cols-12 gap-4 relative">
           {/* sidebar */}
           <div
@@ -139,34 +141,24 @@ const Dashboard = () => {
                   >
                     Payment History
                   </NavLink>
-
                 </ul>
               )}
               {/* common sidebar menu */}
               <div className="mt-6 border-t border-white/20 pt-4 items-end h-full">
                 <ul className="flex flex-col gap-4">
-                <NavLink
-                    to="/"
-                    className="font-medium hover:text-white/80 cursor-pointer"
-                  >
-                    Home
-                  </NavLink>
                   <NavLink
                     to="profile"
                     className="font-medium hover:text-white/80 cursor-pointer"
                   >
                     Update Profile
                   </NavLink>
-
                   <NavLink
                     to="/"
                     className="font-medium hover:text-white/80 cursor-pointer"
                   >
-                    Social Media
-                    {/* <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">
-                      1
-                    </span> */}
+                   Back Home
                   </NavLink>
+
                   <div className="font-medium hover:text-white/80 cursor-pointer text-left pl-3">
                     <LogOut />
                   </div>
@@ -208,6 +200,8 @@ const Dashboard = () => {
             <Outlet></Outlet>
           </div>
         </div>
+
+        </Fade>
       </div>
     </div>
   );

@@ -18,10 +18,8 @@ const AddCategoryModal = ({ item, refetch }) => {
     reset,
   } = useForm();
   const onSubmit = async (data) => {
-    console.log(data.categoryImage[0]);
     const photoURL = await photoUpload(data.categoryImage[0]);
     data.categoryImage = photoURL;
-    console.log(data);
     try {
       if (item) {
         const res = await axiosSecure.patch(`/category/${item._id}`, data);

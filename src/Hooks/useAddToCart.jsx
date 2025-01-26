@@ -42,13 +42,12 @@ const useAddToCart = () => {
         } else {
           showToast("Something went wrong, Try Again!", "error");
         }
-        // console.log(error);
+        console.log(error);
       }
     },
   });
   useEffect(() => {
     if (data?.insertedId) {
-      console.log(data.insertedId);
       showToast("Add to Cart Successful!", "success");
     }
   }, [data]);
@@ -56,4 +55,3 @@ const useAddToCart = () => {
 };
 
 export default useAddToCart;
-//todo: logo color change

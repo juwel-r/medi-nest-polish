@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import "../dashboard.css";
 import LoadingSpin from "../../components/LoadingSpin";
 import { Helmet } from "react-helmet-async";
+import { Fade } from "react-awesome-reveal";
 
 const ManageUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -37,7 +38,6 @@ const ManageUser = () => {
       if (res.data.modifiedCount > 0) {
         showToast(`${name} is now ${updateRole.toUpperCase()}!`, "success");
         refetch();
-        console.log(res.data);
       }
     } catch (error) {
       showAlert({
@@ -47,14 +47,13 @@ const ManageUser = () => {
         confirmButtonText: "Try Again",
       });
     }
-    console.log(updateRole, name, email);
   };
 
   return (
     <div className="container mx-auto py-4 mt-4">
-                  <Helmet>
-                    <title>User Management | Medi Nest</title>
-                  </Helmet>
+      <Helmet>
+        <title>User Management | Medi Nest</title>
+      </Helmet>
       <h2 className="text-2xl font-semibold mb-4 text-white">
         User Management
       </h2>
@@ -73,35 +72,43 @@ const ManageUser = () => {
             </thead>
             <tbody>
               {users &&
-                users.map((item) => (
+                users.map((item, i) => (
                   <tr key={item._id} className="even:bg-white/10">
-                    <td className="p-2">{item.name}</td>
-                    <td className="p-2">{item.email}</td>
                     <td className="p-2">
-                      <input
-                        value={item.role.toUpperCase()}
-                        disabled
-                        className="bg-transparent text-center"
-                      />
+                      <Fade delay={i * 100}>{item.name}</Fade>
+                    </td>
+                    <td className="p-2">
+                      <Fade delay={i * 100}>{item.email}</Fade>
+                    </td>
+                    <td className="p-2">
+                      <Fade delay={i * 100}>
+                        <input
+                          value={item.role.toUpperCase()}
+                          disabled
+                          className="bg-transparent text-center"
+                        />
+                      </Fade>
                     </td>
                     <td className="border-l border-white/30 p-2">
-                      <form>
-                        <select
-                          defaultValue={item.role}
-                          onChange={(e) =>
-                            handleRoleChange(
-                              e.target.value,
-                              item.name,
-                              item.email
-                            )
-                          }
-                          className="p-2 pt-1 border border-white/30 rounded custom-select outline-none"
-                        >
-                          <option value="user">User</option>
-                          <option value="seller">Seller</option>
-                          <option value="admin">Admin</option>
-                        </select>
-                      </form>
+                      <Fade delay={i * 100}>
+                        <form>
+                          <select
+                            defaultValue={item.role}
+                            onChange={(e) =>
+                              handleRoleChange(
+                                e.target.value,
+                                item.name,
+                                item.email
+                              )
+                            }
+                            className="p-2 pt-1 border border-white/30 rounded custom-select outline-none"
+                          >
+                            <option value="user">User</option>
+                            <option value="seller">Seller</option>
+                            <option value="admin">Admin</option>
+                          </select>
+                        </form>
+                      </Fade>
                     </td>
                   </tr>
                 ))}

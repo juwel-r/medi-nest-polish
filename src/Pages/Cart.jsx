@@ -6,6 +6,7 @@ import { showAlert, showToast } from "../Utils/alerts";
 import useAuth from "../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { Fade } from "react-awesome-reveal";
 
 const Cart = () => {
   const [cartItems, refetch] = useCart();
@@ -23,7 +24,6 @@ const Cart = () => {
         try {
           const res = await axiosSecure.delete(`/cart/${id}`);
           if (res.data.deletedCount > 0) {
-            console.log(res.data);
             showToast("Item has been Deleted!");
             refetch();
           } else {
@@ -55,7 +55,6 @@ const Cart = () => {
   const handleQuantity = async (id, value) => {
     try {
       const res = await axiosSecure.patch(`/cart/${id}`, { value });
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         showToast("Quantity Updated.");
         refetch();
@@ -89,7 +88,6 @@ const Cart = () => {
         try {
           const res = await axiosSecure.delete(`/cart?email=${userInfo.email}`);
           if (res.data.deletedCount > 0) {
-            console.log(res.data);
             showToast("You Cart is now empty!");
             refetch();
           } else {
@@ -113,8 +111,8 @@ const Cart = () => {
   };
 
   return (
+    
     <div className="">
-      {" "}
       <Helmet>
         <title>{userInfo.displayName}'s Cart | Medi Nest</title>
       </Helmet>
@@ -130,9 +128,11 @@ const Cart = () => {
         {cartItems.length > 0 ? (
           <>
             <div className="space-y-4">
-              {cartItems.map((item) => (
+              {cartItems.map((item, i) => (
+                <Fade delay={i *200}  key={item._id}>
+
                 <div
-                  key={item._id}
+                 
                   className="grid grid-cols-2 md:flex items-center justify-between gap-4 bg-gray-100 p-4 rounded-lg shadow"
                 >
                   {/* Photo ===section */}
@@ -196,21 +196,22 @@ const Cart = () => {
                     Remove
                   </button>
                 </div>
+                </Fade>
               ))}
             </div>
 
             {/* Footer */}
             <div className="mt-8 flex justify-between items-center">
               {/* Clear All */}
-              <button
+             <Fade delay={300}> <button
                 onClick={handleDeleteAll}
                 className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
               >
                 Clear All Items
-              </button>
+              </button></Fade>
 
               {/* Total Cost */}
-              <div className="flex items-center gap-4">
+              <Fade delay={300}><div className="flex items-center gap-4">
                 <p className="text-xl font-bold">
                   Subtotal:{" "}
                   <span className="text-blue-600">${totalCost.toFixed(2)}</span>
@@ -220,7 +221,7 @@ const Cart = () => {
                     Checkout ({cartItems.length})
                   </button>
                 </Link>
-              </div>
+              </div></Fade>
             </div>
           </>
         ) : (

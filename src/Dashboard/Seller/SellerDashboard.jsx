@@ -5,6 +5,7 @@ import LoadingSpin from "../../components/LoadingSpin";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import { Fade } from "react-awesome-reveal";
 
 const SellerDashboard = () => {
   const axiosSecure = useAxiosSecure();
@@ -23,7 +24,6 @@ const SellerDashboard = () => {
       }
     },
   });
-  // console.log(data);
 
   return (
     <div className="mt-6">
@@ -36,57 +36,71 @@ const SellerDashboard = () => {
         <>
           {/* top section */}
           <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
-              <h2 className="text-base md:text-lg font-semibold">
-                Total Orders
-              </h2>
-              <p className="text-lg md:text-xl font-bold">
-                {(
-                  parseInt(data?.paid?.orders || 0) +
-                  parseInt(data?.pending?.orders || 0)
-                )
-                  .toString()
-                  .padStart(2, "0")}
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
-              <h2 className="text-base md:text-lg font-semibold">Total Paid</h2>
-              <p className="text-lg md:text-xl font-bold">
-                ${data?.paid?.revenue || "00"}
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
-              <h2 className="text-base md:text-lg font-semibold">
-                Total Pending
-              </h2>
-              <p className="text-lg md:text-xl font-bold">
-                ${data?.pending?.revenue || "00"}
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
-              <h2 className="text-base md:text-lg font-semibold">
-                Available Items
-              </h2>
-              <p className="text-lg md:text-xl font-bold">
-                {data?.totalItem.toString().padStart(2, "0") || "00"}
-              </p>
-            </div>
+            <Fade delay={100}>
+              <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+                <h2 className="text-base md:text-lg font-semibold">
+                  Total Orders
+                </h2>
+                <p className="text-lg md:text-xl font-bold">
+                  {(
+                    parseInt(data?.paid?.orders || 0) +
+                    parseInt(data?.pending?.orders || 0)
+                  )
+                    .toString()
+                    .padStart(2, "0")}
+                </p>
+              </div>
+            </Fade>
+            <Fade delay={150}>
+              <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+                <h2 className="text-base md:text-lg font-semibold">
+                  Total Paid
+                </h2>
+                <p className="text-lg md:text-xl font-bold">
+                  ${data?.paid?.revenue || "00"}
+                </p>
+              </div>
+            </Fade>
+            <Fade delay={250}>
+              <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+                <h2 className="text-base md:text-lg font-semibold">
+                  Total Pending
+                </h2>
+                <p className="text-lg md:text-xl font-bold">
+                  ${data?.pending?.revenue || "00"}
+                </p>
+              </div>
+            </Fade>
+            <Fade delay={350}>
+              <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
+                <h2 className="text-base md:text-lg font-semibold">
+                  Available Items
+                </h2>
+                <p className="text-lg md:text-xl font-bold">
+                  {data?.totalItem.toString().padStart(2, "0") || "00"}
+                </p>
+              </div>
+            </Fade>
           </section>
           {/* bottom section */}
           <section className="grid md:grid-cols-3 gap-4 mt-6">
-            <div className="md:col-span-2 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20">
-              <h2 className="text-white text-base md:text-lg font-semibold">
-                Overall Activity
-              </h2>
+            <Fade delay={400} className="md:col-span-2 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20">
+              <div>
+                <h2 className="text-white text-base md:text-lg font-semibold">
+                  Overall Activity
+                </h2>
 
-              <div className="h-32 bg-gradient-to-br from-white/10 to-white/5 rounded-lg mt-2"></div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20">
-              <h2 className="text-white text-base md:text-lg font-semibold">
-                Daily Report
-              </h2>
-              <div className="h-32 bg-gradient-to-br from-white/10 to-white/5 rounded-lg mt-2"></div>
-            </div>
+                <div className="h-32 bg-gradient-to-br from-white/10 to-white/5 rounded-lg mt-2"></div>
+              </div>
+            </Fade>
+            <Fade delay={450}>
+              <div className="bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20">
+                <h2 className="text-white text-base md:text-lg font-semibold">
+                  Daily Report
+                </h2>
+                <div className="h-32 bg-gradient-to-br from-white/10 to-white/5 rounded-lg mt-2"></div>
+              </div>
+            </Fade>
           </section>
         </>
       )}

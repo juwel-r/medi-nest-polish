@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { BsSortNumericUpAlt } from "react-icons/bs";
 import { Fade } from "react-awesome-reveal";
-//todo: need to change font
 const Table = ({ apiEndPoint }) => {
   const { userInfo } = useAuth();
   const [addToCart] = useAddToCart();
@@ -26,12 +25,10 @@ const Table = ({ apiEndPoint }) => {
   const totalPage = Math.ceil((medicineCount || 0) / (itemPerPage || 1));
   const pages = [...Array(totalPage).keys()];
 
-  console.log(searchValue);
   useEffect(() => {
     axiosPublic(
       `${apiEndPoint}?currentPage=${currentPage}&itemPerPage=${itemPerPage}&sort=${sortPrice}&search=${searchValue}`
     ).then((result) => setMedicines(result.data));
-    console.log(apiEndPoint);
   }, [currentPage, itemPerPage, sortPrice, searchValue]);
 
   //add to cart
@@ -47,7 +44,6 @@ const Table = ({ apiEndPoint }) => {
     setItemPerPage(parseInt(e.target.value));
     setCurrentPage(0);
   };
-  console.log(sortPrice);
   return (
     <div className="px-4">
       {/* Search input */}
@@ -91,7 +87,7 @@ const Table = ({ apiEndPoint }) => {
             <th>Generic Name</th>
             <th>Category</th>
             <th>Company</th>
-            <th
+            <th 
               onClick={() =>
                 !sortPrice ? setSortPrice(1) : setSortPrice(sortPrice * -1)
               }
@@ -155,8 +151,8 @@ const Table = ({ apiEndPoint }) => {
           data-tooltip-content="Previous"
           className="text-2xl w-8 h-10 outline-none cursor-pointer"
         />
-        {pages.map((page) => (
-          <button
+        {pages.map((page, index) => (
+          <button key={index}
             onClick={() => setCurrentPage(page)}
             className={`p-1.5 outline outline-1 outline-gray-400/50 px-4 rounded-md font-semibold transition-all duration-300 ${
               page === currentPage && "bg-primary text-white "

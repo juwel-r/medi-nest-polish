@@ -13,7 +13,6 @@ const BestSelling = () => {
       setProducts(result.data)
     );
   }, []);
-  console.log(products);
   if (!products || !products.length > 0) {
     return <LoadingSpin />;
   }

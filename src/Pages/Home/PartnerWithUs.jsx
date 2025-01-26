@@ -40,7 +40,7 @@ const PartnerWithUs = () => {
 
       <div className="relative w-full  lg:h-[200px] flex flex-col md:flex-row justify-center items-center gap-y-10 xs:min-h-[320px] lg:mt-8 pb-16 lg:pb-0">
         {sellers.map((seller, index) => (
-          <div
+          <div key={index}
             className={`md:absolute border-2 border-white/30 p-1.5 rounded-xl shadow-xl  transform  ${
               index === 0
                 ? "rotate-6 lg:translate-y-6 md:top-0 md:-translate-x-[200px] lg:-translate-x-[500px] before:content-['1st_Place'] before:absolute before:top-0 before:text-gray-400 before:right-0 before:pr-4 before:pt-3"

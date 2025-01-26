@@ -16,6 +16,7 @@ const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState("");
   const [authLoading, setAuthLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
+  const [isDark, setDark] = useState(false);
 
   //Register User
   const register = (email, password) => {
@@ -75,6 +76,8 @@ const AuthProvider = ({ children }) => {
     loginWithGoogle,
     updateUserProfile,
     logOut,
+    setDark,
+    isDark,
   };
   return (
     <div>

@@ -29,7 +29,6 @@ const AddCategoryModal = ({ refetch, categories, company }) => {
     formData.discount = parseFloat(data.discount);
 
     formData.sellerEmail = userInfo.email;
-    console.log(formData);
     formData.image = photoURL;
 
     if (photoURL) {
@@ -68,7 +67,7 @@ const AddCategoryModal = ({ refetch, categories, company }) => {
       <Helmet>
         <title>Add Medicine | Medi Nest</title>
       </Helmet>
-      <button onClick={() => setIsOpen(true)} className="py-1 md:text-xl">
+      <button onClick={() => setIsOpen(true)} className="py-1">
         Add Medicine
       </button>
 

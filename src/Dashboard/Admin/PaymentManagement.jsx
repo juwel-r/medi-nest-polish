@@ -6,6 +6,7 @@ import "../dashboard.css";
 import LoadingSpin from "../../components/LoadingSpin";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { Helmet } from "react-helmet-async";
+import { Fade } from "react-awesome-reveal";
 
 const PaymentManagement = () => {
   const axiosSecure = useAxiosSecure();
@@ -87,32 +88,40 @@ const PaymentManagement = () => {
             </thead>
             <tbody>
               {paymentData &&
-                paymentData.map((item) => (
+                paymentData.map((item, index) => (
                   <tr key={item._id} className="even:bg-white/10">
-                    <td className="p-2">{item.name}</td>
-                    <td className="p-2">{item.buyerEmail}</td>
-                    <td className="p-2 text-right pr-4">
-                      ${item?.amount.toFixed(2)}
+                    <td className="p-2">
+                      <Fade delay={index*100}>{item.name}</Fade>
                     </td>
-                    <td className="p-2 text-right pr-4">{item.status}</td>
+                    <td className="p-2">
+                      <Fade delay={index*100}>{item.buyerEmail}</Fade>
+                    </td>
+                    <td className="p-2 text-right pr-4">
+                      <Fade delay={index*100}> ${item?.amount.toFixed(2)}</Fade>
+                    </td>
+                    <td className="p-2 text-right pr-4">
+                      <Fade delay={index*100}>{item.status}</Fade>
+                    </td>
                     <td className="border-l border-white/30 p-2">
-                      <div className="rounded-full text-sm py-1 flex justify-center items-center flex-nowrap">
-                        {item?.status === "Pending" ? (
-                          <button
-                            onClick={() => handleAccept(item)}
-                            className="alert-button-success btn btn-sm border-none"
-                          >
-                            <span className="px-2.5 ">Accept</span>
-                          </button>
-                        ) : (
-                          <button className="bg-primary/40 shadow-inner shadow-black/30 btn btn-sm rounded-full border-none text-white/60 hover:bg-primary/40 text-[10px] h-fit ">
-                            <span>Accepted</span>
-                            <span className="text-white text-lg">
-                              <RiVerifiedBadgeFill />
-                            </span>
-                          </button>
-                        )}
-                      </div>
+                      <Fade delay={index*100}>
+                        <div className="rounded-full text-sm py-1 flex justify-center items-center flex-nowrap">
+                          {item?.status === "Pending" ? (
+                            <button
+                              onClick={() => handleAccept(item)}
+                              className="alert-button-success btn btn-sm border-none"
+                            >
+                              <span className="px-2.5 ">Accept</span>
+                            </button>
+                          ) : (
+                            <button className="bg-primary/40 shadow-inner shadow-black/30 btn btn-sm rounded-full border-none text-white/60 hover:bg-primary/40 text-[10px] h-fit ">
+                              <span>Accepted</span>
+                              <span className="text-white text-lg">
+                                <RiVerifiedBadgeFill />
+                              </span>
+                            </button>
+                          )}
+                        </div>
+                      </Fade>
                     </td>
                   </tr>
                 ))}

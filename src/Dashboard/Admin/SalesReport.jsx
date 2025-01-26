@@ -6,17 +6,19 @@ import * as XLSX from "xlsx";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import LoadingSpin from "../../components/LoadingSpin";
 import { Helmet } from "react-helmet-async";
+import { Fade } from "react-awesome-reveal";
 
 const SalesReport = () => {
   const [salesData, setSalesData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [dateRange, setDateRange] = useState({
-    startDate: new Date(new Date().setDate(new Date().getDate() - 7)).toLocaleDateString(),
+    startDate: new Date(
+      new Date().setDate(new Date().getDate() - 7)
+    ).toLocaleDateString(),
     endDate: new Date().toLocaleDateString(),
   });
   const [loading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
-  console.log(dateRange);
   // Fetch sales data from server
   useEffect(() => {
     const fetchSalesData = async () => {
@@ -103,86 +105,87 @@ const SalesReport = () => {
   ];
 
   return (
-    <div className="md:p-6 p-2 py-6 space-y-6 text-white">
-                  <Helmet>
-                    <title>Sales Report | Medi Nest</title>
-                  </Helmet>
-      <h2 className="text-2xl font-bold">Sales Report</h2>
+    <Fade delay={300}>
+      <div className="md:p-6 p-2 py-6 space-y-6 text-white">
+        <Helmet>
+          <title>Sales Report | Medi Nest</title>
+        </Helmet>
+        <h2 className="text-2xl font-bold">Sales Report</h2>
 
-      {/* Date Range Filter */}
-      <div className="flex items-center gap-4">
-        <div>
-          <label className="block text-sm">Start Date:</label>
-          <input
-            type="date"
-            className="border rounded px-2 py-1 bg-white/30"
-            onChange={(e) =>
-              setDateRange({ ...dateRange, startDate: e.target.value })
-            }
-          />
+        {/* Date Range Filter */}
+        <div className="flex items-center gap-4">
+          <div>
+            <label className="block text-sm">Start Date:</label>
+            <input
+              type="date"
+              className="border rounded px-2 py-1 bg-white/30"
+              onChange={(e) =>
+                setDateRange({ ...dateRange, startDate: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label className="block text-sm">End Date:</label>
+            <input
+              type="date"
+              className="border rounded px-2 py-1 bg-white/30"
+              onChange={(e) =>
+                setDateRange({ ...dateRange, endDate: e.target.value })
+              }
+            />
+          </div>
+          <button
+            onClick={handleFilterByDate}
+            className="bg-blue-600 text-white px-4 py-2 rounded mt-5 green-button"
+          >
+            Filter
+          </button>
         </div>
-        <div>
-          <label className="block text-sm">End Date:</label>
-          <input
-            type="date"
-            className="border rounded px-2 py-1 bg-white/30"
-            onChange={(e) =>
-              setDateRange({ ...dateRange, endDate: e.target.value })
-            }
-          />
-        </div>
-        <button
-          onClick={handleFilterByDate}
-          className="bg-blue-600 text-white px-4 py-2 rounded mt-5 green-button"
-        >
-          Filter
-        </button>
-      </div>
 
-      {/* Action Buttons */}
-      <div className="flex items-center gap-4">
-        <button
-          onClick={exportToPDF}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Export to PDF
-        </button>
-        <CSVLink
-          data={filteredData}
-          filename={"sales-report.csv"}
-          className="bg-green-500/80 text-white px-4 py-2 rounded"
-        >
-          Export to CSV
-        </CSVLink>
-        <button
-          onClick={exportToExcel}
-          className="bg-purple-500 text-white bg-white/30 px-4 py-2 rounded"
-        >
-          Export to Excel
-        </button>
-      </div>
-
-      {/* Data Table */}
-      {loading ? (
-        <LoadingSpin />
-      ) : (
-        <>
-          <p className="text-center border border-white/50 p-2 w-fit mx-auto rounded-md">
-            Sales Report Between: &nbsp;  
-            {dateRange?.startDate} to{" "}
-            {dateRange?.endDate}
-          </p>
-          <DataTable
-            columns={columns}
+        {/* Action Buttons */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={exportToPDF}
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+          >
+            Export to PDF
+          </button>
+          <CSVLink
             data={filteredData}
-            // customStyles={customStyles}
-            pagination
-            highlightOnHover
-            className="border rounded shadow "
-          />
-        </>
-      )}
-    </div>
+            filename={"sales-report.csv"}
+            className="bg-green-500/80 text-white px-4 py-2 rounded"
+          >
+            Export to CSV
+          </CSVLink>
+          <button
+            onClick={exportToExcel}
+            className="bg-purple-500 text-white bg-white/30 px-4 py-2 rounded"
+          >
+            Export to Excel
+          </button>
+        </div>
+
+        {/* Data Table */}
+        {loading ? (
+          <LoadingSpin />
+        ) : (
+          <>
+            <p className="text-center border border-white/50 p-2 w-fit mx-auto rounded-md">
+              Sales Report Between: &nbsp;
+              {dateRange?.startDate} to {dateRange?.endDate}
+            </p>
+            <DataTable
+              columns={columns}
+              data={filteredData}
+              // customStyles={customStyles}
+              pagination
+              highlightOnHover
+              className="border rounded shadow "
+            />
+          </>
+        )}
+      </div>
+    </Fade>
   );
 };
 
