@@ -114,11 +114,11 @@ const Register = () => {
               className="max-w-md mx-auto"
             />
           </div>
-          <div className="w-full sm:w-8/12 lg:w-1/3 shadow-lg rounded-lg p-8 ">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="w-full sm:w-8/12 lg:w-1/3 shadow-lg rounded-lg p-8 pt-0 lg:pt-8">
+            <form onSubmit={handleSubmit} className="md:space-y-6 space-y-3">
               {/* Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-500 mb-2">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Name
                 </label>
                 <input
@@ -132,7 +132,7 @@ const Register = () => {
 
               {/* Photo */}
               <div>
-                <label className="block text-sm font-medium text-gray-500 mb-2">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Upload Photo
                 </label>
                 <input
@@ -146,7 +146,7 @@ const Register = () => {
               </div>
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium text-gray-500 mb-2">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Email
                 </label>
                 <input
@@ -159,8 +159,8 @@ const Register = () => {
               </div>
 
               {/* Password */}
-              <div className="relative">
-                <label className="block text-sm font-medium text-gray-500 mb-2">
+              <div className="relative pb-4">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Password
                 </label>
                 <input
@@ -182,7 +182,7 @@ const Register = () => {
               <select
                 onChange={(e) => setRole(e.target.value)}
                 value={role}
-                className="select select-bordered w-full "
+                className="select select-bordered w-full"
               >
                 <option value="">Select Role</option>
                 <option value="user">User</option>

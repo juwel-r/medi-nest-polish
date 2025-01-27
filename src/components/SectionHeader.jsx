@@ -3,7 +3,7 @@ import { Fade } from "react-awesome-reveal";
 
 const SectionHeader = ({ title, subTitle }) => {
   return (
-    <div className="w-[95%] md:w-10/12 mx-auto  ">
+    <div className="w-[95%] md:w-10/12 mx-auto mt-6 ">
       <Fade direction="down">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-primary font-semibold text-center">
           {title}

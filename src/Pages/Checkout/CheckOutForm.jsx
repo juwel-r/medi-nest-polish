@@ -102,7 +102,7 @@ const CheckOutForm = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-gray-100 p-6 rounded-lg shadow-lg mt-10">
+    <div className="max-w-lg mx-auto bg-gray-100 p-6 rounded-lg shadow-lg mt-10 mb-10">
       <Helmet>
         <title>Payment Gateway | Medi Nest</title>
       </Helmet>

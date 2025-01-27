@@ -112,7 +112,7 @@ const Cart = () => {
 
   return (
     
-    <div className="">
+    <div className="min-h-screen">
       <Helmet>
         <title>{userInfo.displayName}'s Cart | Medi Nest</title>
       </Helmet>

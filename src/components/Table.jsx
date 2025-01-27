@@ -144,7 +144,7 @@ const Table = ({ apiEndPoint }) => {
           {/* row 1 */}
         </tbody>
       </table>
-      <div className="mx-0 m-auto text-center space-x-6 mt-6 mb-2 flex justify-center items-center">
+      <div className="mx-auto text-center space-x-6 mt-6 md:mt-12 mb-2 flex justify-center items-center">
         <IoIosArrowBack
           onClick={() => currentPage > 0 && setCurrentPage(currentPage - 1)}
           data-tooltip-id="my-tooltip"

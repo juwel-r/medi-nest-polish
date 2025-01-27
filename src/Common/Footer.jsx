@@ -2,7 +2,7 @@ import { Fade } from "react-awesome-reveal";
 import bgImage from "/wave-haikei.png";
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-primary/50 to-primary/80 px-[5%] mx-auto text- py-10 bg-no-repeat bg-cover bg-center">
+    <footer className="text-gray-800 bg-gradient-to-b from-primary/50 to-primary/80 px-[5%] mx-auto text- py-10 bg-no-repeat bg-cover bg-center">
       <div className="container mx-auto px-12">
         {/* Grid Layout */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
