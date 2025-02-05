@@ -1,54 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>README - Medi Nest</title>
-</head>
-<body>
-  <h1>Medi Nest</h1>
-  <p><strong>Your Trusted Multi-Vendor Medicine Marketplace</strong></p>
 
-  <h2>Admin Login Details</h2>
-  <ul>
-    <li><strong>Username:</strong> admin@medinest.com</li>
-    <li><strong>Password:</strong> Admin123</li>
-  </ul>
+# 🏥 MediNest  
 
-  <h2>Live Site</h2>
-  <p><a href="https://medi-nest-r6.web.app/" target="_blank">Visit Medi Nest</a></p>
+A **Multi-vendor e-commerce platform** for purchasing medicines and healthcare products, built using the **MERN stack**. The platform ensures a seamless user experience, allowing users to buy medications, submit queries, and receive expert advice.  
 
-  <hr>
-  
-  <h2>Features</h2>
-  <h3>Multi-Vendor Platform</h3>
-  <p>Connect buyers with multiple sellers offering a wide variety of medicines.</p>
+---
+<div align="center">
+  <img height="auto" src="https://i.ibb.co.com/hFW7JmZ8/screencapture-medi-nest-r6-web-app-2025-02-05-19-37-17.png" alt="Medinest"  />
+</div>
 
-  <h3>Secure Payment Gateway</h3>
-  <p>Supports multiple payment options with end-to-end secure transactions.</p>
+## ✨ Features  
 
-  <h3>Smart Shopping Cart</h3>
-  <p>Add multiple medicines to the cart and manage orders conveniently.</p>
+✅ **Multi-Vendor Support** – Sellers can register and sell their products.  
+✅ **Secure Payments** – Integrated with Stripe for safe transactions.  
+✅ **User Authentication** – Sign-up, login, and role-based access.  
+✅ **Product Management** – Add, edit, and delete products.  
+✅ **Search & Filters** – Advanced product search and sorting.  
+✅ **Cart & Checkout** – Smooth checkout experience with order tracking.  
+✅ **Healthcare Consultation** – Users can submit queries and receive expert advice.  
+✅ **Admin Dashboard** – Manage vendors, users, and products efficiently.  
 
-  <h3>Comprehensive Admin Dashboard</h3>
-  <p>Manage users, products, orders, and transactions from one central location.</p>
+---
 
-  <h3>Sales Reporting</h3>
-  <p>Generate detailed sales reports and filter data by date range.</p>
+## 🛠 Tech Stack  
 
-  <h3>Advertisement Management</h3>
-  <p>Sellers can add and manage advertisements for their products in a dedicated slider section.</p>
+**Frontend:**  
+- React.js  
+- @mui/material (Material UI)  
+- Emotion & Styled Components for styling  
+- React Query for state management  
+- React Hook Form for forms  
 
-  <h3>Advanced Search Functionality</h3>
-  <p>Search medicines by name, category, or generic name efficiently.</p>
+**Backend:**  
+- Node.js & Express.js  
+- MongoDB with Mongoose ORM  
+- Firebase Authentication  
 
-  <h3>Responsive Design</h3>
-  <p>Fully optimized for desktop, tablet, and mobile devices.</p>
+**Payments & Utilities:**  
+- Stripe API for payment processing  
+- Axios for API calls  
+- React Router for navigation  
+- SweetAlert2 for notifications  
+- React Toastify for alerts  
 
-  <h3>Real-Time Notifications</h3>
-  <p>Notifications for order updates, advertisements, and other important actions.</p>
+---
 
-  <h3>Role-Based Access Control</h3>
-  <p>Separate interfaces and permissions for admins, sellers, and buyers.</p>
-</body>
-</html>
+## 🚀 Installation  
+
+### Prerequisites  
+- Node.js (>=18.x)  
+- MongoDB installed locally or an online instance  
+- Firebase account for authentication  
+- Stripe account for payment gateway  
+
+### Steps to Run Locally  
+
+#### 1️⃣ Clone the Repository  
+```bash
+git clone https://github.com/juwel-r/medi-nest-client.git
+cd medi-nest-client
+```
+
+#### 2️⃣ Install Dependencies  
+```bash
+npm install
+```
+
+#### 3️⃣ Setup Environment Variables  
+Create a **.env** file in the root directory and add:  
+```
+MONGO_URI=your_mongodb_connection_string
+FIREBASE_API_KEY=your_firebase_api_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+```
+
+#### 4️⃣ Run the Application  
+```bash
+npm run dev
+```
+
+The application will be available at **http://localhost:5000/**.  
+
+---
+
+## 📌 Usage  
+
+- **For Users**  
+  - Browse products, add them to your cart, and check out.  
+  - Submit queries for expert advice.  
+
+- **For Vendors**  
+  - Register, list products, and manage orders.  
+
+- **For Admins**  
+  - Oversee platform activities, approve vendors, and manage users.  
+
+---
+
+## ⚙️ Configuration  
+
+Modify settings in the **config.js** file to adjust API endpoints, authentication, and payment settings.  
+
+---
+
+## 🛠 Troubleshooting  
+
+- **MongoDB Connection Error**  
+  - Ensure MongoDB is running and `MONGO_URI` is correctly set in `.env`.  
+
+- **Firebase Authentication Issues**  
+  - Double-check API keys and permissions.  
+
+- **Stripe Payment Not Processing**  
+  - Verify Stripe API keys and ensure test mode is enabled.  
+
+---
