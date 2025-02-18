@@ -13,7 +13,11 @@ import SectionHeader from "../../components/SectionHeader";
 const ContactForm = () => {
   const [checked, setChecked] = useState(false);
 
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    showToast("Thank You For Submit!")
+    e.target.reset()
+  };
   return (
     <div
       id="contact"
