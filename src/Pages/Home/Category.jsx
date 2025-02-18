@@ -11,27 +11,25 @@ const Category = () => {
   useEffect(() => {
     axiosPublic("/categories").then((res) => setCategories(res.data));
   }, []);
-  if (!categories || !categories.length > 0){
-    return <LoadingSpin></LoadingSpin>
+  if (!categories || !categories.length > 0) {
+    return <LoadingSpin></LoadingSpin>;
   }
-    return (
-      <div className="my-8">
-        <Fade>
-          
-        </Fade>
-        <SectionHeader
-          title="Shop by Category"
-          subTitle="Find exactly what you need from our carefully curated categories."
-        />
-        <div className="grid grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8 p-4">
-          {categories.slice(0, 6).map((category, index) => (
-            <Link key={index} to={`/items/${category.name}`}>
-              <CategoryCard category={category} index={index}></CategoryCard>
-            </Link>
-          ))}
-        </div>
+  return (
+    <div className="sectionContainer mt-4 md:mt-6">
+      <Fade triggerOnce></Fade>
+      <SectionHeader
+        title="Shop by Category"
+        subTitle="Find exactly what you need from our carefully curated categories."
+      />
+      <div className="grid grid-cols-2 lg:grid-cols-3 mx-auto w-full gap-6 mt-8 p-4">
+        {categories.slice(0, 6).map((category, index) => (
+          <Link key={index} to={`/items/${category.name}`}>
+            <CategoryCard category={category} index={index}></CategoryCard>
+          </Link>
+        ))}
       </div>
-    );
+    </div>
+  );
 };
 
 export default Category;

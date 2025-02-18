@@ -38,7 +38,7 @@ const PaymentHistory = () => {
   });
 
   return (
-    <Fade delay={300}>
+    <Fade triggerOnce delay={300}>
       <div className="container mx-auto py-4 mt-4">
         <Helmet>
           <title>Payment History | Medi Nest</title>

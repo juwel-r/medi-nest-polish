@@ -34,6 +34,9 @@ const Navbar = () => {
       <NavLink to="/blog" className="px-2">
         Blog
       </NavLink>
+      <NavLink to="/about-us" className="px-2">
+        About Us
+      </NavLink>
     </>
   );
 
@@ -48,7 +51,7 @@ const Navbar = () => {
         role="button"
         // onBlur={() => setMenuClose(false)}
         onClick={() => setMenuClose(!menuClose)}
-        className="block lg:hidden z-50 relative h-5 w-5 text-2xl text-black pr-4"
+        className="block lg:hidden z-50 relative h-5 w-5 text-2xl text-black px-4"
       >
         <span
           className={`absolute inset-0 transition-opacity duration-300 ${
@@ -66,8 +69,8 @@ const Navbar = () => {
         </span>
       </div>
       {/* Logo */}
-      <Link to="/" className="ml-3 min-w-fit">
-        <img className="h-12 lg:scale-150 " src={logo} alt="edu-mate-logo" />
+      <Link to="/" className="min-w-fit">
+        <img className="h-12 md:h-16" src={logo} alt="edu-mate-logo" />
       </Link>
 
       {/* Menu */}
@@ -154,7 +157,7 @@ const Navbar = () => {
               </Link>
             </>
           )}
-          <div className="border rounded-lg p-2">
+          <div className="hidden border rounded-lg p-2">
             <select name="language" defaultValue="English" className="">
               <option value="">Languages</option>
               <option value="English">English</option>
@@ -173,7 +176,7 @@ const Navbar = () => {
       )} */}
       {userInfo && (
         <div
-          className={`flex flex-col items-center gap-2 absolute top-12 sm:top-16 right-0 lg:right-28 bg-white p-4 mr-1 border-2 border-primary/50 shadow-md max-w-80 min-w-52 rounded-xl ${
+          className={`flex flex-col items-center gap-2 absolute top-12 sm:top-[68px] right-0  bg-white p-4 mr-1 border-2 border-primary/30 shadow-md max-w-80 min-w-52 rounded-xl ${
             profileMenu ? "opacity-100" : "opacity-0"
           } transition-all duration-300 ease-in-out transform`}
         >

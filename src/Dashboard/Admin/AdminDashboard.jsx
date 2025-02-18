@@ -31,7 +31,7 @@ const AdminDashboard = () => {
         <>
           {/* top section */}
           <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Fade delay={50}>
+            <Fade triggerOnce delay={50}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
                 <h2 className="text-base md:text-lg font-semibold">
                   Total Orders
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
                 </p>
               </div>
             </Fade>
-            <Fade delay={100}>
+            <Fade triggerOnce delay={100}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
                 <h2 className="text-base md:text-lg font-semibold">
                   Total {data?.statuses[0].status}
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
                 </p>
               </div>
             </Fade>
-            <Fade delay={150}>
+            <Fade triggerOnce delay={150}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
                 <h2 className="text-base md:text-lg font-semibold">
                   Total {data?.statuses[1]?.status}
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
                 </p>
               </div>
             </Fade>
-            <Fade delay={200}>
+            <Fade triggerOnce delay={200}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg py-4 rounded-lg border border-white/20 text-white text-center">
                 <h2 className="text-base lg:text-lg font-semibold px-1">
                   Available Medicines
@@ -75,6 +75,7 @@ const AdminDashboard = () => {
           {/* bottom section */}
           <section className="grid md:grid-cols-3 gap-4 mt-6">
             <Fade
+              triggerOnce
               delay={250}
               className="md:col-span-2 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20"
             >
@@ -87,6 +88,7 @@ const AdminDashboard = () => {
               </div>
             </Fade>
             <Fade
+              triggerOnce
               delay={350}
               className="bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20"
             >

@@ -111,7 +111,6 @@ const Cart = () => {
   };
 
   return (
-    
     <div className="min-h-screen">
       <Helmet>
         <title>{userInfo.displayName}'s Cart | Medi Nest</title>
@@ -129,73 +128,69 @@ const Cart = () => {
           <>
             <div className="space-y-4">
               {cartItems.map((item, i) => (
-                <Fade delay={i *200}  key={item._id}>
+                <Fade triggerOnce delay={i * 200} key={item._id}>
+                  <div className="grid grid-cols-2 md:flex items-center justify-between gap-4 bg-gray-100 p-4 rounded-lg shadow">
+                    {/* Photo ===section */}
+                    <div className="w-40 border h-full">
+                      <img
+                        className="w-full h-full rounded-md"
+                        src={item.image}
+                        alt={item.name}
+                      />
+                    </div>
+                    {/* Item Details ===section */}
+                    <div className="md:justify-self-start ">
+                      <h2 className="text-lg font-bold text-gray-800">
+                        {item.name}
+                      </h2>
+                      <p className="text-sm text-gray-500">{item.company}</p>
+                      <p className="text-gray-700">
+                        <span className="font-semibold">Price:</span> $
+                        {item.price.toFixed(2)} per unit
+                      </p>
+                      <p className="text-gray-700 ">
+                        <span className="font-semibold ">Total:</span>
+                        <span className="text-primary">
+                          {" "}
+                          ${(item.price * item.quantity).toFixed(2)}
+                        </span>
+                      </p>
+                    </div>
 
-                <div
-                 
-                  className="grid grid-cols-2 md:flex items-center justify-between gap-4 bg-gray-100 p-4 rounded-lg shadow"
-                >
-                  {/* Photo ===section */}
-                  <div className="w-40 border h-full">
-                    <img
-                      className="w-full h-full rounded-md"
-                      src={item.image}
-                      alt={item.name}
-                    />
-                  </div>
-                  {/* Item Details ===section */}
-                  <div className="md:justify-self-start ">
-                    <h2 className="text-lg font-bold text-gray-800">
-                      {item.name}
-                    </h2>
-                    <p className="text-sm text-gray-500">{item.company}</p>
-                    <p className="text-gray-700">
-                      <span className="font-semibold">Price:</span> $
-                      {item.price.toFixed(2)} per unit
-                    </p>
-                    <p className="text-gray-700 ">
-                      <span className="font-semibold ">Total:</span>
-                      <span className="text-primary">
-                        {" "}
-                        ${(item.price * item.quantity).toFixed(2)}
+                    {/* Quantity Controls ===section */}
+                    <div className="flex items-center gap-2">
+                      <button
+                        disabled={item.quantity === 1}
+                        onClick={() => handleQuantity(item._id, -1)}
+                        data-tooltip-id="my-tooltip"
+                        data-tooltip-content={`${
+                          item.quantity === 1
+                            ? "Minimum Quantity Limit Reached!"
+                            : ""
+                        }`}
+                        className="px-3 py-1 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300"
+                      >
+                        -
+                      </button>
+                      <span className="px-4 py-1 bg-white rounded-lg border text-gray-800">
+                        {item.quantity}
                       </span>
-                    </p>
-                  </div>
+                      <button
+                        onClick={() => handleQuantity(item._id, 1)}
+                        className="px-3 py-1 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300"
+                      >
+                        +
+                      </button>
+                    </div>
 
-                  {/* Quantity Controls ===section */}
-                  <div className="flex items-center gap-2">
+                    {/* Remove Button ===section */}
                     <button
-                      disabled={item.quantity === 1}
-                      onClick={() => handleQuantity(item._id, -1)}
-                      data-tooltip-id="my-tooltip"
-                      data-tooltip-content={`${
-                        item.quantity === 1
-                          ? "Minimum Quantity Limit Reached!"
-                          : ""
-                      }`}
-                      className="px-3 py-1 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300"
+                      onClick={() => handleDelete(item._id)}
+                      className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
                     >
-                      -
-                    </button>
-                    <span className="px-4 py-1 bg-white rounded-lg border text-gray-800">
-                      {item.quantity}
-                    </span>
-                    <button
-                      onClick={() => handleQuantity(item._id, 1)}
-                      className="px-3 py-1 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300"
-                    >
-                      +
+                      Remove
                     </button>
                   </div>
-
-                  {/* Remove Button ===section */}
-                  <button
-                    onClick={() => handleDelete(item._id)}
-                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                  >
-                    Remove
-                  </button>
-                </div>
                 </Fade>
               ))}
             </div>
@@ -203,25 +198,32 @@ const Cart = () => {
             {/* Footer */}
             <div className="mt-8 flex justify-between items-center">
               {/* Clear All */}
-             <Fade delay={300}> <button
-                onClick={handleDeleteAll}
-                className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-              >
-                Clear All Items
-              </button></Fade>
+              <Fade triggerOnce delay={300}>
+                {" "}
+                <button
+                  onClick={handleDeleteAll}
+                  className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                >
+                  Clear All Items
+                </button>
+              </Fade>
 
               {/* Total Cost */}
-              <Fade delay={300}><div className="flex items-center gap-4">
-                <p className="text-xl font-bold">
-                  Subtotal:{" "}
-                  <span className="text-blue-600">${totalCost.toFixed(2)}</span>
-                </p>
-                <Link to="/checkout">
-                  <button className="green-button">
-                    Checkout ({cartItems.length})
-                  </button>
-                </Link>
-              </div></Fade>
+              <Fade triggerOnce delay={300}>
+                <div className="flex items-center gap-4">
+                  <p className="text-xl font-bold">
+                    Subtotal:{" "}
+                    <span className="text-blue-600">
+                      ${totalCost.toFixed(2)}
+                    </span>
+                  </p>
+                  <Link to="/checkout">
+                    <button className="green-button">
+                      Checkout ({cartItems.length})
+                    </button>
+                  </Link>
+                </div>
+              </Fade>
             </div>
           </>
         ) : (

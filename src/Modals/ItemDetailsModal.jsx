@@ -40,9 +40,9 @@ const ItemDetailsModal = ({ item }) => {
       </Helmet>
       <button
         onClick={() => setIsOpen(true)}
-        className="text-primary px-2 h-5 flex items-center rounded-xl text-xl cursor-pointer hover:text-black transition-colors duration-300"
+        className="text-white px-3 py-0.5 text-xs w-fit flex items-center rounded-xl cursor-pointer hover:text-primary hover:bg-transparent hover:outline outline-1 transition-colors duration-300 my-2 bg-primary"
       >
-        <FaEye className="" />
+        Details
       </button>
       <Dialog
         open={isOpen}
@@ -51,17 +51,17 @@ const ItemDetailsModal = ({ item }) => {
         onClose={close}
       >
         <div className="fixed inset-0 z-10 w-screen  overflow-y-auto">
-          <div className="flex min-h-screen items-center justify-center p-4 my-10">
+          <div className="flex min-h-[calc(100vh-100px)] items-center justify-center p-4 my-10">
             <DialogPanel
               transition
-              className="w-full max-w-md rounded-xl p-6 border-2 backdrop-blur-md duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              className="w-full max-w-md rounded-xl p-6 border-2 backdrop-blur-xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0 bg-white/10 relative overflow-hidden"
             >
               <div className=" inset-0  flex justify-center items-center">
                 <div className=" rounded-lg">
                   {/* Close Button */}
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="absolute top-4 right-4 text-red-600 hover:scale-110 transition-all duration-300 hover:text-primary bg-white rounded-full w-8 h-8 p-1 flex items-center justify-center border-2"
+                    className="absolute top-0 right-0 text-white hover:scale-110 transition-all duration-300 hover:text-orange-200 bg-red-600 rounded-bl-xl w-8 h-8 flex items-center justify-center active:scale-95"
                   >
                     <IoClose />
                   </button>
@@ -83,14 +83,14 @@ const ItemDetailsModal = ({ item }) => {
                     <p className="text-sm text-gray-500 italic">
                       {genericName}
                     </p>
-                    <p className=" mt-2 text-gray-800">
+                    <p className=" mt-2 text-gray-500">
                       <span className="font-semibold">Category: </span>
                       {category}
                     </p>
-                    <p className=" text-gray-800">
+                    <p className=" text-gray-500">
                       <span className="font-semibold">Company: </span> {company}
                     </p>
-                    <p className=" text-gray-800">
+                    <p className=" text-gray-500">
                       <span className="font-semibold">Mass Unit: </span>
                       {massUnit}
                     </p>
@@ -121,7 +121,7 @@ const ItemDetailsModal = ({ item }) => {
                     </div>
 
                     {/* Description */}
-                    <p className="mt-4 text-gray-600">{description}</p>
+                    <p className="mt-4 text-gray-500">{description}</p>
 
                     {/* Action Buttons */}
                     <div className="mt-6 flex justify-between items-center"></div>
@@ -130,7 +130,10 @@ const ItemDetailsModal = ({ item }) => {
               </div>
 
               <div className="mt-4">
-                <button className="green-button" onClick={()=>handleAddToCart(item)}>
+                <button
+                  className="green-button"
+                  onClick={() => handleAddToCart(item)}
+                >
                   Add To Cart
                 </button>
               </div>

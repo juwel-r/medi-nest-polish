@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import Table from "../components/Table";
+import MedicineCard from "../components/MedicineCard";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -21,7 +21,7 @@ const ItemsByCategory = () => {
       ></SectionHeader>
       <section>
         <div className="overflow-x-auto">
-          <Table apiEndPoint={`/items/category/${categoryName}`}></Table>
+          <MedicineCard apiEndPoint={`/items/category/${categoryName}`}></MedicineCard>
         </div>
       </section>
     </div>

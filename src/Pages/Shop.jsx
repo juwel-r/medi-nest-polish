@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
-import Table from "../components/Table";
+import MedicineCard from "../components/MedicineCard";
 import { Helmet } from "react-helmet-async";
 
 const Shop = () => {
@@ -17,8 +17,9 @@ const Shop = () => {
         }
       ></SectionHeader>
       <section>
-        <div className="overflow-x-auto">
-          <Table apiEndPoint="/items"></Table>
+        <div className="">
+          <MedicineCard apiEndPoint="/items"></MedicineCard>
+          
         </div>
       </section>
     </div>

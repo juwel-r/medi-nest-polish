@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-50 to-cyan-50">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-blue-50 to-cyan-50 sectionContainer">
       <Helmet>
         <title>404 Not Found | Medi Nest</title>
       </Helmet>

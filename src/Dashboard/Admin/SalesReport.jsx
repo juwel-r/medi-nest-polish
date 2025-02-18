@@ -105,7 +105,7 @@ const SalesReport = () => {
   ];
 
   return (
-    <Fade delay={300}>
+    <Fade triggerOnce delay={300}>
       <div className="md:p-6 p-2 py-6 space-y-6 text-white">
         <Helmet>
           <title>Sales Report | Medi Nest</title>

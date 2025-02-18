@@ -13,16 +13,16 @@ const CategoryCard = ({ category, index }) => {
   ];
 
   return (
-    <Fade direction="up" delay={index*100} className="">
+    <Fade triggerOnce direction="up" delay={index * 100} className="h-full">
       <div
         style={{
           backgroundColor: categoryColors[index % categoryColors.length],
         }}
-        className="p-4 rounded-xl  shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 group "
+        className="p-4 rounded-xl  shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 group h-full"
       >
-        <div className="min-h-28 grid lg:grid-cols-[1.5fr_2fr] sm:grid-cols-1 gap-6">
+        <div className="min-h-full grid lg:grid-cols-[1.5fr_2fr] sm:grid-cols-1 gap-6">
           {/* Photo */}
-          <div className="  bg-gray-100 rounded-lg flex items-center justify-center p-0.5 group-hover:scale-105 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-primary transition-all duration-300 shadow-md">
+          <div className=" h-28 bg-gray-100 rounded-lg flex items-center justify-center p-0.5 group-hover:scale-105 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-primary transition-all duration-300 shadow-md">
             <img
               src={categoryImage}
               alt={name}
@@ -32,7 +32,7 @@ const CategoryCard = ({ category, index }) => {
           {/* content */}
           <div className="flex flex-col justify-center">
             <h3 className="text-lg font-bold text-blue-600 mb-2">{name}</h3>
-            <p className="text-sm text-gray-500"> 
+            <p className="text-sm text-gray-500">
               <span className="text-blue-600 font-semibold">{count}</span>&nbsp;
               Medicines
             </p>

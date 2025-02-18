@@ -7,6 +7,7 @@
 html {
   overflow-y: scroll;
   font-family: "Poppins", serif;
+  scroll-behavior: smooth;
 }
 
 .active {
@@ -151,8 +152,34 @@ html {
   transform: scale(1.01);
 }
 
-
-
+.custom {
+  height: 100%;
+}
 
 
 /* =========================== */
+/* spacing media query */
+.sectionContainer {
+  padding: 50px 6px; /* Default spacing for large screens */
+}
+
+/* Medium screens (Tablets) */
+@media (max-width: 1024px) {
+  .sectionContainer {
+    padding: 30px 24px;
+  }
+}
+
+/* Small screens (Mobiles) */
+@media (max-width: 768px) {
+  .sectionContainer {
+    padding: 25px 16px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .sectionContainer {
+    padding: 20px 16px;
+  }
+}

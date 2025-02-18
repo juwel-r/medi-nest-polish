@@ -53,7 +53,7 @@ const ManageMedicine = () => {
       {isLoading ? (
         <LoadingSpin></LoadingSpin>
       ) : (
-        <Fade delay={250}>
+        <Fade triggerOnce delay={250}>
           <div className="manage-users overflow-auto bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
             <table className="table-auto w-full border-collapse">
               <thead className="bg-white/30 text-xs md:text-base">

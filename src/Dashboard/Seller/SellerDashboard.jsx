@@ -36,7 +36,7 @@ const SellerDashboard = () => {
         <>
           {/* top section */}
           <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Fade delay={100}>
+            <Fade triggerOnce delay={100}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
                 <h2 className="text-base md:text-lg font-semibold">
                   Total Orders
@@ -51,7 +51,7 @@ const SellerDashboard = () => {
                 </p>
               </div>
             </Fade>
-            <Fade delay={150}>
+            <Fade triggerOnce delay={150}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
                 <h2 className="text-base md:text-lg font-semibold">
                   Total Paid
@@ -61,7 +61,7 @@ const SellerDashboard = () => {
                 </p>
               </div>
             </Fade>
-            <Fade delay={250}>
+            <Fade triggerOnce delay={250}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
                 <h2 className="text-base md:text-lg font-semibold">
                   Total Pending
@@ -71,7 +71,7 @@ const SellerDashboard = () => {
                 </p>
               </div>
             </Fade>
-            <Fade delay={350}>
+            <Fade triggerOnce delay={350}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg p-4 rounded-lg border border-white/20 text-white text-center">
                 <h2 className="text-base md:text-lg font-semibold">
                   Available Items
@@ -84,7 +84,11 @@ const SellerDashboard = () => {
           </section>
           {/* bottom section */}
           <section className="grid md:grid-cols-3 gap-4 mt-6">
-            <Fade delay={400} className="md:col-span-2 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20">
+            <Fade
+              triggerOnce
+              delay={400}
+              className="md:col-span-2 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20"
+            >
               <div>
                 <h2 className="text-white text-base md:text-lg font-semibold">
                   Overall Activity
@@ -93,7 +97,7 @@ const SellerDashboard = () => {
                 <div className="h-32 bg-gradient-to-br from-white/10 to-white/5 rounded-lg mt-2"></div>
               </div>
             </Fade>
-            <Fade delay={450}>
+            <Fade triggerOnce delay={450}>
               <div className="bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20">
                 <h2 className="text-white text-base md:text-lg font-semibold">
                   Daily Report

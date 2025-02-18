@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 
@@ -10,9 +11,26 @@ const SlideContent = ({
   discount,
   description,
 }) => {
+  const [textLimit, setTextLimit] = useState(100);
+
+  useEffect(() => {
+    const updateTextLimit = () => {
+      if (window.innerWidth > 425) {
+        setTextLimit(200);
+      } else {
+        setTextLimit(100);
+      }
+    };
+
+    updateTextLimit();
+    window.addEventListener("resize", updateTextLimit);
+
+    return () => window.removeEventListener("resize", updateTextLimit);
+  }, []);
+
   return (
     <div className="flex flex-col lg:flex-row px-6 py-8">
-      <Fade direction="left" cascade>
+      <Fade  direction="left" >
         <div className="flex text-left justify-start max-w-96 md:max-w-[600px] lg:max-w-full items-start flex-col lg:pl-44 md:px-10 text-white">
           <div className="flex justify-start gap-2">
             <h1 className="row-span-2 font-bold text-2xl lg:text-5xl md:text-3xl lg:leading-[60px]">
@@ -32,27 +50,24 @@ const SlideContent = ({
             to="/"
             className="green-button text-base md:text-xl font-semibold border-2 border-white/70 md:py-2 md:px-8 mt-6 mb-8 transition-all duration-300"
           >
-            <span className="">
-
-            Explore More
-            </span>
-              
-
+            <span className="">Explore More</span>
           </Link>
         </div>
       </Fade>
       <div className="relative lg:ml-16 ml-10 mt-8 ">
         <Fade
+          
           direction="right"
           className="bg-primary/30 backdrop-blur-md max-w-[450px] max-h-56 rounded-3xl lg:self-end flex items-center border-2 border-white/20 p-4"
         >
           <p className="lg:text-xl md:text-base text-sm max-w-[500px] text-white/80 text-center ml-10">
-            {description}
+            {description.slice(0, textLimit)}...
           </p>
         </Fade>
         {discount > 0 && (
           <div className="lg:scale-90 md:scale-75 scale-[0.85] absolute -top-10 -left-12">
             <Fade
+              
               direction="up"
               delay={300}
               className=" w-28 h-28 font-bold text-lg shadow-md shadow-primary rounded-full flex items-center text-center px-4 bg-white/90 text-green-600"

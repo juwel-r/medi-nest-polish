@@ -28,9 +28,9 @@ const DiscountCard = ({ category, index }) => {
   };
 
   return (
-    <div className="p-4 rounded-xl shadow-lg border border-gray-100 group hover:shadow-xl hover:bg-primary/5 transition-all duration-300 max-w-sm">
-      <Fade delay={200}>
-        <div className="relative overflow-hidden rounded-lg">
+    <div className="p-4 rounded-lg shadow-lg border border-gray-100 group hover:shadow-xl hover:bg-primary/5 transition-all duration-300 w-full h-full">
+      <Fade triggerOnce delay={200}>
+        <div className="relative overflow-hidden rounded-md">
           <img
             src={image}
             alt="Product Image"
@@ -43,12 +43,12 @@ const DiscountCard = ({ category, index }) => {
       </Fade>
 
       <div className="mt-4 p-4">
-        <Fade direction="up" delay={300}>
+        <Fade triggerOnce direction="up" delay={300}>
           <h3 className="text-lg font-bold text-gray-800 truncate">
             {itemName}
           </h3>
         </Fade>
-        <Fade delay={index * 200}>
+        <Fade triggerOnce cascade damping={.2}>
           <p className="text-sm text-gray-500 italic">Generic: {genericName}</p>
           <p className="text-sm text-gray-500 mt-1">
             Mass Unit: {massUnit} | {company}
@@ -57,12 +57,12 @@ const DiscountCard = ({ category, index }) => {
             Category: {categoryName}
           </p>
           <p className="text-sm text-gray-700 mt-2 line-clamp-2">
-            {description}
+            {description} 
           </p>
         </Fade>
 
         <div className="flex items-center justify-between mt-4">
-          <Fade direction="left" delay={200}>
+          <Fade triggerOnce direction="left" delay={200}>
             <div>
               <p className="text-sm text-gray-400 line-through">
                 ${price.toFixed(2)}
@@ -72,12 +72,11 @@ const DiscountCard = ({ category, index }) => {
               </p>
             </div>
           </Fade>
-          <Fade delay={350}>                                                            
-          <button onClick={handleAddToCart} className="green-button">
-            Add to Cart
-          </button>
+          <Fade triggerOnce delay={350}>
+            <button onClick={handleAddToCart} className="green-button">
+              Add to Cart
+            </button>
           </Fade>
-
         </div>
       </div>
     </div>

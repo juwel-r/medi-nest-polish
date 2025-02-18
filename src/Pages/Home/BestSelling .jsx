@@ -17,21 +17,21 @@ const BestSelling = () => {
     return <LoadingSpin />;
   }
   return (
-    <section className="py-10 mt-8 ">
-      <div className="container mx-auto px-6 md:px-10 lg:px-16">
+    <section className="sectionContainer lg:w-10/12 mx-auto">
+      <div className="mx-auto px-4">
         <SectionHeader
           title="Best-Selling Medicines"
           subTitle="Discover our best-selling medicines trusted by thousands of customers for their quality and effectiveness."
         ></SectionHeader>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
           {products.map((product, index) => (
             <div
               key={index}
-              className="relative group bg-white shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105"
+              className="relative group bg-white overflow-hidden rounded-lg transition-all transform hover:shadow-[0px_20px_20px_0px] hover:shadow-primary/30 duration-300 p-4 pb-0 border border-dashed"
             >
               {/* Image */}
-              <Fade delay={index * 200}>
-                <div className="relative w-full h-56">
+              <Fade triggerOnce delay={index * 200}>
+                <div className="relative w-full h-56 rounded-t-md overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -43,8 +43,8 @@ const BestSelling = () => {
                 </div>
               </Fade>
               {/* Content */}
-              <div className="p-6">
-                <Fade direction="down" delay={index*200}>
+              <div className="p-6 pl-2">
+                <Fade triggerOnce direction="down" delay={index * 200}>
                   <h3 className="text-lg font-semibold text-gray-800 truncate">
                     {product.name}
                     <span className="text-sm font-light text-gray-500">
@@ -52,31 +52,31 @@ const BestSelling = () => {
                     </span>
                   </h3>
                 </Fade>
-                <Fade direction="up" delay={index*200}> 
-                <p className="mt-2 text-sm text-gray-600 italic">
-                  {product.generic}
-                </p>
-                <p className="text-sm text-gray-700 font-medium">
-                  {product.company}
-                </p>
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <span className="text-lg font-bold text-blue-600">
-                      ${product.price.toFixed(2)}
-                    </span>
-                    {product.discount && (
-                      <span className="ml-2 text-xs  bg-primary/80 text-white px-3 py-1 rounded-[4px]">
-                        Save ${product.discount}
+                <Fade triggerOnce direction="up" delay={index * 200}>
+                  <p className="mt-2 text-sm text-gray-600 italic">
+                    {product.generic}
+                  </p>
+                  <p className="text-sm text-gray-700 font-medium">
+                    {product.company}
+                  </p>
+                  <div className="flex justify-between items-center mt-4">
+                    <div>
+                      <span className="text-lg font-bold text-blue-600">
+                        ${product.price.toFixed(2)}
                       </span>
-                    )}
+                      {product.discount && (
+                        <span className="ml-2 text-xs group-hover:hidden bg-primary/80 text-white px-3 py-1 rounded-[4px]">
+                          Save ${product.discount}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                </div>
                 </Fade>
               </div>
               {/* Button */}
               <div className="absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100 transition-opacity">
                 <Link to="/shop">
-                  <button className="w-full bg-primary text-white py-3 text-center font-medium hover:bg-blue-700 transition-colors">
+                  <button className="w-full bg-primary text-white py-3 text-center font-medium hover:bg-blue-700 transition-colors duration-900">
                     Shop Now
                   </button>
                 </Link>

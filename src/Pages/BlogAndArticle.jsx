@@ -64,42 +64,45 @@ const BlogAndArticles = () => {
   ];
 
   return (
-    <section className="py-20 pt-0 md px-6 bg-[#Faf9f6]/50 min-h-screen ">
+    <section className="py-20 pt-0 md px-6  min-h-screen ">
       <Helmet>
         <title>Latest Blogs & Articles | Medi Nest</title>
       </Helmet>
       <div className="text-center mb-12">
-        <SectionHeader title={"Latest Blogs & Articles"}></SectionHeader>
+        <SectionHeader title={"Latest Blogs & Articles"} subTitle={ "Stay informed with the latest updates, breakthroughs, and industry news from MediNest. Your trusted source for everything healthcare!"}></SectionHeader>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 mx-auto">
-      <Fade cascade damping={0.1}>
-
-        {blogs.map((blog, i) => (
-          <div
-            key={blog.id}
-            className="bg-white rounded-lg shadow-lg overflow-hidden group"
-          >
-            <img
-              src={blog.image || "https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg"}
-              alt={blog.title}
-              className="w-full h-56 object-cover group-hover:scale-110 transition-all duration-500"
-            />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-primary">
-                {blog.title}
-              </h3>
-              <p className="text-gray-600 text-sm mt-2">
-                {blog.summary.slice(0, 90)}...
-              </p>
-              <div className="mt-4">
-                <span className="text-gray-500 text-sm">
-                  By {blog.author} | {new Date(blog.date).toLocaleDateString()}
-                </span>
+        <Fade triggerOnce cascade damping={0.1}>
+          {blogs.map((blog, i) => (
+            <div
+              key={blog.id}
+              className="bg-white rounded-lg shadow-lg overflow-hidden group"
+            >
+              <img
+                src={
+                  blog.image ||
+                  "https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg"
+                }
+                alt={blog.title}
+                className="w-full h-56 object-cover group-hover:scale-110 transition-all duration-500"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-primary">
+                  {blog.title}
+                </h3>
+                <p className="text-gray-600 text-sm mt-2">
+                  {blog.summary.slice(0, 90)}...
+                </p>
+                <div className="mt-4">
+                  <span className="text-gray-500 text-sm">
+                    By {blog.author} |{" "}
+                    {new Date(blog.date).toLocaleDateString()}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Fade>
+          ))}
+        </Fade>
       </div>
     </section>
   );

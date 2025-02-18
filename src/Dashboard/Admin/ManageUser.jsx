@@ -75,13 +75,17 @@ const ManageUser = () => {
                 users.map((item, i) => (
                   <tr key={item._id} className="even:bg-white/10">
                     <td className="p-2">
-                      <Fade delay={i * 100}>{item.name}</Fade>
+                      <Fade triggerOnce delay={i * 100}>
+                        {item.name}
+                      </Fade>
                     </td>
                     <td className="p-2">
-                      <Fade delay={i * 100}>{item.email}</Fade>
+                      <Fade triggerOnce delay={i * 100}>
+                        {item.email}
+                      </Fade>
                     </td>
                     <td className="p-2">
-                      <Fade delay={i * 100}>
+                      <Fade triggerOnce delay={i * 100}>
                         <input
                           value={item.role.toUpperCase()}
                           disabled
@@ -90,7 +94,7 @@ const ManageUser = () => {
                       </Fade>
                     </td>
                     <td className="border-l border-white/30 p-2">
-                      <Fade delay={i * 100}>
+                      <Fade triggerOnce delay={i * 100}>
                         <form>
                           <select
                             defaultValue={item.role}

@@ -38,7 +38,7 @@ const DiscountSlide = () => {
    return <LoadingSpin/>
   }
   return (
-    <div className="md:pt-8">
+    <div className="sectionContainer">
       <SectionHeader
         title="Discounts on Essentials"
         subTitle="Grab unbeatable deals on top-quality medicines. Save more while staying healthy!"
@@ -50,10 +50,10 @@ const DiscountSlide = () => {
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        className="mySwiper h-12"
       >
-        {categories.map((category, index) => (
-          <SwiperSlide className="md:my-12 mt-6 mb-12" key={index}>
+        {categories.slice(0,10).map((category, index) => (
+          <SwiperSlide className="md:my-12 mt-6 mb-12 rounded-lg h-9" key={index}>
             <DiscountCard key={category._id} category={category} index={index}></DiscountCard>
           </SwiperSlide>
         ))}

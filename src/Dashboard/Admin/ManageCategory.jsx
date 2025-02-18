@@ -68,13 +68,13 @@ const ManageCategory = () => {
         <title>Category Management | Medi Nest</title>
       </Helmet>
       <div className="flex items-center justify-between px-4 mb-4">
-        <Fade>
+        <Fade triggerOnce>
           <h2 className="text-lg md:text-2xl font-semibold  text-white">
             Category Management
           </h2>
         </Fade>
         <div onClick={handleAddCategory} className="green-button">
-          <Fade>
+          <Fade triggerOnce>
             <AddCategoryModal refetch={refetch}></AddCategoryModal>
           </Fade>
         </div>
@@ -97,10 +97,12 @@ const ManageCategory = () => {
                 category.map((item, index) => (
                   <tr key={item._id} className="even:bg-white/10 group ">
                     <td className="p-2">
-                      <Fade delay={index * 150}>{index + 1}</Fade>
+                      <Fade triggerOnce delay={index * 150}>
+                        {index + 1}
+                      </Fade>
                     </td>
                     <td className="p-2 ">
-                      <Fade delay={index * 150}>
+                      <Fade triggerOnce delay={index * 150}>
                         <div className="flex justify-center">
                           <img
                             src={item.categoryImage}
@@ -111,12 +113,12 @@ const ManageCategory = () => {
                       </Fade>
                     </td>
                     <td className="p-2 w-1/2">
-                      <Fade direction="up" delay={index * 150}>
+                      <Fade triggerOnce direction="up" delay={index * 150}>
                         {item.name}
                       </Fade>
                     </td>
                     <td className="p-2">
-                      <Fade delay={index * 150}>
+                      <Fade triggerOnce delay={index * 150}>
                         <div className="flex flex-col md:flex-row gap-2">
                           <AddCategoryModal
                             item={item}

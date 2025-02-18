@@ -33,8 +33,8 @@ axiosPublic('/items/slider').then((res) => setSlider(res.data));
           slider.map((slide, index) => (
             <SwiperSlide key={index}>
               <div
-                className="w-full bg-cover object-cover bg-center md:py-8 lg:py-16 "
-                style={{ backgroundImage: `url(${slide.bannerImage || slide.image})` }}
+                className="w-full bg-cover object-cover bg-center md:py-8 lg:py-16 min-h-fi h-[450px] sm:h-[70vh] lg:h-[50vh]"
+                style={{ backgroundImage: `url(${slide.bannerImage || slide.image})`, }}
               >
                 <div className="absolute inset-0 bg-black bg-opacity-30"></div>
                 <SlideContent

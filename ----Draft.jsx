@@ -1,247 +1,87 @@
-// import React from "react";
-
-// const CartPage = ({ cartItems, onIncrease, onDecrease, onRemove, onClear }) => {
-//   const totalCost = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
-//   return (
-//     <div className="min-h-screen bg-gray-50 p-6">
-//       {/* Header */}
-//       <div className="text-center mb-8">
-//         <h1 className="text-4xl font-bold text-blue-600">Your Shopping Cart</h1>
-//         <p className="text-gray-600">Review your selected items and manage your cart.</p>
-//       </div>
-
-//       {/* Cart Items */}
-//       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6">
-//         {cartItems.length > 0 ? (
-//           <>
-//             <div className="space-y-4">
-//               {cartItems.map((item) => (
-//                 <div
-                  
-//                   className="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow"
-//                 >
-//                   {/* Item Details */}
-//                   <div>
-//                     <h2 className="text-lg font-bold text-gray-800">{item.name}</h2>
-//                     <p className="text-sm text-gray-500">{item.company}</p>
-//                     <p className="text-gray-700">
-//                       <span className="font-semibold">Price:</span> ${item.price.toFixed(2)} per unit
-//                     </p>
-//                     <p className="text-gray-700">
-//                       <span className="font-semibold">Total:</span> $
-//                       {(item.price * item.quantity).toFixed(2)}
-//                     </p>
-//                   </div>
-
-//                   {/* Quantity Controls */}
-//                   <div className="flex items-center gap-2">
-//                     <button
-//                       onClick={() => onDecrease(item.id)}
-//                       className="px-3 py-1 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300"
-//                     >
-//                       -
-//                     </button>
-//                     <span className="px-4 py-1 bg-white rounded-lg border text-gray-800">
-//                       {item.quantity}
-//                     </span>
-//                     <button
-//                       onClick={() => onIncrease(item.id)}
-//                       className="px-3 py-1 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300"
-//                     >
-//                       +
-//                     </button>
-//                   </div>
-
-//                   {/* Remove Button */}
-//                   <button
-//                     onClick={() => onRemove(item.id)}
-//                     className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-//                   >
-//                     Remove
-//                   </button>
-//                 </div>
-//               ))}
-//             </div>
-
-//             {/* Footer */}
-//             <div className="mt-8 flex justify-between items-center">
-//               {/* Clear All */}
-//               <button
-//                 onClick={onClear}
-//                 className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-//               >
-//                 Clear All Items
-//               </button>
-
-//               {/* Total Cost */}
-//               <p className="text-xl font-bold">
-//                 Total Cost: <span className="text-blue-600">${totalCost.toFixed(2)}</span>
-//               </p>
-//             </div>
-//           </>
-//         ) : (
-//           <p className="text-center text-gray-500 text-lg">Your cart is currently empty.</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CartPage;
+// Requirements:
 
 
 
-[
-  {
-      
-      "itemName": "Paracetamol",
-      "genericName": "Acetaminophen",
-      "description": "Paracetamol is used to treat mild to moderate pain and reduce fever. It is commonly used for headaches, muscle aches, and cold-related symptoms.",
-      "image": "https://i.ibb.co.com/Rzq9bhR/Paracetamol.jpg",
-      "category": "Tablet",
-      "company": "HealthCare Pharma",
-      "massUnit": "500 Mg",
-      "price": 5,
-      "discount": 7,
-      "sellerEmail": "seller1@gmail.com",
-      "bannerStatus": ""
-  },
-  {
-      
-      "itemName": "Cetrizine",
-      "genericName": "Cetirizine Hydrochloride",
-      "description": "Cetrizine is an antihistamine used to relieve allergy symptoms like runny nose, itching, and watery eyes. It is effective for hay fever and hives.",
-      "image": "https://i.ibb.co.com/DV2s8vn/Cetrizine.jpg",
-      "category": "Tablet",
-      "company": "AllergyCare Ltd",
-      "massUnit": "10 Mg",
-      "price": 8,
-      "discount": 5,
-      "sellerEmail": "seller2@gmail.com",
-      "bannerStatus": ""
-  },
-  {
-      
-      "itemName": "Amoxicillin",
-      "genericName": "Amoxicillin Trihydrate",
-      "description": "Amoxicillin is a penicillin antibiotic used to treat bacterial infections, including pneumonia, bronchitis, and infections of the ear, nose, and throat.",
-      "image": "https://i.ibb.co.com/qdMm59S/Amoxicillin.jpg",
-      "category": "Capsule",
-      "company": "BioPharma Inc",
-      "massUnit": "250 Mg",
-      "price": 10,
-      "discount": 0,
-      "sellerEmail": "seller3@gmail.com",
-      "bannerStatus": "Approved"
-  },
-  {
-      
-      "itemName": "Cough Syrup",
-      "genericName": "Diphenhydramine HCL",
-      "description": "Cough Syrup is used to relieve coughing caused by minor throat and bronchial irritation, often associated with a cold or inhaled irritants.",
-      "image": "https://i.ibb.co.com/ypsVj1f/Cough-Syrup.jpg",
-      "category": "Syrup",
-      "company": "Wellness Meds",
-      "massUnit": "100 ML",
-      "price": 50,
-      "discount": 10,
-      "sellerEmail": "seller4@gmail.com"
-  },
-  {
-      
-      "itemName": "Omeprazole",
-      "genericName": "Omeprazole Magnesium",
-      "description": "Omeprazole is used to treat acid reflux, heartburn, and stomach ulcers by reducing the amount of acid produced in the stomach.",
-      "image": "https://i.ibb.co.com/pxVD7RR/Omeprazole.jpg",
-      "category": "Capsule",
-      "company": "AcidCare Pharmaceuticals",
-      "massUnit": "20 Mg",
-      "price": 12,
-      "discount": 0,
-      "sellerEmail": "seller5@gmail.com",
-      "bannerStatus": "Approved"
-  },
-  {
-      
-      "itemName": "ORS Solution",
-      "genericName": "Oral Rehydration Salts",
-      "description": "ORS Solution is used to treat dehydration caused by diarrhea or vomiting. It restores essential salts and fluids in the body.",
-      "image": "https://i.ibb.co.com/mhcrX2k/ors.jpg",
-      "category": "Suspension",
-      "company": "HydraLife Ltd",
-      "massUnit": "200 ML",
-      "price": 25,
-      "discount": 7,
-      "sellerEmail": "seller6@gmail.com",
-      "bannerStatus": "Approved"
-  },
-  {
-      
-      "itemName": "Paracetamol",
-      "genericName": "Acetaminophen",
-      "description": "Paracetamol is used to treat mild to moderate pain and reduce fever. It is commonly used for headaches, muscle aches, and cold-related symptoms.",
-      "image": "https://i.ibb.co.com/Rzq9bhR/Paracetamol.jpg",
-      "category": "Antibiotic",
-      "company": "HealthCare Pharma",
-      "massUnit": "500 Mg",
-      "price": 5,
-      "discount": 2,
-      "sellerEmail": "seller7@gmail.com"
-  },
-  {
-      
-      "itemName": "Cetrizine",
-      "genericName": "Cetirizine Hydrochloride",
-      "description": "Cetrizine is an antihistamine used to relieve allergy symptoms like runny nose, itching, and watery eyes. It is effective for hay fever and hives.",
-      "image": "https://i.ibb.co.com/DV2s8vn/Cetrizine.jpg",
-      "category": "Tablet",
-      "company": "AllergyCare Ltd",
-      "massUnit": "10 Mg",
-      "price": 8,
-      "discount": 5,
-      "sellerEmail": "seller8@gmail.com",
-      "bannerStatus": "Approved"
-  },{
-    
-    "itemName": "Paracetamol",
-    "genericName": "Acetaminophen",
-    "description": "Paracetamol is used to treat mild to moderate pain and reduce fever. It is commonly used for headaches, muscle aches, and cold-related symptoms.",
-    "image": "https://i.ibb.co.com/Rzq9bhR/Paracetamol.jpg",
-    "category": "Tablet",
-    "company": "HealthCare Pharma",
-    "massUnit": "500 Mg",
-    "price": 5,
-    "discount": 7,
-    "sellerEmail": "seller1@gmail.com",
-    "bannerStatus": ""
-},
-{
-    
-    "itemName": "Cetrizine",
-    "genericName": "Cetirizine Hydrochloride",
-    "description": "Cetrizine is an antihistamine used to relieve allergy symptoms like runny nose, itching, and watery eyes. It is effective for hay fever and hives.",
-    "image": "https://i.ibb.co.com/DV2s8vn/Cetrizine.jpg",
-    "category": "Tablet",
-    "company": "AllergyCare Ltd",
-    "massUnit": "10 Mg",
-    "price": 8,
-    "discount": 5,
-    "sellerEmail": "seller2@gmail.com",
-    "bannerStatus": ""
-},
-{
-    
-    "itemName": "Amoxicillin",
-    "genericName": "Amoxicillin Trihydrate",
-    "description": "Amoxicillin is a penicillin antibiotic used to treat bacterial infections, including pneumonia, bronchitis, and infections of the ear, nose, and throat.",
-    "image": "https://i.ibb.co.com/qdMm59S/Amoxicillin.jpg",
-    "category": "Injection",
-    "company": "BioPharma Inc",
-    "massUnit": "250 Mg",
-    "price": 10,
-    "discount": 0,
-    "sellerEmail": "seller3@gmail.com",
-    "bannerStatus": "Approved"
-}
-]
+//✔👍 Navbar: Follow the following 5 points.
+
+// ✔👍-The background color of the Navbar must be relevant to the primary/secondary color or any relevant color of the website (Assignment 12)
+
+//✔👍 -The background must take up the full width of the screen, regardless of size.   
+
+//✔👍 -But the navbar content should be horizontally padded on both sides, and aligned with the rest of the page content for a consistent layout.
+
+//✔👍 -Except logged in/logged out/register routes, navbar should contain 3 routes while the user is logged out and 5 for the logged in users. And after successful login, all the protected routes must be added to the Navbar or in a dropdown.
+
+// ✔👍-Navbar must be sticky or fixed to the top of the page while scrolling, and it must take up the whole width of the viewport as well.
+
+
+
+// Home Page: Follow the following 3 points.
+
+// ✔👍 -The hero section should be clean and meaningful. If a slider is used, then all the images must be of the same ratio. Also the image quality should be good enough to not get pixelated on larger displays. 
+
+// ✔👍 -The height and width of each card in a section must be of the same size. The number of cards in each row should be well thought out and should look good. Each card should have a title, image, short description, “See more” button.
+
+//✔👍 -The landing page should have at least 10 relevant sections including Navbar and Footer. For example: Featured products, recent products, sales promotion, reviews, newsletter etc.
+
+
+
+// ✔👍 All Products Page: Follow the following 2 points
+
+// ✔👍 -In the All products page, all cards should be of the same size, well proportioned and there should have two sorting functionality (Example: Sort by ascending price, descending price)for displaying the products.
+
+// -Dashboard( Both user and Admin) : For dashboard, follow the following 2 points.
+
+// --A well designed “Profile Page” must be added to the dashboard, where all the relevant information about the user like Image, Name, Email, Phone number, Address and others should be displayed.
+
+// --An overview page must be added to the dashboard which will showcase overall stats. Charts and graphical elements should be added there.r
+
+
+
+// Others: Follow the following 11 points
+
+//✔👍 -Every page should be completed. No half-baked components should be there. The entire project must not have any “Demo Text” or “Lorem” text.
+
+//✔👍 -The entire project must be responsive for Mobile, Tablet and Desktop.
+
+//✔👍 -The spacing between each section of the UI must be uniform.
+
+// ✔👍 -Contents of the whole website should be horizontally padded from both sides, and aligned.
+
+// -The website must handle the user's system’s dark and light mode well. There should not be any text visibility issue or inconsistency due to the system’s setting.
+
+// -In dark mode, background color and text color should not conflict with each other.
+
+//✔👍 -No “Unclickable” button/route/link should be present in the project.
+
+//✔👍 -The error page should be professional in design and should have a button to navigate to the home page.
+
+//✔👍 -Maximum 4 colors can be used in the entire project. 3 is preferred, but maximum 4 will be accepted.
+
+//✔👍 -All the cards should have the same border radius and be of the same size.
+
+//✔👍 -Maximum 2 types of button can be used in the application. It can be buttons with outline or buttons with fill color. But they must be used uniformly.
+
+// --Exception: You don’t have to worry about buttons in the sliders or carousels. They can be a bit different. But the color accent or style must not be irrelevant to the overall design of the UI.
+
+
+
+// Reasons for disqualification:
+
+// -If the github repository link provided is not public.
+
+// -If copying is detected.
+
+
+
+// Submission Guidelines: Follow the following 4 points.
+
+// -Need to submit a workable live link of the project.
+
+// -You need to submit public GitHub repository links for both the frontend and backend. ( You will be given 0, if you submit private repository links) 
+
+// -Submit your default User & Admin credentials. (if you have any, otherwise you can skip this part)
+
+// -Need to have at least 7 new commits in the project while upgrading the project.
+
+

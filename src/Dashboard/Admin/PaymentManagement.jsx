@@ -91,19 +91,28 @@ const PaymentManagement = () => {
                 paymentData.map((item, index) => (
                   <tr key={item._id} className="even:bg-white/10">
                     <td className="p-2">
-                      <Fade delay={index*100}>{item.name}</Fade>
+                      <Fade triggerOnce delay={index * 100}>
+                        {item.name}
+                      </Fade>
                     </td>
                     <td className="p-2">
-                      <Fade delay={index*100}>{item.buyerEmail}</Fade>
+                      <Fade triggerOnce delay={index * 100}>
+                        {item.buyerEmail}
+                      </Fade>
                     </td>
                     <td className="p-2 text-right pr-4">
-                      <Fade delay={index*100}> ${item?.amount.toFixed(2)}</Fade>
+                      <Fade triggerOnce delay={index * 100}>
+                        {" "}
+                        ${item?.amount.toFixed(2)}
+                      </Fade>
                     </td>
                     <td className="p-2 text-right pr-4">
-                      <Fade delay={index*100}>{item.status}</Fade>
+                      <Fade triggerOnce delay={index * 100}>
+                        {item.status}
+                      </Fade>
                     </td>
                     <td className="border-l border-white/30 p-2">
-                      <Fade delay={index*100}>
+                      <Fade triggerOnce delay={index * 100}>
                         <div className="rounded-full text-sm py-1 flex justify-center items-center flex-nowrap">
                           {item?.status === "Pending" ? (
                             <button

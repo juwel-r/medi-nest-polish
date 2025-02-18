@@ -75,7 +75,7 @@ const ManageAdvertisement = () => {
   };
 
   return (
-    <Fade delay={200}>
+    <Fade triggerOnce delay={200}>
       <div className="container mx-auto py-4 mt-4">
         <Helmet>
           <title>Advertisement Management | Medi Nest</title>

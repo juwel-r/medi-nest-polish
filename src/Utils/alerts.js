@@ -24,7 +24,13 @@ export const showToast = (message, type = "info") => {
 // });
 
 //sweet alert single button
-export const showAlert = ({title,text,icon = "success",confirmButtonText = "OK",showCancelButton,}) => {
+export const showAlert = ({
+  title,
+  text,
+  icon = "success",
+  confirmButtonText = "OK",
+  showCancelButton,
+}) => {
   return Swal.fire({
     title: title || "Alert!",
     text: text || "",
@@ -40,7 +46,7 @@ export const showAlert = ({title,text,icon = "success",confirmButtonText = "OK",
       confirmButton: `${
         icon === "error" ? "alert-button-error" : "alert-button-success"
       }`,
-      cancelButton:"alert-button-error"
+      cancelButton: "alert-button-error",
     },
   });
 };
