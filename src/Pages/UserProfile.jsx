@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useAuth from "../customHooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import { Fade } from "react-awesome-reveal";
+import cover from"../assets/cover.png"
 
 const UserProfile = () => {
   const { userInfo } = useAuth();
@@ -24,83 +25,62 @@ const UserProfile = () => {
   };
 
   return (
-    <Fade triggerOnce delay={200}>
-      <div className="w-[95%] sm:max-w-lg mx-auto p-6 my-6 rounded-lg shadow-md bg-white/20 border border-white/50 text-white">
-        <Helmet>
-          <title>Profile of {userInfo?.displayName} | Medi Nest</title>
-        </Helmet>
-        <div className="flex flex-col items-center pt-4 mx-6">
-          <img
-            src={formData.photoURL || "https://via.placeholder.com/150"}
-            alt="User Avatar"
-            className="w-44 h-44 rounded-full shadow-md object-cover"
-          />
-          {!editMode ? (
-            <>
-              <h1 className="text-2xl font-semibold mt-4">
+    <div className="min-h-screen bg-gray-100/50 dark:bg-gray-900 text-gray-900 dark:text-white">
+      <div
+        className="relative w-full h-48 md:h-64 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${cover})`,
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      </div>  
+      <div className="max-w-5xl mx-auto p-6 ">
+        <div className="bg-white/40 backdrop-blur-lg dark:bg-gray-800/40 p-6 rounded-lg shadow-lg relative -mt-32">
+          <div className="flex flex-col md:flex-row items-center md:items-start">
+            <img
+              src={formData.photoURL || "https://via.placeholder.com/150"}
+              alt="User Avatar"
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg object-cover"
+            />
+            <div className="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
+              <h1 className="text-3xl font-semibold ">
                 {formData?.displayName}
               </h1>
-              <p className="">{formData?.email}</p>
-              <button
-                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary green-button"
+              <p className="text-lg text-gray-900">{formData?.email}</p>
+              <p className="mt-2 text-sm text-gray-900">Joined: January 2024</p>
+              {/* <button
+                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary transition"
                 onClick={() => setEditMode(true)}
               >
                 Edit Profile
-              </button>
-            </>
-          ) : (
-            <form className="w-full mt-4 space-y-4" onSubmit={handleSubmit}>
-              <div>
-                <label className="block  font-medium">Name</label>
-                <input
-                  type="text"
-                  name="displayName"
-                  value={formData?.displayName}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-white/50 rounded-md focus:ring-1 focus:ring-primary focus:outline-none bg-white/20 shadow-md"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block  font-medium">Photo URL</label>
-                <input
-                  type="url"
-                  name="photoURL"
-                  value={formData?.photoURL}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-white/50 rounded-md focus:ring-1 focus:ring-primary focus:outline-none bg-white/20 shadow-md"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block  font-medium">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  readOnly
-                  value={formData?.email}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-white/50 rounded-md focus:ring-1 focus:ring-primary focus:outline-none bg-white/20 shadow-md"
-                  required
-                />
-              </div>
-              <div className="flex justify-end gap-4">
-                <button
-                  type="button"
-                  className="red-button"
-                  onClick={() => setEditMode(false)}
-                >
-                  Cancel
-                </button>
-                <button type="submit" className="green-button">
-                  Save
-                </button>
-              </div>
-            </form>
-          )}
+              </button> */}
+            </div>
+          </div>
+        </div>
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white/40 backdrop-blur-lg dark:bg-gray-800/40 p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold">Personal Information</h2>
+            <p className="mt-2">
+              <strong>Phone:</strong> +880 1234 567 890
+            </p>
+            <p className="mt-2">
+              <strong>Address:</strong> 123, Dhaka, Bangladesh
+            </p>
+            <p className="mt-2">
+              <strong>Membership:</strong> Premium
+            </p>
+          </div>
+          <div className="bg-white/40 backdrop-blur-lg dark:bg-gray-800/40 p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold">Recent Activities</h2>
+            <ul className="mt-2 list-disc list-inside">
+              <li>Purchased "Medicine A" on February 18, 2025</li>
+              <li>Reviewed "Product B" on February 16, 2025</li>
+              <li>Updated profile picture on February 14, 2025</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </Fade>
+    </div>
   );
 };
 

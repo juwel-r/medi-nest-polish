@@ -49,7 +49,7 @@ const MedicineCard = ({ apiEndPoint }) => {
     <div className="px-4">
       {/* Search input sort */}
       <div className="px-4 flex justify-between">
-        <fieldset className="w-fit my-2 border border-gray-200/50 rounded-md  shadow-sm ">
+        <fieldset className="w-fit my-2 border border-gray-200/50 rounded-md  shadow-sm  dark:bg-dark-inputBg">
           <label htmlFor="Search" className="hidden">
             Search
           </label>
@@ -63,7 +63,7 @@ const MedicineCard = ({ apiEndPoint }) => {
                 <svg
                   fill="currentColor"
                   viewBox="0 0 512 512"
-                  className="w-4 h-4 "
+                  className="w-4 h-4 dark:text-dark-title text-black "
                 >
                   <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
                 </svg>
@@ -74,7 +74,7 @@ const MedicineCard = ({ apiEndPoint }) => {
               type="search"
               name="Search"
               placeholder="Search..."
-              className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none  focus:dark:bg-gray-50 focus:dark:border-violet-600"
+              className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none  focus:dark:bg-gray-50 focus:dark:border-violet-600 dark:bg-dark-inputBg dark:text-dark-inputText"
             />
           </div>
         </fieldset>
@@ -101,13 +101,13 @@ const MedicineCard = ({ apiEndPoint }) => {
 
       {/* Card */}
       <div className="overflow-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 ">
           {medicines.result &&
             medicines.result.length > 0 &&
             medicines.result.map((item, index) => (
               <Fade key={item._id} triggerOnce delay={index * 100}>
-                <div className="h-full shadow-md rounded-lg overflow-hidden p-4 flex flex-col transition hover:shadow-lg border border-gray-300/50">
-                  <div className="w-full h-44 rounded-t-md overflow-hidden bg-center mb-4">
+                <div className="h-full shadow-md rounded-lg overflow-hidden p-4 flex flex-col transition hover:shadow-lg border border-gray-300/50 dark:bg-dark-card dark:border-dark-border">
+                  <div className="w-full h-44 rounded-t-md overflow-hidden bg-center mb-4 ">
                     <img
                       src={item.image}
                       alt=""
@@ -177,14 +177,15 @@ const MedicineCard = ({ apiEndPoint }) => {
             onClick={() => currentPage > 0 && setCurrentPage(currentPage - 1)}
             data-tooltip-id="my-tooltip"
             data-tooltip-content="Previous"
-            className="text-2xl w-8 h-10 outline-none cursor-pointer"
+            className="text-2xl w-8 h-10 outline-none cursor-pointer dark:text-dark-text"
           />
           {pages.map((page, index) => (
             <button
               key={index}
               onClick={() => setCurrentPage(page)}
-              className={`p-1.5 outline outline-1 outline-gray-400/50 px-4 rounded-md font-semibold transition-all duration-300 ${
-                page === currentPage && "bg-primary text-white "
+              className={`p-1.5 outline outline-1 outline-gray-400/50 px-4 rounded-md font-semibold transition-all duration-300 dark:border-dark-border dark:text-dark-text ${
+                page === currentPage &&
+                "bg-primary text-white dark:border-dark-border"
               }`}
             >
               {page + 1}
@@ -196,15 +197,15 @@ const MedicineCard = ({ apiEndPoint }) => {
             }
             data-tooltip-id="my-tooltip"
             data-tooltip-content="Next"
-            className="text-2xl w-8 h-10 outline-none  cursor-pointer"
+            className="text-2xl w-8 h-10 outline-none  cursor-pointer dark:text-dark-text"
           />
         </div>
         {/* Limit */}
-        <div className="flex items-center outline outline-1 outline-black/30 py-1.5 pl-2 rounded-md">
-          <p> Limit </p>
+        <div className="flex items-center outline outline-1 outline-black/30 py-1.5 pl-2 rounded-md dark:outline-dark-text">
+          <p className="dark:text-dark-text"> Limit </p>
           <select
             onChange={handleItemPerPage}
-            className="text-center outline-none text-primary font-bold"
+            className="text-center outline-none text-primary font-bold bg-transparent"
           >
             <option value="">Select</option>
             <option value={3}>3</option>

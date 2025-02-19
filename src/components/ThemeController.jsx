@@ -6,7 +6,7 @@ const ThemeController = () => {
   const { isDark, setDark } = useContext(AuthContext);
 
   const [darkMode, setDarkMode] = useDarkMode();
-  console.log(localStorage.getItem("theme"))
+  console.log(localStorage.getItem("theme"));
 
   return (
     <div className="flex">

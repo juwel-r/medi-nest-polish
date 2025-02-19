@@ -64,19 +64,24 @@ const BlogAndArticles = () => {
   ];
 
   return (
-    <section className="py-20 pt-0 md px-6  min-h-screen ">
+    <section className="py-20 pt-0 md px-6  min-h-screen dark:bg-dark-bg">
       <Helmet>
         <title>Latest Blogs & Articles | Medi Nest</title>
       </Helmet>
       <div className="text-center mb-12">
-        <SectionHeader title={"Latest Blogs & Articles"} subTitle={ "Stay informed with the latest updates, breakthroughs, and industry news from MediNest. Your trusted source for everything healthcare!"}></SectionHeader>
+        <SectionHeader
+          title={"Latest Blogs & Articles"}
+          subTitle={
+            "Stay informed with the latest updates, breakthroughs, and industry news from MediNest. Your trusted source for everything healthcare!"
+          }
+        ></SectionHeader>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 mx-auto">
         <Fade triggerOnce cascade damping={0.1}>
           {blogs.map((blog, i) => (
             <div
               key={blog.id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden group"
+              className="bg-white rounded-lg shadow-lg overflow-hidden group dark:bg-dark-card "
             >
               <img
                 src={
@@ -90,7 +95,7 @@ const BlogAndArticles = () => {
                 <h3 className="text-xl font-semibold text-primary">
                   {blog.title}
                 </h3>
-                <p className="text-gray-600 text-sm mt-2">
+                <p className="text-gray-600 text-sm mt-2 dark:text-dark-text">
                   {blog.summary.slice(0, 90)}...
                 </p>
                 <div className="mt-4">

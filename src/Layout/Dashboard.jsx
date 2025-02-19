@@ -7,6 +7,7 @@ import { RxCross2 } from "react-icons/rx";
 import { IoIosList } from "react-icons/io";
 import LogOut from "../components/LogOut";
 import { Fade } from "react-awesome-reveal";
+import ThemeController from "../components/ThemeController";
 
 const Dashboard = () => {
   const { userInfo } = useAuth();
@@ -34,7 +35,7 @@ const Dashboard = () => {
             {/* sidebar */}
             <div
               ref={dropdownRef}
-              className={`absolute lg:static z-20 col-span-3 bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 min-h-[calc(100vh-50px)] transform transition-all duration-300 ease-in-out ${
+              className={`absolute lg:static z-20 col-span-3 lg:bg-white/10 bg-gray-500/70 backdrop-blur-lg shadow-lg p-6 rounded-lg border border-white/20 min-h-[calc(100vh-50px)] transform transition-all duration-300 ease-in-out ${
                 menuClose ? " top-0 left-0" : "top-0  -left-96"
               }`}
             >
@@ -53,6 +54,7 @@ const Dashboard = () => {
                   </h2>
                   <p className="text-white/70 text-sm">{role?.toUpperCase()}</p>
                 </div>
+                <ThemeController></ThemeController>
               </div>
 
               {/* sidebar menu */}

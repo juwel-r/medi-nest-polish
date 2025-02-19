@@ -79,7 +79,7 @@ const AboutUs = () => {
   return (
     <div className=" text-gray-800 dark:bg-dark-bg dark:text-dark-text">
       {/* Header Section */}
-      <div className="bg-primary/80 py-16 text-center dark:darkStyle">
+      <div className="bg-primary/80 py-16 text-center dark:bg-gray-900">
         <h1 className="text-4xl font-bold">{aboutData.companyInfo.title}</h1>
         <p className="mt-2 text-lg opacity-90">
           {aboutData.companyInfo.subtitle}
@@ -88,7 +88,7 @@ const AboutUs = () => {
 
       {/* Company Introduction */}
       <div className="container mx-auto px-6 py-12 text-center">
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-gray-500 max-w-2xl mx-auto dak:text-dark-text">
           {aboutData.companyInfo.description}
         </p>
       </div>
@@ -98,20 +98,22 @@ const AboutUs = () => {
         {aboutData.missionVision.map((item) => (
           <div
             key={item.id}
-            className="p-6 border border-gray-300/50 shadow-md rounded-xl"
+            className="p-6 border border-gray-300/50 shadow-md rounded-xl   dark:bg-dark-card"
           >
-            <h3 className="text-2xl font-semibold mb-2 flex items-center gap-3">
-              <span className="text-primary text-3xl">{item.icon}</span>
+            <h3 className="text-2xl font-semibold mb-2 flex items-center gap-3  ">
+              <span className="text-primary text-3xl dak:text-dark-title">{item.icon}</span>
               {item.title}
             </h3>
-            <p className="text-gray-600">{item.description}</p>
+            <p className="text-gray-600 dark:text-dark-text/80">
+              {item.description}
+            </p>
           </div>
         ))}
       </div>
 
       {/* Why Choose Us */}
       <div className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-semibold text-center">Why Choose Us?</h2>
+        <h2 className="text-3xl font-semibold text-center dak:text-dark-title">Why Choose Us?</h2>
         <div className="grid md:grid-cols-3 gap-8 mt-8">
           {aboutData.whyChooseUs.map((item) => {
             const IconComponent = iconComponents[item.icon];
@@ -121,7 +123,7 @@ const AboutUs = () => {
                 className="text-center p-6 border border-gray-300/50 shadow-md rounded-xl"
               >
                 <IconComponent className="text-4xl text-primary mx-auto" />
-                <h3 className="text-xl font-semibold mt-4">{item.title}</h3>
+                <h3 className="text-xl font-semibold mt-4 dak:text-dark-title">{item.title}</h3>
                 <p className="text-gray-600 mt-2">{item.description}</p>
               </div>
             );

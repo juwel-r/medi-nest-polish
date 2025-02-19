@@ -54,7 +54,7 @@ const ItemDetailsModal = ({ item }) => {
           <div className="flex min-h-[calc(100vh-100px)] items-center justify-center p-4 my-10">
             <DialogPanel
               transition
-              className="w-full max-w-md rounded-xl p-6 border-2 backdrop-blur-xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0 bg-white/10 relative overflow-hidden"
+              className="w-full max-w-md rounded-xl p-6 border-2 backdrop-blur-xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0 bg-white/10 relative overflow-hidden dark:bg-dark-bg"
             >
               <div className=" inset-0  flex justify-center items-center">
                 <div className=" rounded-lg">
@@ -121,7 +121,7 @@ const ItemDetailsModal = ({ item }) => {
                     </div>
 
                     {/* Description */}
-                    <p className="mt-4 text-gray-500">{description}</p>
+                    <p className="mt-4 text-gray-800 dark:text-dark-text/60">{description}</p>
 
                     {/* Action Buttons */}
                     <div className="mt-6 flex justify-between items-center"></div>
