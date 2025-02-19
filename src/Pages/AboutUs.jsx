@@ -77,9 +77,9 @@ const AboutUs = () => {
   };
 
   return (
-    <div className=" text-gray-800">
+    <div className=" text-gray-800 dark:bg-dark-bg dark:text-dark-text">
       {/* Header Section */}
-      <div className="bg-primary/80 py-16 text-center dark:bg-red-500">
+      <div className="bg-primary/80 py-16 text-center dark:darkStyle">
         <h1 className="text-4xl font-bold">{aboutData.companyInfo.title}</h1>
         <p className="mt-2 text-lg opacity-90">
           {aboutData.companyInfo.subtitle}

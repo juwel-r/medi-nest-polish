@@ -156,6 +156,11 @@ html {
   height: 100%;
 }
 
+.darkStyle{
+  color: #fff;
+  background-color: #1a1a1a;
+  border-color: #333;
+}
 
 /* =========================== */
 /* spacing media query */

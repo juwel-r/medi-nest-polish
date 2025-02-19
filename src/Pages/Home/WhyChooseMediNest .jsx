@@ -56,12 +56,13 @@ const WhyChooseMediNest = () => {
   ];
 
   return (
-    <section className="relative bg-[#F8FAFF] sectionContainer mt-4 md:mt-6 lg:mt-12">
+    <section className="relative bg-[#F8FAFF] sectionContainer mt-4 md:mt-6 lg:mt-12 dark:bg-dark-bg 
+    ">
       <div className="text-center">
         <SectionHeader title={"Why Medi Nest?"} subTitle={""}></SectionHeader>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-14 relative mt-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-14 relative mt-20   ">
         <Fade triggerOnce cascade damping={0.2}>
           {cards.map((card, index) => (
             <motion.div
@@ -80,7 +81,7 @@ const WhyChooseMediNest = () => {
                   : { y: 0 }
               }
               key={card.id}
-              className="relative bg-white rounded-2xl shadow-lg p-8 text-center"
+              className="relative bg-white dark:bg-dark-card rounded-2xl shadow-lg p-8 text-center"
             >
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div
@@ -89,10 +90,10 @@ const WhyChooseMediNest = () => {
                   {card.icon || card.text}
                 </div>
               </div>
-              <h3 className="mt-14 font-semibold text-gray-800 text-lg">
+              <h3 className="mt-14 mb-2 font-semibold text-gray-800 dark:text-dark-title text-lg">
                 {card.title}
               </h3>
-              <p className="text-gray-600 text-sm">{card.description}</p>
+              <p className="text-gray-600 text-sm dark:text-dark-text">{card.description}</p>
             </motion.div>
           ))}
         </Fade>

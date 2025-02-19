@@ -9,7 +9,7 @@ const MainLayout = () => {
 
   return (
     <div
-      className="max-w-[1440px] mx-auto min-h-[100vh] relative"
+      className="max-w-[1440px] mx-auto min-h-[100vh] relative dark:bg-dark-bg  "
       data-theme={isDark ? "dark" : "light"}
     >
       <nav className="sticky top-0 left-0 right-0 w-full z-50 backdrop-blur-sm bg-white/80">

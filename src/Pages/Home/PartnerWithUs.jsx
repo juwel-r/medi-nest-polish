@@ -15,14 +15,19 @@ const PartnerWithUs = () => {
     return <LoadingSpin />;
   }
   return (
-    <div className="pt-4 md:pt-6 lg:pt-12 mt-4 md:mt-6 lg:mt-12 bg-gradient-to-b from-[#F8FAFF] to-primary/50 flex flex-col items-center overflow-hidden">
+    <div
+      className="pt-4 md:pt-6 lg:pt-12 mt-4 md:mt-6 lg:mt-12 
+  bg-[linear-gradient(to_bottom,_#ffffff,_#90b0f5)]
+  dark:bg-[linear-gradient(to_bottom,_#121212,_#1c3c81)]
+  flex flex-col items-center overflow-hidden"
+    >
       {/* Header Section */}
       <div className="text-center max-w-2xl mb-8">
         <Fade triggerOnce direction="up">
           <h1 className="text-4xl font-bold text-primary">Our Partners</h1>
         </Fade>
         <Fade triggerOnce delay={250}>
-          <p className="text-gray-600 mt-4 leading-relaxed">
+          <p className="text-gray-600 dark:text-dark-text mt-4 leading-relaxed">
             At <span className="font-semibold text-primary">Medi Nest</span>,
             we’re revolutionizing the future of healthcare accessibility and
             collaboration. Whether you're a pharmaceutical company, distributor,
@@ -32,7 +37,7 @@ const PartnerWithUs = () => {
           </p>
         </Fade>
         <Fade triggerOnce direction="up">
-          <button className="mt-6 px-8 py-3 text-primary font-bold border border-primary rounded-lg shadow-lg hover:bg-primary hover:text-white transition-colors duration-300">
+          <button className="mt-6 px-8 py-3 text-primary font-bold border border-primary rounded-lg shadow-lg hover:bg-primary hover:text-white transition-colors duration-300 dark:text-dark-text">
             <a href="#contact">Start Your Partnership</a>
           </button>
         </Fade>
@@ -52,7 +57,7 @@ const PartnerWithUs = () => {
                 : "rotate-12 md:-rotate-12 lg:-rotate-12 translate-y-2  md:translate-y-32 lg:-translate-y-6 md:translate-x-[200px] lg:translate-x-[500px] text-right before:content-['4th_Place'] before:absolute before:top-0 before:text-gray-400 before:right-0 before:pr-4 before:pt-3"
             }`}
           >
-            <div className="bg-white/10 p-4 rounded-lg shadow-lg">
+            <div className="bg-white/10 p-4 rounded-lg shadow-lg dark:bg-dark-card dark:border-dark-border ">
               <Fade triggerOnce delay={index * 200} className="">
                 <div className="flex items-end justify-between">
                   <img
@@ -60,12 +65,18 @@ const PartnerWithUs = () => {
                     src={seller.image}
                     alt={seller.name}
                   />
-                  <p className=" font-semibold text-gray-600">{seller.name}</p>
+                  <p className=" font-semibold text-gray-600 dark:text-dark-title">
+                    {seller.name}
+                  </p>
                 </div>
-                <p className="mt-2 text-gray-800">
+                <p className="mt-2 text-gray-800 dark:text-dark-text">
                   # {seller.count} Medicines Available Now
                 </p>
-                <p className={`text-gray-600 mt-1 ${index === 2 && "hidden"}`}>
+                <p
+                  className={`text-gray-600 dark:text-dark-text/70 mt-1 ${
+                    index === 2 && "hidden"
+                  }`}
+                >
                   Our Special Partner
                 </p>
               </Fade>

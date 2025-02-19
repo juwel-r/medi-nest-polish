@@ -15,7 +15,7 @@ const Category = () => {
     return <LoadingSpin></LoadingSpin>;
   }
   return (
-    <div className="sectionContainer mt-4 md:mt-6">
+    <div className="sectionContainer mt-4 md:mt-6 dark:bg-dark-bg">
       <Fade triggerOnce></Fade>
       <SectionHeader
         title="Shop by Category"

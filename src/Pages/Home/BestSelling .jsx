@@ -17,17 +17,17 @@ const BestSelling = () => {
     return <LoadingSpin />;
   }
   return (
-    <section className="sectionContainer lg:w-10/12 mx-auto">
-      <div className="mx-auto px-4">
+    <section className="sectionContainer  mx-auto dark:bg-dark-bg">
+      <div className="mx-auto px-4 lg:w-10/12">
         <SectionHeader
           title="Best-Selling Medicines"
           subTitle="Discover our best-selling medicines trusted by thousands of customers for their quality and effectiveness."
         ></SectionHeader>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12 ">
           {products.map((product, index) => (
             <div
               key={index}
-              className="relative group bg-white overflow-hidden rounded-lg transition-all transform hover:shadow-[0px_20px_20px_0px] hover:shadow-primary/30 duration-300 p-4 pb-0 border border-dashed"
+              className="relative group bg-white dark:bg-dark-card  overflow-hidden rounded-lg transition-all transform hover:shadow-[0px_20px_20px_0px] hover:shadow-primary/30 duration-300 p-4 pb-0 border border-dashed dark:border-dark-border"
             >
               {/* Image */}
               <Fade triggerOnce delay={index * 200}>
@@ -45,18 +45,18 @@ const BestSelling = () => {
               {/* Content */}
               <div className="p-6 pl-2">
                 <Fade triggerOnce direction="down" delay={index * 200}>
-                  <h3 className="text-lg font-semibold text-gray-800 truncate">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-dark-title truncate">
                     {product.name}
-                    <span className="text-sm font-light text-gray-500">
+                    <span className="text-sm font-light text-gray-500 dark:text-dark-text/80">
                       &nbsp;({product.mssUnit})
                     </span>
                   </h3>
                 </Fade>
                 <Fade triggerOnce direction="up" delay={index * 200}>
-                  <p className="mt-2 text-sm text-gray-600 italic">
+                  <p className="mt-2 text-sm text-gray-600 dark:text-dark-text italic">
                     {product.generic}
                   </p>
-                  <p className="text-sm text-gray-700 font-medium">
+                  <p className="text-sm text-gray-700 dark:text-dark-text font-medium">
                     {product.company}
                   </p>
                   <div className="flex justify-between items-center mt-4">

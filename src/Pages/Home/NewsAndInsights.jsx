@@ -41,12 +41,12 @@ const NewsAndInsights = () => {
       </div>
       <section className="flex flex-col md:flex-row  h-full  gap-6">
         {posts.map((post) => (
-          <div className="relative py-12 px-4 space-y-4 rounded-lg max-w-md mx-auto shadow-sm hover:shadow-lg transition-all duration-300 min-h-full pb-16 border border-gray-300/50">
-            <p>
-              <span className="font-bold">Blog -</span> {post.date}
+          <div className="relative py-12 px-4 space-y-4 rounded-lg max-w-md mx-auto shadow-sm hover:shadow-lg transition-all duration-300 min-h-full pb-16 border border-gray-300/50 dark:border-dark-border dark:bg-dark-card">
+            <p className="dark:text-dark-text/70">
+              <span className="font-bold ">Blog -</span> {post.date}
             </p>
-            <h1 className="text-xl font-semibold">{post.title}</h1>
-            <p>{post.summary.slice(0, 150)}...</p>
+            <h1 className="text-xl font-semibold dark:text-dark-title ">{post.title}</h1>
+            <p className="dark:text-dark-text ">{post.summary.slice(0, 150)}...</p>
             <Link
               to="/blog"
               className="flex items-center gap-2 text-primary/80 absolute bottom-4 left-4"

@@ -96,19 +96,19 @@ const CustomerTestimonials = () => {
           ) => (
             <div
               key={id}
-              className={`p-6 rounded-2xl shadow-md hover:shadow-lg transition border border-gray-300/50 ${
+              className={`p-6 rounded-2xl shadow-md hover:shadow-lg transition border dark:border-dark-border  dark:bg-dark-card border-gray-300/50 ${
                 i === 3 && "lg:hidden "
               }`}
             >
-              <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
-              <p className="text-gray-500">{location}</p>
-              <p className="text-gray-600 mt-2 flex items-center gap-2">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-dark-title">{name}</h3>
+              <p className="text-gray-500 dark:text-dark-text">{location}</p>
+              <p className="text-gray-600 dark:text-dark-text/70 mt-2 flex items-center gap-2">
                 <GiMedicines /> Purchased: <strong>{medicinePurchased}</strong>
               </p>
-              <p className="text-gray-600 flex items-center gap-2">
+              <p className="text-gray-600 dark:text-dark-text/80 flex items-center gap-2">
                 <BsCalendarDate /> Date: {purchaseDate}
               </p>
-              <p className="mt-3 text-gray-700 italic">"{review}"</p>
+              <p className="mt-3 text-gray-700 dark:text-dark-text/80 italic">"{review}"</p>
               <div className="flex gap-1 mt-3 justify-center">
                 {renderStars(rating)}
               </div>

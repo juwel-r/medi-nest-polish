@@ -20,7 +20,7 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <AuthProvider>
-          <RouterProvider router={router}></RouterProvider>
+          <RouterProvider router={router} ></RouterProvider>
           <ToastContainer />
           <Tooltip id="my-tooltip" />
         </AuthProvider>

@@ -21,7 +21,7 @@ const ContactForm = () => {
   return (
     <div
       id="contact"
-      className="flex flex-col md:flex-row items-center justify-center bg-[#F8FAFF] sectionContainer mb-4 md:mb-6"
+      className="flex flex-col md:flex-row items-center justify-center bg-[#F8FAFF] sectionContainer mb-4 md:mb-6 dark:bg-dark-bg"
     >
       {/* Left Image Section */}
       <div className="hidden sm:block w-1/2 relative">
@@ -44,7 +44,7 @@ const ContactForm = () => {
               type="text"
               required
               placeholder="Name"
-              className="w-full pl-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+              className="w-full pl-10 py-3 border border-gray-300 dark:border-dark-border dark:bg-dark-inputBg dark:text-dark-inputText rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <div className="relative">
@@ -53,7 +53,7 @@ const ContactForm = () => {
               type="email"
               required
               placeholder="Email Address"
-              className="w-full pl-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+              className="w-full pl-10 py-3 border border-gray-300 dark:border-dark-border dark:bg-dark-inputBg dark:text-dark-inputText rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <div className="relative">
@@ -62,7 +62,7 @@ const ContactForm = () => {
               type="text"
               required
               placeholder="Phone"
-              className="w-full pl-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+              className="w-full pl-10 py-3 border border-gray-300 dark:border-dark-border dark:bg-dark-inputBg dark:text-dark-inputText rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <div className="relative">
@@ -71,7 +71,7 @@ const ContactForm = () => {
               type="text"
               required
               placeholder="Subject"
-              className="w-full pl-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+              className="w-full pl-10 py-3 border border-gray-300 dark:border-dark-border dark:bg-dark-inputBg dark:text-dark-inputText rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
         </div>
@@ -81,7 +81,7 @@ const ContactForm = () => {
           <textarea
             required
             placeholder="How can we help you? Feel free to get in touch!"
-            className="w-full pl-4 pt-3 h-24 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+            className="w-full pl-4 pt-3 h-24 border border-gray-300 dark:border-dark-border dark:bg-dark-inputBg dark:text-dark-inputText rounded-lg focus:ring-2 focus:ring-blue-400"
           ></textarea>
         </div>
 

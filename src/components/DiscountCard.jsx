@@ -28,7 +28,7 @@ const DiscountCard = ({ category, index }) => {
   };
 
   return (
-    <div className="p-4 rounded-lg shadow-lg border border-gray-100 group hover:shadow-xl hover:bg-primary/5 transition-all duration-300 w-full h-full">
+    <div className="p-4 rounded-lg shadow-lg border border-gray-100 dark:border-dark-border group hover:shadow-xl hover:bg-primary/5 transition-all duration-300 w-full h-full dark:bg-dark-card">
       <Fade triggerOnce delay={200}>
         <div className="relative overflow-hidden rounded-md">
           <img
@@ -44,19 +44,19 @@ const DiscountCard = ({ category, index }) => {
 
       <div className="mt-4 p-4">
         <Fade triggerOnce direction="up" delay={300}>
-          <h3 className="text-lg font-bold text-gray-800 truncate">
+          <h3 className="text-lg font-bold text-gray-800 dark:text-dark-title truncate">
             {itemName}
           </h3>
         </Fade>
         <Fade triggerOnce cascade damping={.2}>
-          <p className="text-sm text-gray-500 italic">Generic: {genericName}</p>
-          <p className="text-sm text-gray-500 mt-1">
-            Mass Unit: {massUnit} | {company}
+          <p className="text-sm text-gray-500 dark:text-dark-text italic">Generic: {genericName}</p>
+          <p className="text-sm text-gray-500 dark:text-dark-text mt-1">
+            Mass Unit: {massUnit} | {company} 
           </p>
           <p className="text-xs text-blue-600 font-medium mt-1">
             Category: {categoryName}
           </p>
-          <p className="text-sm text-gray-700 mt-2 line-clamp-2">
+          <p className="text-sm text-gray-700 mt-2 line-clamp-2 dark:text-dark-text">
             {description} 
           </p>
         </Fade>

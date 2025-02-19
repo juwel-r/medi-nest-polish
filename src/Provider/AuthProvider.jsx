@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
     isDark,
   };
   return (
-    <div>
+    <div className=" dark:bg-dark-bg">
       <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>
     </div>
   );
