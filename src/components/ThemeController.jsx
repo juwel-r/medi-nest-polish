@@ -1,8 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import useDarkMode from "../Hooks/useDarkMode";
 
 const ThemeController = () => {
   const { isDark, setDark } = useContext(AuthContext);
+
+  const [darkMode, setDarkMode] = useDarkMode();
+  console.log(localStorage.getItem("theme"))
 
   return (
     <div className="flex">
@@ -10,7 +14,8 @@ const ThemeController = () => {
       <label className="swap swap-rotate ml-2">
         {/* this hidden checkbox controls the state */}
         <input
-          onChange={() => setDark(!isDark)}
+          onChange={() => setDarkMode(!darkMode)}
+          // onChange={() => setDark(!isDark)}
           type="checkbox"
           className="theme-controller"
           value="synthwave"
