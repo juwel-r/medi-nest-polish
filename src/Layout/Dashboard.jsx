@@ -54,7 +54,7 @@ const Dashboard = () => {
                   </h2>
                   <p className="text-white/70 text-sm">{role?.toUpperCase()}</p>
                 </div>
-                <ThemeController></ThemeController>
+                {/* <ThemeController></ThemeController> */}
               </div>
 
               {/* sidebar menu */}
